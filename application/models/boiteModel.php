@@ -1,6 +1,6 @@
 <?php 
 
-class Boite_model extends CI_Model
+class boiteModel extends CI_Model
 {
 
 	function __construct()

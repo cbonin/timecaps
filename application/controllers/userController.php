@@ -100,5 +100,3 @@ class userController extends CI_Controller
 		$this->session->sess_destroy();
 		echo'Session détruite';
 	}
-}
-?>

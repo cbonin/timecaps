@@ -29,10 +29,15 @@
     echo form_input('receverName', 'Penalba')."<br />";
     echo form_label('receverLastName', 'Prénom receveur')."<br />";
     echo form_input('receverLastName', 'Bastien')."<br />";
-    echo form_label('receverAddress', 'Adress receveur')."<br />";
-    echo form_input('receverCity', 'Bastien')."<br />";
-    echo form_label('receverAddress', 'Adress receveur')."<br />";
-    echo form_input('receverZipCode', 'Bastien')."<br />";
+
+    echo form_label('receverAddress', 'Adresse du gars')."<br />";
+    echo form_input('receverAddress', '18 boulevard Joliot Curie')."<br />";
+
+    echo form_label('receverCity', 'Ville du gars')."<br />";
+    echo form_input('receverCity', 'Martigues')."<br />";
+
+    echo form_label('receverZipCode', 'Code Postal du gars')."<br />";
+    echo form_input('receverZipCode', '13500')."<br />";
     
     echo form_submit('addBoite', 'créer une boite');
     echo form_close();

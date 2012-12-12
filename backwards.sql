@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mer 12 Décembre 2012 à 15:05
+-- Généré le: Mer 12 Décembre 2012 à 15:15
 -- Version du serveur: 5.5.24-log
 -- Version de PHP: 5.4.3
 
@@ -65,7 +65,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(100) DEFAULT NULL,
   `actif` int(1) NOT NULL DEFAULT '0',
   `firstVisit` int(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`idUser`)
+  PRIMARY KEY (`idUser`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --

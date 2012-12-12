@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mer 12 Décembre 2012 à 16:38
+-- Généré le: Mer 12 Décembre 2012 à 17:42
 -- Version du serveur: 5.5.24-log
 -- Version de PHP: 5.4.3
 
@@ -73,7 +73,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `firstVisit` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`idUser`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `user`
+--
+
+INSERT INTO `user` (`idUser`, `password`, `prenom`, `nom`, `email`, `adresse`, `codePostal`, `Ville`, `actif`, `firstVisit`) VALUES
+(1, 'zboub', 'Charles', 'ZBOUBI', 'c@gmail.com', NULL, NULL, NULL, 0, 1);
 
 --
 -- Contraintes pour les tables exportées

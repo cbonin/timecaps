@@ -1,6 +1,6 @@
 <?php 
 
-class User_controller extends CI_Controller
+class userController extends CI_Controller
 {
 
 	function __construct()
@@ -25,11 +25,21 @@ class User_controller extends CI_Controller
 
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('myform');
+			$this->load->view('form_inscription');
 		}
-		else
+		else  //si le formulaire à correctement été rempli
 		{
-			$this->load->view('formsuccess');
+			$data = array( // on crée les datas qu'on envvera au model dans un tableau
+				'prenom' => $this->input->post('prenom'),
+				'nom' => $this->input->post('nom'),
+				'email' => $this->input->post('email'),
+				'prenom' => $this->input->post('prenom'),
+				'password' => $this->input->post('password')
+			);
+
+			$this->load->model("userModel");
+			$this->userModel->addUser($data);
+			redirect(base_url());
 		}
 
 	}

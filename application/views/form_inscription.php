@@ -9,7 +9,7 @@
 </head>
 <body>
   
-    <form>
+    <form action="<?php base_url(); ?>" method="POST">
       <label for="prenom">Votre prenom</label>
       <input type="text" id="prenom" name="prenom" required >
       <label for="nom">Votre nom</label>
@@ -20,6 +20,7 @@
       <input type="password" id="password" name="password" required >
       <label for="passwordConf">Confirmer mot de passe</label>
       <input type="password" id="passwordConf" name="passwordConf" required >
+      <input type="submit" />
     </form>
 
 </body>

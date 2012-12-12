@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <form method="POST" action="<?php base_url();?>userController/signUp">
+    <form method="POST" action="<?php echo base_url();?>userController/signUp">
       <label for="prenom">Votre prenom</label>
       <input type="text" id="prenom" name="prenom" value="Charles" required >
       <label for="nom">Votre nom</label>

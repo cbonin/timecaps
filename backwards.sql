@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mer 12 Décembre 2012 à 15:15
+-- Généré le: Mer 12 Décembre 2012 à 16:38
 -- Version du serveur: 5.5.24-log
 -- Version de PHP: 5.4.3
 
@@ -28,14 +28,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `boite` (
   `idBoite` int(11) NOT NULL AUTO_INCREMENT,
-  `nomBoite` varchar(50) NOT NULL,
+  `nomBoite` varchar(50) DEFAULT NULL,
   `coordX` double NOT NULL,
   `CoordY` double NOT NULL,
+  `description` text,
   `idOwner` int(11) DEFAULT NULL,
+  `idReceiver` int(11) NOT NULL,
   `statut` int(1) NOT NULL DEFAULT '0',
   `targetDate` date NOT NULL,
   PRIMARY KEY (`idBoite`),
-  KEY `idOwner` (`idOwner`)
+  KEY `idOwner` (`idOwner`),
+  KEY `idReceiver` (`idReceiver`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -59,10 +62,13 @@ CREATE TABLE IF NOT EXISTS `contributeurs` (
 
 CREATE TABLE IF NOT EXISTS `user` (
   `idUser` int(11) NOT NULL AUTO_INCREMENT,
-  `password` varchar(40) DEFAULT NULL,
-  `prenom` varchar(50) DEFAULT NULL,
-  `nom` varchar(50) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
+  `password` varchar(40) NOT NULL,
+  `prenom` varchar(50) NOT NULL,
+  `nom` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `adresse` text,
+  `codePostal` int(5) DEFAULT NULL,
+  `Ville` varchar(60) DEFAULT NULL,
   `actif` int(1) NOT NULL DEFAULT '0',
   `firstVisit` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`idUser`),
@@ -77,7 +83,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Contraintes pour la table `boite`
 --
 ALTER TABLE `boite`
-  ADD CONSTRAINT `boite_ibfk_1` FOREIGN KEY (`idOwner`) REFERENCES `user` (`idUser`) ON DELETE SET NULL ON UPDATE SET NULL;
+  ADD CONSTRAINT `boite_ibfk_1` FOREIGN KEY (`idOwner`) REFERENCES `user` (`idUser`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `boite_ibfk_2` FOREIGN KEY (`idReceiver`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `contributeurs`

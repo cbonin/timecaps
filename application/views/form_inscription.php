@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../../assets/css/form.css">
 </head>
 <body>
-
+  
     <form method="POST" action="<?php echo base_url();?>userController/signUp">
       <label for="prenom">Votre prenom</label>
       <input type="text" id="prenom" name="prenom" value="Charles" required >

@@ -8,8 +8,10 @@
   <link rel="stylesheet" href="../../assets/css/form.css">
 </head>
 <body>
+
+  <?php echo validation_errors(); ?>
   
-    <form action="<?php base_url(); ?>" method="POST">
+    <form action="<?php echo base_url(); ?>userController/signUp" method="POST">
       <label for="prenom">Votre prenom</label>
       <input type="text" id="prenom" name="prenom" required >
       <label for="nom">Votre nom</label>

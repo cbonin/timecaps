@@ -13,9 +13,9 @@ class userModel extends CI_Model
 		$this->db->insert('user', $data);
 	}
 
-	function getUser($id)
+	function getUser($email)
 	{
-		$this->db->where('idUser', $id);
+		$this->db->where('email', $email);
 		$query = $this->db->get('user');
 
 		return $query->result_array();

@@ -89,7 +89,6 @@
             return false;
         });
 
-
         function createMarker(latLng){
             marker = new google.maps.Marker({
                 position: latLng,

@@ -4,16 +4,19 @@ class boiteController extends CI_Controller {
 
 	public function index()
 	{
-		echo "boite controller biatch";
-	}
+		$this->load->model("boiteModel");
 
-	function listBoite(){
-			
+		$param = array(
+			'userType' => 'back',
+			'mainContent' => 'mesBoites',
+			'title' => 'Mes boites',
+			'boites' => $this->boiteModel->listBoite(),
+		);
+		$this->load->view('template', $param);
 	}
 
 	function create()
 	{
-
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('nomBoite', 'Nom de la boite', 'trim|required|xss_clean|max_length[50]');
@@ -80,7 +83,7 @@ class boiteController extends CI_Controller {
 				'ville' => $this->input->post('receverCity'),
 			);
 			$this->boiteModel->addBoite($data);
-			redirect(base_url());
+			redirect("boiteController");
 		}
 	}
 
@@ -125,7 +128,7 @@ class boiteController extends CI_Controller {
 				'ville' => $this->input->post('receverCity'),
 			);
 			$this->boiteModel->updateBoite($id, $data);
-			redirect(base_url());
+			redirect("boiteController");
 		}
 	}
 

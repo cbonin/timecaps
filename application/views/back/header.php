@@ -6,6 +6,7 @@
 	<title><?php echo $title; ?></title>
 	<meta name="description" content="">
   <link rel="stylesheet" href="../../assets/css/back.css">
+  <link rel="stylesheet" href="../../assets/js/date.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </head>
 <body>

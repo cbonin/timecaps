@@ -1,2 +1,8 @@
+<script src="../../assets/js/jqueryUI.js"></script>
+<script>
+$(function() {
+    $("input[name=targetDate]").datepicker();
+});
+</script>
 </body>
 </html>

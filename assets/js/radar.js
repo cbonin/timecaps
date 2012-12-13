@@ -34,10 +34,10 @@ $(document).ready(function () {
                     url: base_url+'controllers/updateStatus/'+boiteId, //Obtenir en ajax la liste des chops les plus proche... Triés par distance et notes
                     cache: false,
                     success: function(data){
-                    $("#resto-list").html(data);
+                        alert('Ajax ok du zboub');
                     },
                     error: function(data){
-
+                        alert('Ajax failed');
                     }
                 });
 

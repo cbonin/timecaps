@@ -84,4 +84,19 @@ class boiteController extends CI_Controller {
 		$this->load->model("boiteModel");
 		$this->boiteModel->delete($idBoite);
 	}
+
+	function openBoite($idBoite){
+		$this->load->model("boiteModel");
+		
+		$param = array(
+				'userType' => 'back',
+				'mainContent' => 'radar',
+				'title' => 'Chercher la boite',
+				'boite' => $this->boiteModel->getBoite($idBoite)
+			);
+		$this->load->view('template', $param);
+
+
+	}
+
 }

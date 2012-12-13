@@ -66,6 +66,10 @@ $(document).ready(function(){
         });
     }
 
+    function updateMarker(LatLng){
+        
+    }
+
     function updateMarker(latLng){
         map.setCenter(latLng);
         map.setZoom(15);

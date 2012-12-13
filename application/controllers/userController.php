@@ -10,7 +10,7 @@ class userController extends CI_Controller
 	
 	function index()
 	{
-		
+		echo 'Zboub userController';
 	}
 
 	function signUp()
@@ -29,7 +29,12 @@ class userController extends CI_Controller
 		// Tant que les regles ne sont pas respectees
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('form_inscription');
+			$param = array(
+				'userType' => 'front',
+				'mainContent' => 'form_inscription',
+				'title' => 'Inscription'
+			);
+			$this->load->view('template', $param);
 		}
 		else  // Si le formulaire à correctement ete rempli
 		{
@@ -60,7 +65,12 @@ class userController extends CI_Controller
 		
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('loginView');
+			$param = array(
+				'userType' => 'front',
+				'mainContent' => 'loginView',
+				'title' => 'Connexion'
+			);
+			$this->load->view('template', $param);
 		}
 		else  //Si le formulaire à correctement été rempli
 		{
@@ -89,7 +99,12 @@ class userController extends CI_Controller
 
 			}else{ // Retente ta chance
 				echo 'Mauvais login ou mauvais mot de passe';
-				$this->load->view('loginView');
+				$param = array(
+				'userType' => 'front',
+				'mainContent' => 'loginView',
+				'title' => 'Connexion'
+				);
+				$this->load->view('template', $param);
 			}
 		}
 	}
@@ -100,3 +115,5 @@ class userController extends CI_Controller
 		$this->session->sess_destroy();
 		echo'Session détruite';
 	}
+}
+?>

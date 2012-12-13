@@ -20,7 +20,12 @@ class boiteController extends CI_Controller {
 
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('create_boite');
+			$param = array(
+				'userType' => 'back',
+				'mainContent' => 'create_boite',
+				'title' => 'Création'
+			);
+			$this->load->view('template', $param);
 		}
 		else  //si 	le formulaire à correctement été rempli
 		{
@@ -63,4 +68,11 @@ class boiteController extends CI_Controller {
 		$this->load->model("boiteModel");
 		$this->boiteModel->delete($idBoite);
 	}
+/*
+	function unlockBoite($idBoite, $geoloc){
+		$currentTime = time();
+		$geoX = $geoloc['coordX'];
+		$geoY = $geoloc['coordY'];
+	}
+*/
 }

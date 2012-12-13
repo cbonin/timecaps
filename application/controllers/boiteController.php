@@ -56,8 +56,11 @@ class boiteController extends CI_Controller {
 			$this->boiteModel->addBoite($data);
 			redirect(base_url());
 		}
+	}
 
-
-
+	// Supprime une boite en fonction de son id
+	function delete($idBoite){
+		$this->load->model("boiteModel");
+		$this->boiteModel->delete($idBoite);
 	}
 }

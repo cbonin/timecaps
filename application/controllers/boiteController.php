@@ -22,7 +22,7 @@ class boiteController extends CI_Controller {
 		{
 			$this->load->view('create_boite');
 		}
-		else  //si le formulaire à correctement été rempli
+		else  //si 	le formulaire à correctement été rempli
 		{
 			
 			$this->load->model("userModel");

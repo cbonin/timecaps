@@ -9,39 +9,49 @@
 </head>
 <body>
     
-    <?php echo validation_errors(); 
-
+    <?php echo validation_errors();
 
     echo form_open('boiteController/create')."<br />";
-    echo form_label('Nom de la boite', 'Nom de la boite')."<br />";
-    echo form_input('nomBoite', 'Boite numéro 1')."<br />";
-    echo form_label('coordX', 'Coord X')."<br />";
-    echo form_input('coordX', '48.851847')."<br />";
-    echo form_label('coordY', 'Coord Y')."<br />";
-    echo form_input('coordY', '2.420488')."<br />";
-    echo form_label('description', 'Description')."<br />";
-    echo form_textarea('description', 'Mettre ici la description')."<br />";
-    echo form_label('targetDate', 'Description')."<br />";
-    echo form_input('targetDate', '12/12/12')."<br />";
-    echo form_label('emailRecever', 'Email receveur')."<br />";
-    echo form_input('emailRecever', 'bastien.penalba@gmail.com')."<br />";
-    echo form_label('receverName', 'Nom receveur')."<br />";
-    echo form_input('receverName', 'Penalba')."<br />";
-    echo form_label('receverLastName', 'Prénom receveur')."<br />";
-    echo form_input('receverLastName', 'Bastien')."<br />";
 
-    echo form_label('receverAddress', 'Adresse du gars')."<br />";
-    echo form_input('receverAddress', '18 boulevard Joliot Curie')."<br />";
+        echo form_label('Nom de la boite', 'Nom de la boite')."<br />";
+        echo form_input('nomBoite', set_value('nomBoite'))."<br />";
 
-    echo form_label('receverCity', 'Ville du gars')."<br />";
-    echo form_input('receverCity', 'Martigues')."<br />";
+        echo form_label('Coord X', 'coordX')."<br />";
+        echo form_input('coordX', '48.851847')."<br />";
 
-    echo form_label('receverZipCode', 'Code Postal du gars')."<br />";
-    echo form_input('receverZipCode', '13500')."<br />";
-    
-    echo form_submit('addBoite', 'créer une boite');
+        echo form_label('Coord Y', 'coordY')."<br />";
+        echo form_input('coordY', '2.420488')."<br />";
+
+        echo form_label('Description', 'description')."<br />";
+        echo form_textarea('description', set_value('description'))."<br />";
+
+        echo form_label('Description', 'targetDate')."<br />";
+        echo form_input('targetDate', set_value('targetDate'))."<br />";
+
+        echo form_label('Email receveur', 'emailRecever')."<br />";
+        echo form_input('emailRecever', set_value('emailRecever'))."<br />";
+
+        echo form_label('Nom receveur', 'receverName')."<br />";
+        echo form_input('receverName', set_value('receverName'))."<br />";
+
+        echo form_label('Prénom receveur', 'receverLastName')."<br />";
+        echo form_input('receverLastName', set_value('receverLastName'))."<br />";
+
+        echo form_label('Adresse du gars', 'receverAddress')."<br />";
+        echo form_input('receverAddress', set_value('receverAddress'))."<br />";
+
+        echo form_label('Ville du gars', 'receverCity')."<br />";
+        echo form_input('receverCity', set_value('receverCity'))."<br />";
+
+        echo form_label('Code Postal du gars', 'receverZipCode')."<br />";
+        echo form_input('receverZipCode', set_value('receverZipCode'))."<br />";
+        
+        echo form_submit('addBoite', 'Créer une boite');
     echo form_close();
+
     ?>
+
+
 
 </body>
 </html>

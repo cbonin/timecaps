@@ -23,7 +23,7 @@ class boiteModel extends CI_Model
 
 	function updateBoite($id, $data)
 	{
-		$this->db->where('idBoite', $data['idBoite']);		
+		$this->db->where('idBoite', $id);		
 		$this->db->update('boite', $data);
 	}
 

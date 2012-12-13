@@ -21,7 +21,7 @@ class boiteModel extends CI_Model
 		return $query->result_array();
 	}
 
-	function updateBoite($data)
+	function updateBoite($id, $data)
 	{
 		$this->db->where('idBoite', $data['idBoite']);		
 		$this->db->update('boite', $data);

@@ -29,9 +29,9 @@ $(document).ready(function () {
                 var valeur = document.createTextNode('Déterrer la boîte');
                 button.appendChild(valeur);
                 document.getElementById('buttonContainer').appendChild(button);
-
+                alert(boiteId);
                 $.ajax({
-                    url: base_url+'controllers/updateStatus/'+boiteId, //Obtenir en ajax la liste des chops les plus proche... Triés par distance et notes
+                    url: baseUrl+'boiteController/updateStatus/'+boiteId, //Obtenir en ajax la liste des chops les plus proche... Triés par distance et notes
                     cache: false,
                     success: function(data){
                         alert('Ajax ok du zboub');

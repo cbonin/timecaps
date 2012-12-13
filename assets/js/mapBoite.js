@@ -3,7 +3,7 @@ $(document).ready(function(){
     var coordX = document.querySelector("input[name=coordX]");
     var coordY = document.querySelector("input[name=coordY]");
     var mapOptions;
-    var map
+    var map;
 
     if(coordX != '' && coordY != ''){
         mapOptions = {
@@ -11,10 +11,10 @@ $(document).ready(function(){
             center: new google.maps.LatLng(coordX.value,coordY.value),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        map = new google.maps.Map(document.getElementById('boiteMap'),
-    mapOptions);
+        map = new google.maps.Map(document.getElementById('boiteMap'), mapOptions);
         var coord = new google.maps.LatLng(coordX.value,coordY.value)
         createMarker(coord);
+        alert("Exists");
     }else{
         mapOptions = {
             zoom: 4,
@@ -23,6 +23,7 @@ $(document).ready(function(){
         };
         map = new google.maps.Map(document.getElementById('boiteMap'),
     mapOptions);
+        alert("Exists pas");
     }
 
     if(coordX == '' && coordY == ''){

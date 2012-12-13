@@ -135,7 +135,7 @@ class boiteController extends CI_Controller {
 	}
 
 	function updateStatus($id){
-		$this->load->model("boiteModel")
+		$this->load->model("boiteModel");
 		$data = array('status' => 2, 'idBoite' => $id);
 		$this->boiteModel->updateBoite($data);
 	}

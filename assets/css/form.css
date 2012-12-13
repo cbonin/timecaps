@@ -1,4 +1,0 @@
-form{margin: auto;}
-input{display: block;}
-input:valid { border-color: #2DAA29;color:#2DAA29;}
-input:invalid { border:1px solid #e88;}

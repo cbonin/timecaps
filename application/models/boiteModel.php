@@ -15,7 +15,7 @@ class boiteModel extends CI_Model
 
 	function getBoite($id)
 	{
-		$this->db->where('userId', $id);
+		$this->db->where('idBoite', $id);
 		$query = $this->db->get('boite');
 
 		return $query->result_array();

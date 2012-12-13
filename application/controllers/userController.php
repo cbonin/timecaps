@@ -75,7 +75,7 @@ class userController extends CI_Controller
 		else  //Si le formulaire à correctement été rempli
 		{
 			$this->load->model('userModel');
-			
+
 			// Initialisation des variables	
 			$email =  $this->input->post('email');
 			$password =  md5($this->input->post('password'));

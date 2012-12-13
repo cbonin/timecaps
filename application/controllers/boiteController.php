@@ -17,35 +17,51 @@ class boiteController extends CI_Controller {
 		$this->form_validation->set_rules('coordY', 'Coordonées Y', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('description', 'Description', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('targetDate', 'Date d\'ouverture potentielle', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('emailRecever', 'Adresse mail du destinataire', 'trim|required|xss_clean|valid_email');
+		$this->form_validation->set_rules('receverName', 'Nom du destinataire', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('receverLastName', 'Prénom du destinataire', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('receverAddress', 'Adresse postale du destinataire', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('receverCity', 'Ville du destinataire', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('receverZipCode', 'Code Postal du destinataire', 'trim|required|xss_clean');
 
 		if ($this->form_validation->run() == FALSE)
 		{
-			$param = array(
-				'userType' => 'back',
-				'mainContent' => 'create_boite',
-				'title' => 'Création'
-			);
-			$this->load->view('template', $param);
+			$this->load->view('create_boite');
 		}
 		else  //si 	le formulaire à correctement été rempli
 		{
-			
 			$this->load->model("userModel");
+			$getUser = $this->userModel->getUser($this->input->post('emailRecever')); // on verifie si email existe dans notre base user
 
-			// On cree user fantome qui recevra la boite avec un mot de passe temporaire qu'il recevra par mail
-			$password = md5($this->input->post('receverFirstName').time());
-			$dataUser = array(
-				'prenom' => $this->input->post('receverFirstName'),
-				'nom' => $this->input->post('receverName'),
-				'email' => $this->input->post('emailRecever'),
-				'password' => $password,
-				'adresse' => $this->input->post('receverAddress'),
-				'codePostal' => $this->input->post('receverZipCode'),
-				'ville' => $this->input->post('receverCity'),
-			);
-			$idNewUser = $this->userModel->addUser($dataUser); //la metohde nous renvoie du nouvel user
+			if(!empty($getUser)){ // si elle existe, on attribut la boite a id iser correspondant a email sinon on cree user fantome
+				$idNewUser = $getUser[0]["idUser"];
+			}else{
+				// On cree user fantome qui recevra la boite avec un mot de passe temporaire qu'il recevra par mail
+				$password = md5($this->input->post('receverFirstName').time());
+				$dataUser = array(
+					'prenom' => $this->input->post('receverLastName'),
+					'nom' => $this->input->post('receverName'),
+					'email' => $this->input->post('emailRecever'),
+					'password' => $password,
+					'adresse' => $this->input->post('receverAddress'),
+					'codePostal' => $this->input->post('receverZipCode'),
+					'ville' => $this->input->post('receverCity'),
+				);
+				$idNewUser = $this->userModel->addUser($dataUser); //la metohde nous renvoie du nouvel user
+			}
+
+			
 
 			// TODO: ENVOYER MAIL USER FANTOME
+
+			$this->load->library('email');
+			$this->email->from('no-reply@backwards.fr', 'Backwards');
+			$this->email->to($this->input->post('emailRecever')); 
+
+			$this->email->subject('Nom Prenom vous offre une capsule temporelle...');
+			$this->email->message('Nom prénom vous offre une capsule temporaire avec ce message : blablabla, venez la decouvrir ici');	
+
+			$this->email->send();
 
 			// On cree la boite avec toutes les informations necessaires...
 			$this->load->model("boiteModel");
@@ -68,11 +84,4 @@ class boiteController extends CI_Controller {
 		$this->load->model("boiteModel");
 		$this->boiteModel->delete($idBoite);
 	}
-/*
-	function unlockBoite($idBoite, $geoloc){
-		$currentTime = time();
-		$geoX = $geoloc['coordX'];
-		$geoY = $geoloc['coordY'];
-	}
-*/
 }

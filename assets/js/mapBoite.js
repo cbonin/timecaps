@@ -5,7 +5,7 @@ $(document).ready(function(){
     var mapOptions;
     var map;
 
-    if(coordX != '' && coordY != ''){
+    if(coordX.value != '' && coordY.value != ''){
         mapOptions = {
             zoom: 15,
             center: new google.maps.LatLng(coordX.value,coordY.value),

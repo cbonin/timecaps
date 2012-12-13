@@ -69,7 +69,7 @@ class boiteController extends CI_Controller {
 				'coordY' => $this->input->post('coordY'),
 				'description' => $this->input->post('description'),
 				'targetDate' => $this->input->post('targetDate'),
-				'idOwner' => 2,
+				'idOwner' => 3,
 				'idReceiver' => $idNewUser,
 				'adresse' => $this->input->post('receverAddress'),
 				'codePostal' => $this->input->post('receverZipCode'),
@@ -136,8 +136,8 @@ class boiteController extends CI_Controller {
 
 	function updateStatus($id){
 		$this->load->model("boiteModel");
-		$data = array('status' => 2, 'idBoite' => $id);
-		$this->boiteModel->updateBoite($data);
+		$data = array('status' => 2);
+		$this->boiteModel->updateBoite($id, $data);
 	}
 
 }

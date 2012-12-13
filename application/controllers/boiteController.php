@@ -48,9 +48,6 @@ class boiteController extends CI_Controller {
 					'nom' => $this->input->post('receverName'),
 					'email' => $this->input->post('emailRecever'),
 					'password' => $password,
-					'adresse' => $this->input->post('receverAddress'),
-					'codePostal' => $this->input->post('receverZipCode'),
-					'ville' => $this->input->post('receverCity'),
 				);
 				$idNewUser = $this->userModel->addUser($dataUser); //la metohde nous renvoie du nouvel user
 			}
@@ -74,6 +71,9 @@ class boiteController extends CI_Controller {
 				'targetDate' => $this->input->post('targetDate'),
 				'idOwner' => 2,
 				'idReceiver' => $idNewUser,
+				'adresse' => $this->input->post('receverAddress'),
+				'codePostal' => $this->input->post('receverZipCode'),
+				'ville' => $this->input->post('receverCity'),
 			);
 			$this->boiteModel->addBoite($data);
 			redirect(base_url());
@@ -84,6 +84,7 @@ class boiteController extends CI_Controller {
 	function update($id)
 	{
 		$this->load->model("boiteModel");
+		$this->load->model("userModel");
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('nomBoite', 'Nom de la boite', 'trim|required|xss_clean|max_length[50]');
@@ -104,7 +105,8 @@ class boiteController extends CI_Controller {
 				'userType' => 'back',
 				'mainContent' => 'editBoite',
 				'title' => 'Modifier la boite',
-				'boite' => $this->boiteModel->getBoite($idBoite)
+				'boite' => $this->boiteModel->getBoite($idBoite),
+				'user' => $this->userModel->getUser($id),
 			);
 			$this->load->view('template', $param);
 		}
@@ -124,12 +126,18 @@ class boiteController extends CI_Controller {
 		$this->load->model("boiteModel");
 		
 		$param = array(
-				'userType' => 'back',
-				'mainContent' => 'radar',
-				'title' => 'Chercher la boite',
-				'boite' => $this->boiteModel->getBoite($idBoite)
-			);
+			'userType' => 'back',
+			'mainContent' => 'radar',
+			'title' => 'Chercher la boite',
+			'boite' => $this->boiteModel->getBoite($idBoite)
+		);
 		$this->load->view('template', $param);
+	}
+
+	function updateStatus($id){
+		$this->load->model("boiteModel")
+		$data = array('status' => 2, 'idBoite' => $id);
+		$this->boiteModel->updateBoite($data);
 	}
 
 }

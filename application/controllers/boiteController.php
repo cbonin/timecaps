@@ -26,7 +26,12 @@ class boiteController extends CI_Controller {
 
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('create_boite');
+			$param = array(
+				'userType' => 'back',
+				'mainContent' => 'create_boite',
+				'title' => 'Créer une boite',
+			);
+			$this->load->view('template', $param);
 		}
 		else  //si 	le formulaire à correctement été rempli
 		{
@@ -50,17 +55,13 @@ class boiteController extends CI_Controller {
 				$idNewUser = $this->userModel->addUser($dataUser); //la metohde nous renvoie du nouvel user
 			}
 
-			
-
-			// TODO: ENVOYER MAIL USER FANTOME
+			// On envoi le mail au destinataire
 
 			$this->load->library('email');
 			$this->email->from('no-reply@backwards.fr', 'Backwards');
 			$this->email->to($this->input->post('emailRecever')); 
-
 			$this->email->subject('Nom Prenom vous offre une capsule temporelle...');
 			$this->email->message('Nom prénom vous offre une capsule temporaire avec ce message : blablabla, venez la decouvrir ici');	
-
 			$this->email->send();
 
 			// On cree la boite avec toutes les informations necessaires...
@@ -76,6 +77,40 @@ class boiteController extends CI_Controller {
 			);
 			$this->boiteModel->addBoite($data);
 			redirect(base_url());
+		}
+	}
+
+	//modifier la boite
+	function update($id)
+	{
+		$this->load->model("boiteModel");
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('nomBoite', 'Nom de la boite', 'trim|required|xss_clean|max_length[50]');
+		$this->form_validation->set_rules('coordX', 'Coordonées X', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('coordY', 'Coordonées Y', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('description', 'Description', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('targetDate', 'Date d\'ouverture potentielle', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('emailRecever', 'Adresse mail du destinataire', 'trim|required|xss_clean|valid_email');
+		$this->form_validation->set_rules('receverName', 'Nom du destinataire', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('receverLastName', 'Prénom du destinataire', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('receverAddress', 'Adresse postale du destinataire', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('receverCity', 'Ville du destinataire', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('receverZipCode', 'Code Postal du destinataire', 'trim|required|xss_clean');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			$param = array(
+				'userType' => 'back',
+				'mainContent' => 'editBoite',
+				'title' => 'Modifier la boite',
+				'boite' => $this->boiteModel->getBoite($idBoite)
+			);
+			$this->load->view('template', $param);
+		}
+		else  //si 	le formulaire à correctement été rempli
+		{
+			
 		}
 	}
 
@@ -95,8 +130,6 @@ class boiteController extends CI_Controller {
 				'boite' => $this->boiteModel->getBoite($idBoite)
 			);
 		$this->load->view('template', $param);
-
-
 	}
 
 }

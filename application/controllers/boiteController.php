@@ -7,6 +7,10 @@ class boiteController extends CI_Controller {
 		echo "boite controller biatch";
 	}
 
+	function listBoite(){
+			
+	}
+
 	function create()
 	{
 
@@ -92,27 +96,36 @@ class boiteController extends CI_Controller {
 		$this->form_validation->set_rules('coordY', 'Coordonées Y', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('description', 'Description', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('targetDate', 'Date d\'ouverture potentielle', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('emailRecever', 'Adresse mail du destinataire', 'trim|required|xss_clean|valid_email');
-		$this->form_validation->set_rules('receverName', 'Nom du destinataire', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('receverLastName', 'Prénom du destinataire', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('receverAddress', 'Adresse postale du destinataire', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('receverCity', 'Ville du destinataire', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('receverZipCode', 'Code Postal du destinataire', 'trim|required|xss_clean');
 
 		if ($this->form_validation->run() == FALSE)
 		{
+			$boite = $this->boiteModel->getBoite($id);
 			$param = array(
 				'userType' => 'back',
 				'mainContent' => 'editBoite',
 				'title' => 'Modifier la boite',
-				'boite' => $this->boiteModel->getBoite($idBoite),
-				'user' => $this->userModel->getUser($id),
+				'boite' => $boite,
+				'user' => $this->userModel->getUserById($boite[0]['idReceiver']),
 			);
 			$this->load->view('template', $param);
 		}
 		else  //si 	le formulaire à correctement été rempli
 		{
-			
+			$data = array(
+				'nomBoite' => $this->input->post('nomBoite'),
+				'coordX' => $this->input->post('coordX'),
+				'coordY' => $this->input->post('coordY'),
+				'description' => $this->input->post('description'),
+				'targetDate' => $this->input->post('targetDate'),
+				'adresse' => $this->input->post('receverAddress'),
+				'codePostal' => $this->input->post('receverZipCode'),
+				'ville' => $this->input->post('receverCity'),
+			);
+			$this->boiteModel->updateBoite($id, $data);
+			redirect(base_url());
 		}
 	}
 

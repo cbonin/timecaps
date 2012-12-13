@@ -22,6 +22,14 @@ class userModel extends CI_Model
 		return $query->result_array();
 	}
 
+	function getUserById($id)
+	{
+		$this->db->where('idUser', $id);
+		$query = $this->db->get('user');
+
+		return $query->result_array();
+	}
+
 	function updateUser($data)
 	{
 		$this->db->where('idUser', $data['idUser']);		

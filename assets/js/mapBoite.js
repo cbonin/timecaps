@@ -14,16 +14,13 @@ $(document).ready(function(){
         map = new google.maps.Map(document.getElementById('boiteMap'), mapOptions);
         var coord = new google.maps.LatLng(coordX.value,coordY.value)
         createMarker(coord);
-        alert("Exists");
     }else{
         mapOptions = {
             zoom: 4,
             center: new google.maps.LatLng(47.15984,3.028931),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        map = new google.maps.Map(document.getElementById('boiteMap'),
-    mapOptions);
-        alert("Exists pas");
+        map = new google.maps.Map(document.getElementById('boiteMap'), mapOptions);
     }
 
     if(coordX == '' && coordY == ''){

@@ -13,15 +13,31 @@ Ta Position
 	var baseUrl = "<?php echo base_url(); ?>";
 	var mapOptions;
     var map;
+    /*
+    boiteX = 50;
+    boiteY = 3;
+    */
+    var coord = new google.maps.LatLng(boiteX,boiteY);
 
 	mapOptions = {
-        zoom: 16,
-        center: new google.maps.LatLng(boiteX, boiteY),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        zoom: 20,
+        center: coord,
+        mapTypeId: google.maps.MapTypeId.SATELLITE
     };
     map = new google.maps.Map(document.getElementById('boiteMap'), mapOptions);
-    var coord = new google.maps.LatLng(boiteX,boiteY);
-	createMarker(coord, 'La boite !');
+    
+   
+    var circle = new google.maps.Circle({
+        center: coord,
+        radius: 10,
+        map: map,
+        fillColor: 'red',
+        fillOpacity: 0.5,
+        strokeColor: 'blue',
+        strokeOpacity: 0.6
+    });
+
+    createMarker(coord, 'Déterre moi !');
 
 	function createMarker(latLng, markerTitle){
         marker = new google.maps.Marker({

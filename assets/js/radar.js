@@ -1,32 +1,52 @@
 $(document).ready(function () {
     // Stockage de la date du jour
-    var today = new Date;
+    var today = new Date, rayon = 0.00000001;
     today = today.getFullYear()+''+(today.getMonth()+1)+''+today.getDate();
+/*
+    latitude = 50.00007;
+    longitude = 3.00007;
+    createMarker(new google.maps.LatLng(latitude,longitude), 'test');
+    console.log('CurrentX '+latitude);
+    console.log('CurrentY '+longitude);
+    console.log('distance X : '+Math.abs(latitude - boiteX));
+    console.log('distance Y : '+Math.abs(longitude - boiteY));
+    console.log(Number((boiteX-latitude)*(boiteX-latitude) + (boiteY-longitude)*(boiteY-longitude)));
+    console.log('zboub');
+    console.log(Number((boiteX-latitude)*(boiteX-latitude) + (boiteY-longitude)*(boiteY-longitude)) < 0.00000001);
+    console.log(0.0000000098);
+    console.log(0.0000000098 < 0.00000001);
+*/
 
-    
-        
+
     // L'utilisateur doit posséder la geolocalisation
     if (navigator.geolocation){
         var spanCurrent = document.getElementById('currentPosition');
         document.getElementById('targetPosition').innerHTML = boiteX + ' ' +   boiteY;
-        var watchId = navigator.geolocation.watchPosition(checkPosition, errorCallback);
+        var watchId = navigator.geolocation.watchPosition(checkPosition, errorCallback, {enableHighAccuracy : true});
     }else{
         x.innerHTML="La géolocalisation n'est pas disponible sur votre navigateur.";
     }
-    var latitude, longitude, marker = createMarker();
+    var latitude, longitude, marker = createMarker(), i=0;
 
     function checkPosition(position){
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
-        marker.setPosition(new google.maps.LatLng(latitude,longitude));
+        i++;
+        createMarker(new google.maps.LatLng(latitude,longitude), i+'');
 
+        console.log('________'+i+'________');
         console.log('CurrentX '+latitude);
         console.log('CurrentY '+longitude);
         console.log('boiteX '+boiteX);
         console.log('boiteY '+boiteY);
+        console.log('accuracy '+position.coords.accuracy);
+
+        //AB = \sqrt{(x_B-x_A)^2 + (y_B-y_A)^2}
+        console.log(Number((boiteX-latitude)*(boiteX-latitude) + (boiteY-longitude)*(boiteY-longitude)));
+
 
         spanCurrent.innerHTML = position.coords.latitude + ' ' + position.coords.longitude;
-        if((position.coords.latitude - boiteX < 0.0002) && (position.coords.longitude - boiteY < 0.0002) && (today >= boiteDate)){
+        if(Number((boiteX-latitude)*(boiteX-latitude) + (boiteY-longitude)*(boiteY-longitude)) < rayon && (today >= boiteDate)){
             navigator.geolocation.clearWatch(watchId);
             $.ajax({
                 url: baseUrl+'boiteController/updateStatus/'+boiteId,
@@ -38,9 +58,8 @@ $(document).ready(function () {
                     var valeur = document.createTextNode('Déterrer la boîte');
                     button.appendChild(valeur);
                     document.getElementById('buttonContainer').appendChild(button);
-                    button.click(function (){
-                        document.location.href = baseUrl;
-                    });
+                    button.onclick = function(){window.location.href = baseUrl;return false;};
+                    console.log('fin success');
                 },
                 error: function(data){
                     alert('Erreur lors du déverouillage de la boite.');
@@ -62,5 +81,6 @@ $(document).ready(function () {
             break;
         }
     };
+
 
 });

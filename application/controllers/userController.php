@@ -87,8 +87,9 @@ class userController extends CI_Controller
 				
 				// Initialisations du tableau de donnees de session
 				$data = array(
-				'prenom' => $user[0]['prenom'],
-				'nom' => $user[0]['nom']
+					'idUser' => $user[0]['idUser'],
+					'prenom' => $user[0]['prenom'],
+					'nom' => $user[0]['nom']
 				);
 
 				// Creation de la session
@@ -109,11 +110,11 @@ class userController extends CI_Controller
 		}
 	}
 
-	function signOut(){
+	function logout(){
 		// Destruction de la session
 		$this->load->library('session');
 		$this->session->sess_destroy();
-		echo'Session détruite';
+		redirect(base_url());
 	}
 }
 ?>

@@ -19,8 +19,12 @@ class main_controller extends CI_Controller {
 	 */
 	public function index()
 	{
-		// $this->load->view('welcome_message');
-		echo "ZBOUB";
+		$param = array(
+			'userType' => 'front',
+			'mainContent' => 'home',
+			'title' => 'Backwards '
+		);
+		$this->load->view('template', $param);
 	}
 }
 

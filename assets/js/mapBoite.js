@@ -129,7 +129,7 @@ $(document).ready(function(){
              dataType : 'json',
              success     : function (data)
              {
-                files = $(#files);
+                files = $("#files");
                 if (data.status === "success")
                 {
                    link.parents('li').fadeOut('fast', function() {

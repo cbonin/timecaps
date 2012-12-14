@@ -85,7 +85,7 @@ class boiteController extends CI_Controller {
 			$this->boiteModel->addBoite($data);
 			redirect("boiteController");
 		}
-	}
+	} //end create
 
 	//modifier la boite
 	function update($id)

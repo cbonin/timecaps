@@ -13,12 +13,13 @@ class boiteController extends CI_Controller {
 	public function index()
 	{
 		$this->load->model("boiteModel");
+		$idUser = $this->session->userdata('idUser');
 
 		$param = array(
 			'userType' => 'back',
 			'mainContent' => 'mesBoites',
 			'title' => 'Mes boites',
-			'boites' => $this->boiteModel->listBoite(),
+			'boites' => $this->boiteModel->getBoiteByUser($idUser),
 		);
 		$this->load->view('template', $param);
 	}

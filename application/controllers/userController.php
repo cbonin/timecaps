@@ -56,7 +56,7 @@ class userController extends CI_Controller
 
 	}
 
-	function signIn($url)
+	function signIn()
 	{
 
 		$this->load->library('form_validation');
@@ -94,7 +94,7 @@ class userController extends CI_Controller
 				// Creation de la session
 				$this->load->library('session');
 				$this->session->set_userdata($data);
-				redirect($url);
+				redirect(base_url());
 
 			}else{ // Retente ta chance
 				echo 'Mauvais login ou mauvais mot de passe';

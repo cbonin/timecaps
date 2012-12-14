@@ -30,6 +30,13 @@ class boiteModel extends CI_Model
 		return $query->result_array();
 	}
 
+	function getBoiteByUser($idBoite, $idOwner){
+		$this->db->where('idBoite', $idBoite);
+		$this->db->where('idOwner', $idOwner);
+
+		return $query->result_array();
+	}
+
 	function updateBoite($id, $data)
 	{
 		$this->db->where('idBoite', $id);		

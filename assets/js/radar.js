@@ -27,7 +27,6 @@ $(document).ready(function () {
 
         spanCurrent.innerHTML = position.coords.latitude + ' ' + position.coords.longitude;
         if((position.coords.latitude - boiteX < 0.0002) && (position.coords.longitude - boiteY < 0.0002) && (today >= boiteDate)){
-            console.log('zbooub victory');
             navigator.geolocation.clearWatch(watchId);
             $.ajax({
                 url: baseUrl+'boiteController/updateStatus/'+boiteId,
@@ -39,13 +38,14 @@ $(document).ready(function () {
                     var valeur = document.createTextNode('Déterrer la boîte');
                     button.appendChild(valeur);
                     document.getElementById('buttonContainer').appendChild(button);
+                    button.click(function (){
+                        document.location.href = baseUrl;
+                    });
                 },
                 error: function(data){
                     alert('Erreur lors du déverouillage de la boite.');
                 }
             });
-        }else{
-            //console.log('va niquer ta mere');
         }
     }
 

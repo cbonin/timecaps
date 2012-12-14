@@ -8,6 +8,33 @@ input[type="file"] { padding-left: 0; }
 input[type="submit"] { width: auto; }
 #files { font-family: Verdana, sans-serif; font-size: 11px; }
 #files strong { font-size: 13px; }
-#files a { float: right; margin: 0 0 5px 10px; }
+#files .delete_file_link{ float: right; margin: 0 0 5px 10px; }
 #files ul { list-style: none; padding-left: 0; }
 #files li { width: 280px; font-size: 12px; padding: 5px 0; border-bottom: 1px solid #CCC; }
+
+
+.alertUpload{
+	position: fixed;
+	padding: 15px;
+	top: 20px;
+	left: 20%;
+	right: 20%;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	display: none;
+	color: #FFF;
+	text-shadow: rgba(0,0,0,0.3) 0 -1px 0;
+	text-align: center;
+}
+
+.alertUpload.success{
+	background: rgba(91,183,91, .8);
+	border: 1px solid #43a243;
+}
+
+.alertUpload.error{
+	background: rgba(218,79,73, .8);
+	border: 1px solid #cb423c;
+}

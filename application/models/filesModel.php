@@ -28,13 +28,14 @@ class filesModel extends CI_Model {
 		$this->db->insert('depot', $data);
 	}
 
-	public function delete_file($file_id){
+	public function delete_file($file_id, $boite_id){
 		$file = $this->get_file($file_id);
 		if (!$this->db->where('idFile', $file_id)->delete('file'))
 		{
 			return FALSE;
 		}
-		unlink('./files/' . $file->nom);
+		unlink('./files/'.$boite_id.'/'.$file->nom);
+		unlink('./files/'.$boite_id.'/thumb/'.$file->nom);
 		return TRUE;
 	}
 
@@ -49,12 +50,47 @@ class filesModel extends CI_Model {
 
 	public function getFiles($idBoite)
 	{
-	   return $this->db->select()
+
+		$data = array();
+
+	   	$image = $this->db->select()
 	         ->from('file')
+	         ->like('type', 'image', 'after')
 	         ->join('depot', 'depot.idFile = file.idFile')
 	         ->where('idBoite', $idBoite)
 	         ->get()
 	         ->result();
+
+     	$son = $this->db->select()
+	         ->from('file')
+	         ->like('type', 'audio', 'after')
+	         ->join('depot', 'depot.idFile = file.idFile')
+	         ->where('idBoite', $idBoite)
+	         ->get()
+	         ->result();
+
+	    $video = $this->db->select()
+	         ->from('file')
+	         ->like('type', 'video', 'after')
+	         ->join('depot', 'depot.idFile = file.idFile')
+	         ->where('idBoite', $idBoite)
+	         ->get()
+	         ->result();
+
+	    $text = $this->db->select()
+	         ->from('file')
+	         ->like('type', 'text', 'after')
+	         ->or_like('type', 'appli', 'after')
+	         ->join('depot', 'depot.idFile = file.idFile')
+	         ->where('idBoite', $idBoite)
+	         ->get()
+	         ->result();
+
+	    $data['image'] = $image;
+	    $data['son'] = $son;
+	    $data['video'] = $video;
+	    $data['text'] = $text;
+	    return $data;
 	}
 
 }

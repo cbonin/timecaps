@@ -1,6 +1,9 @@
 $(document).ready(function(){
-	// UPLOAD VIA AJAX
+	
+  // Init de la gallerie images
+  Shadowbox.init(); 
 
+  // UPLOAD VIA AJAX
   var baseUrl = "http://localhost:8888/backwards/";
 	refresh_files();
     $(function() {
@@ -20,10 +23,12 @@ $(document).ready(function(){
                 if(data.status != 'error')
                 {
                    $('#files').html('<p>Rechargement des fichiers</p>');
+                   showAlert(data.status, data.msg);
                    refresh_files();
                    $('#title').val('');
+                }else{
+                   showAlert(data.status, data.msg);
                 }
-                alert(data.msg);
              }
           });
           return false;
@@ -44,7 +49,7 @@ $(document).ready(function(){
        {
           var link = $(this);
           $.ajax({
-             url         : baseUrl+'uploadController/delete_file/' + link.data('file_id'),
+             url         : baseUrl+'uploadController/delete_file/' + link.data('file_id')+'/'+link.data('boite-id'),
              dataType : 'json',
              success     : function (data)
              {
@@ -58,14 +63,24 @@ $(document).ready(function(){
                          files.html('<p>Aucun fichier présent</p>');
                       }
                    });
+                   showAlert(data.status, data.msg);
                    refresh_files();
+                   
                 }
                 else
                 {
-                   alert(data.msg);
+                   showAlert(data.status, data.msg);
                 }
              }
           });
        }
     });
+
+    function showAlert(status, message){
+        $(".alertUpload").addClass(status);
+        $(".alertUpload").html(message);
+        $(".alertUpload").slideToggle().delay(2000).fadeOut(500, function(){
+            $(this).removeClass(status);
+        });
+    }
 });

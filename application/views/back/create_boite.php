@@ -2,8 +2,8 @@
 
     echo form_open('boiteController/create')."<br />"; ?>
 
-        <input type="hidden" name="coordX" value="<?php set_value('coordX') ?>" />
-        <input type="hidden" name="coordY" value="<?php set_value('coordY') ?>" />
+        <input type="hidden" name="coordX" value="<?php echo set_value('coordX') ?>" />
+        <input type="hidden" name="coordY" value="<?php echo set_value('coordY') ?>" />
         <?php
         echo form_label('Nom de la boite', 'Nom de la boite')."<br />";
         echo form_input('nomBoite', set_value('nomBoite'))."<br />";
@@ -43,17 +43,5 @@
     </form>
     <div id="boiteMap" style="width: 300px; height: 300px; display: block;"></div>
 
-    <h2>Uploads</h2>
-
-    <form method="post" action="" id="upload_file">
-      <label for="title">Title</label>
-      <input type="text" name="title" id="title" value="" />
-      <label for="userfile">File</label>
-      <input type="file" name="userfile" id="userfile" size="20" />
-      <input type="submit" name="submit" id="submit" />
-   </form>
-   <h2>Files</h2>
-   <div id="files"></div>
-
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-    <script src="../assets/js/mapBoite.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/mapBoite.js"></script>

@@ -8,10 +8,10 @@ if (isset($files) && count($files))
          {
             ?>
             <li class="image_wrap">
-               <a href="#" class="delete_file_link" data-file_id="<?php echo $file->id?>">Delete</a>
-               <strong><?php echo $file->title?></strong>
+               <a href="#" class="delete_file_link" data-file_id="<?php echo $file->idFile?>">Delete</a>
+               <strong><?php echo $file->titre; ?></strong>
                <br />
-               <?php echo $file->filename?>
+               <?php echo $file->nom; ?>
             </li>
             <?php
          }
@@ -23,6 +23,6 @@ if (isset($files) && count($files))
 else
 {
    ?>
-   <p>No Files Uploaded</p>
+   <p>Aucun fichier pour le moment</p>
    <?php
 }

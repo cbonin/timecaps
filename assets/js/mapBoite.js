@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
     var baseUrl = "http://localhost:8888/backwards/";
-    refresh_files();
 
 	var marker;
     var coordX = document.querySelector("input[name=coordX]");
@@ -27,7 +26,8 @@ $(document).ready(function(){
         map = new google.maps.Map(document.getElementById('boiteMap'), mapOptions);
     }
 
-    if(coordX == '' && coordY == ''){
+    if(coordX.value == '' && coordY.value == ''){
+
         google.maps.event.addListenerOnce(map, 'click', function(e){
             var latLng = e.latLng;
             if(marker == undefined){
@@ -35,7 +35,6 @@ $(document).ready(function(){
             }
         }); 
     }
-    
 
     $("#addressMap").submit(function(){
         var address = document.querySelector("input[name='addressMap']");
@@ -70,10 +69,6 @@ $(document).ready(function(){
         });
     }
 
-    function updateMarker(LatLng){
-        
-    }
-
     function updateMarker(latLng){
         map.setCenter(latLng);
         map.setZoom(15);
@@ -81,94 +76,4 @@ $(document).ready(function(){
         coordX.value = marker.position.Za;
         coordY.value = marker.position.$a;
     }
-
-
-    // UPLOAD VIA AJAX
-
-    $(function() {
-       $('#upload_file').submit(function(e) {
-          e.preventDefault();
-          $.ajaxFileUpload({
-             url         : baseUrl+'/uploadController/upload_file/',
-             secureuri      :false,
-             fileElementId  :'userfile',
-             dataType    : 'json',
-             data        : {
-                'title'           : $('#title').val()
-             },
-             success  : function (data, status)
-             {
-                if(data.status != 'error')
-                {
-                   $('#files').html('<p>Reloading files...</p>');
-                   refresh_files();
-                   $('#title').val('');
-                }
-                alert(data.msg);
-             }
-          });
-          return false;
-       });
-    });
-
-    function refresh_files()
-    {
-       $.get('./upload/files/')
-       .success(function (data){
-          $('#files').html(data);
-       });
-    }
-
-    $('.delete_file_link').live('click', function(e) {
-       e.preventDefault();
-       if (confirm('Are you sure you want to delete this file?'))
-       {
-          var link = $(this);
-          $.ajax({
-             url         : './upload/delete_file/' + link.data('file_id'),
-             dataType : 'json',
-             success     : function (data)
-             {
-                files = $("#files");
-                if (data.status === "success")
-                {
-                   link.parents('li').fadeOut('fast', function() {
-                      $(this).remove();
-                      if (files.find('li').length == 0)
-                      {
-                         files.html('<p>No Files Uploaded</p>');
-                      }
-                   });
-                }
-                else
-                {
-                   alert(data.msg);
-                }
-             }
-          });
-       }
-    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });

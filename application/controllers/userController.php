@@ -56,7 +56,7 @@ class userController extends CI_Controller
 
 	}
 
-	function signIn()
+	function signIn($url)
 	{
 
 		$this->load->library('form_validation');
@@ -83,7 +83,6 @@ class userController extends CI_Controller
 
 			// Si l'email est correct et si le mot de passe correspond
 			if(!empty($user) && $password === $user[0]['password']){
-				var_dump($user);
 				
 				// Initialisations du tableau de donnees de session
 				$data = array(
@@ -95,8 +94,7 @@ class userController extends CI_Controller
 				// Creation de la session
 				$this->load->library('session');
 				$this->session->set_userdata($data);
-				echo"Normalement t'as ta session gros malin";
-				var_dump($this->session->all_userdata());
+				redirect($url);
 
 			}else{ // Retente ta chance
 				echo 'Mauvais login ou mauvais mot de passe';

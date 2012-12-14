@@ -33,7 +33,7 @@ class uploadController extends CI_Controller
              mkdir("./files/".  $dirName, 0777);
          }
          $config['upload_path'] = './files/'.$dirName;
-         $config['allowed_types'] = 'gif|jpg|png|doc|txt';
+         $config['allowed_types'] = 'gif|jpg|png|doc|txt|odt|pdf|jpeg|wav|mp3|mp4|wmv|avi|ogg|ogv|rtf|bmp|docx';
          $config['max_size']  = 1024 * 8;
          $config['encrypt_name'] = FALSE;
          $config['file_name'] = $this->input->post('title');

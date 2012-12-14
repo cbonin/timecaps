@@ -1,5 +1,7 @@
 $(document).ready(function(){
 	// UPLOAD VIA AJAX
+
+  var baseUrl = "http://localhost:8888/backwards/";
 	refresh_files();
     $(function() {
        $('#upload_file').submit(function(e) {

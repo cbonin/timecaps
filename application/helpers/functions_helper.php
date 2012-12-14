@@ -5,9 +5,9 @@ if ( ! function_exists('isLogged')){
     	$ci=& get_instance();
 
 		$logged = false;
-    	$ci->load->library('session');    	    	
-    	$session = $ci->session->all_userdata();
-    	if(isset($session['idUser'])){
+    	$ci->load->library('session');
+    	$idUser = $ci->session->userdata('idUser'); 
+    	if(isset($idUser)){
     		$logged = true;
     	}
     	return $logged;

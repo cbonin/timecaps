@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 13 Décembre 2012 à 16:08
+-- Généré le: Ven 14 Décembre 2012 à 11:14
 -- Version du serveur: 5.5.24-log
 -- Version de PHP: 5.4.3
 
@@ -43,7 +43,16 @@ CREATE TABLE IF NOT EXISTS `boite` (
   KEY `idOwner` (`idOwner`),
   KEY `idReceiver` (`idReceiver`),
   KEY `idReceiver_2` (`idReceiver`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Contenu de la table `boite`
+--
+
+INSERT INTO `boite` (`idBoite`, `nomBoite`, `coordX`, `coordY`, `description`, `idOwner`, `idReceiver`, `adresse`, `ville`, `codePostal`, `statut`, `targetDate`) VALUES
+(2, 'papa', 48.8516396, 2.4204794, 'coucou du zboub', 3, 3, '10 rue du cul', 'ZboubVille', 66666, 2, '2012-12-01'),
+(3, 'zbouboite', 50, 500, 'bonjour ', 3, 3, '10 rue de la corre', 'vesoul', 70000, 0, '2012-12-25'),
+(4, 'zbouboite2', 50, 50, NULL, 3, 3, '', '', 0, 1, '2012-12-24');
 
 -- --------------------------------------------------------
 
@@ -61,6 +70,43 @@ CREATE TABLE IF NOT EXISTS `contributeurs` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `depot`
+--
+
+CREATE TABLE IF NOT EXISTS `depot` (
+  `idBoite` int(11) NOT NULL,
+  `idFile` int(11) NOT NULL,
+  `idDepositeur` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`idBoite`,`idFile`,`idDepositeur`),
+  KEY `idFile` (`idFile`),
+  KEY `idDepositeur` (`idDepositeur`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `file`
+--
+
+CREATE TABLE IF NOT EXISTS `file` (
+  `idFile` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(50) NOT NULL,
+  `titre` varchar(50) NOT NULL,
+  `type` varchar(10) NOT NULL,
+  `taille` int(11) NOT NULL,
+  PRIMARY KEY (`idFile`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `file`
+--
+
+INSERT INTO `file` (`idFile`, `nom`, `titre`, `type`, `taille`) VALUES
+(1, 'photo.jpg', 'anniversaire', 'photo', 50);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `user`
 --
 
@@ -74,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `firstVisit` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`idUser`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `user`
@@ -100,6 +146,14 @@ ALTER TABLE `boite`
 ALTER TABLE `contributeurs`
   ADD CONSTRAINT `contributeurs_ibfk_1` FOREIGN KEY (`idBoite`) REFERENCES `boite` (`idBoite`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `contributeurs_ibfk_2` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `depot`
+--
+ALTER TABLE `depot`
+  ADD CONSTRAINT `depot_ibfk_4` FOREIGN KEY (`idDepositeur`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `depot_ibfk_1` FOREIGN KEY (`idBoite`) REFERENCES `boite` (`idBoite`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `depot_ibfk_2` FOREIGN KEY (`idFile`) REFERENCES `file` (`idFile`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -2,6 +2,14 @@
 
 class boiteController extends CI_Controller {
 
+	public function __construct()
+   {
+		parent::__construct();
+		if(!isLogged()){
+			redirect("userController/signIn");
+		}
+   }
+
 	public function index()
 	{
 		$this->load->model("boiteModel");
@@ -76,7 +84,7 @@ class boiteController extends CI_Controller {
 				'coordY' => $this->input->post('coordY'),
 				'description' => $this->input->post('description'),
 				'targetDate' => $this->input->post('targetDate'),
-				'idOwner' => 3,
+				'idOwner' => $this->session->userdata("idUser"),
 				'idReceiver' => $idNewUser,
 				'adresse' => $this->input->post('receverAddress'),
 				'codePostal' => $this->input->post('receverZipCode'),

@@ -7,7 +7,8 @@ if ( ! function_exists('isLogged')){
 		$logged = false;
     	$ci->load->library('session');
     	$idUser = $ci->session->userdata('idUser'); 
-    	if(isset($idUser)){
+
+    	if($idUser != ''){
     		$logged = true;
     	}
     	return $logged;

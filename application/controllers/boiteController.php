@@ -13,7 +13,7 @@ class boiteController extends CI_Controller {
 	public function index()
 	{
 		$this->load->model("boiteModel");
-		$idUser = $this->session->userdata('idUser');
+		$idUser = $this->session->userdata('user_data')['idUser'];
 
 		$param = array(
 			'userType' => 'back',
@@ -69,12 +69,12 @@ class boiteController extends CI_Controller {
 			}
 
 			// On envoi le mail au destinataire
-
+			$user = $this->session->userdata('user_data');
 			$this->load->library('email');
 			$this->email->from('no-reply@backwards.fr', 'Backwards');
 			$this->email->to($this->input->post('emailRecever')); 
-			$this->email->subject('Nom Prenom vous offre une capsule temporelle...');
-			$this->email->message('Nom prénom vous offre une capsule temporaire avec ce message : blablabla, venez la decouvrir ici');	
+			$this->email->subject($user['prenom'].' '.$user['nom'].' vous offre une capsule temporelle...');
+			$this->email->message($user['prenom'].' '.$user['nom'].' vous offre une capsule temporaire avec ce message : blablabla, venez la decouvrir ici');	
 			$this->email->send();
 
 			// On cree la boite avec toutes les informations necessaires...
@@ -85,13 +85,14 @@ class boiteController extends CI_Controller {
 				'coordY' => $this->input->post('coordY'),
 				'description' => $this->input->post('description'),
 				'targetDate' => $this->input->post('targetDate'),
-				'idOwner' => $this->session->userdata("idUser"),
+				'idOwner' => $user['idUser'],
 				'idReceiver' => $idNewUser,
 				'adresse' => $this->input->post('receverAddress'),
 				'codePostal' => $this->input->post('receverZipCode'),
 				'ville' => $this->input->post('receverCity'),
 			);
 			$this->boiteModel->addBoite($data);
+
 			redirect("boiteController");
 		}
 	} //end create
@@ -111,16 +112,19 @@ class boiteController extends CI_Controller {
 		$this->form_validation->set_rules('receverAddress', 'Adresse postale du destinataire', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('receverCity', 'Ville du destinataire', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('receverZipCode', 'Code Postal du destinataire', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('emailContributor', 'Adresse mail du contributeur', 'trim|xss_clean|valid_email');
 
 		if ($this->form_validation->run() == FALSE)
 		{
 			$boite = $this->boiteModel->getBoite($id);
+			$contributors = $this->boiteModel->getAllContributors($id);
 			$param = array(
 				'userType' => 'back',
 				'mainContent' => 'editBoite',
 				'title' => 'Modifier la boite',
 				'boite' => $boite,
-				'user' => $this->userModel->getUserById($boite[0]['idReceiver']),
+				'contributors' => $contributors,
+				'user' => $this->userModel->getUserById($boite[0]['idReceiver'])
 			);
 			$this->load->view('template', $param);
 		}
@@ -137,6 +141,23 @@ class boiteController extends CI_Controller {
 				'ville' => $this->input->post('receverCity'),
 			);
 			$this->boiteModel->updateBoite($id, $data);
+
+
+			// Si contributeur
+			$emailContributor = $this->input->post('emailContributor');
+			if($emailContributor != ''){
+				// Ajout des relations dans la bdd
+				$this->addContributor($emailContributor, $id);
+
+				// Envoi d'un mail au contributeur
+				var_dump($user);
+				$this->email->from('no-reply-invite@backwards.fr', 'Backwards');
+				$this->email->to($emailContributor); 
+				$this->email->subject($user['prenom'].' '.$user['nom'].' vous invite à créer une capsule temporelle...');
+				$this->email->message($user['prenom'].' '.$user['nom']." vous invite à vréer une capsule temporaire connectez vous à Backwards pour l'aider à remplir sa boite");
+				$this->email->send();
+			}
+
 			redirect("boiteController");
 		}
 	}
@@ -163,6 +184,26 @@ class boiteController extends CI_Controller {
 		$this->load->model("boiteModel");
 		$data = array('statut' => 2);
 		$this->boiteModel->updateBoite($id, $data);
+	}
+
+	function addContributor($email, $idBoite){
+		echo $email;
+		$this->load->model('userModel');
+		$this->load->model('boiteModel');
+		$contributeur = $this->userModel->getUser($email);
+		var_dump($contributeur);
+		if(!empty($contributeur)){
+			$data = array(
+				'idBoite' => $idBoite,
+				'idUser' => $contributeur[0]['idUser']
+			);
+			$this->boiteModel->addContributor($data);
+		}else{
+			// le contributeur n'existe pas dans la bdd pb a resoudre
+			echo 'pas de contributeur dans la bdd';
+		}
+
+		redirect("boiteController");
 	}
 
 }

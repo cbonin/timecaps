@@ -92,8 +92,8 @@ class userController extends CI_Controller
 				);
 
 				// Creation de la session
-				$this->load->library('session');
-				$this->session->set_userdata($data);
+
+				$this->session->set_userdata('user_data', $data);
 				redirect(base_url());
 
 			}else{ // Retente ta chance

@@ -31,7 +31,7 @@
 
         echo form_label('Code Postal du gars', 'receverZipCode')."<br />";
         echo form_input('receverZipCode', set_value('receverZipCode'))."<br />";
-        
+
         echo form_submit('addBoite', 'Créer une boite');
 
     echo form_close();

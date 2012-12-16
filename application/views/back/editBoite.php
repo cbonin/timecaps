@@ -7,6 +7,19 @@
         <p>Email : <?php echo $user[0]["email"]; ?></p>
     </div>
 
+    <div id="contributors">
+        <h2>Contributeurs</h2>
+        <ul>
+    <?php
+    foreach ($contributors as $c) {
+        echo '<li>'.$c->prenom.' '.$c->nom.'</li>';
+    }
+    ?>
+        </ul>
+    </div>
+
+    <div>
+        <h2>Informations sur la boite</h2>
     <?php
     echo form_open('boiteController/update/'.$boite[0]["idBoite"]); ?>
 
@@ -31,12 +44,16 @@
 
         echo form_label('Code Postal du gars', 'receverZipCode')."<br />";
         echo form_input('receverZipCode', $boite[0]["codePostal"])."<br />";
+
+        echo form_label('Ajouter un contributeur', 'emailContributor')."<br />";
+        echo form_input('emailContributor', set_value('emailContributor'))."<br />";
         
         echo form_submit('updateBoite', 'Modifier la boite');
 
     echo form_close();
     ?>
-
+    </div>
+    
     <form id="addressMap">
         <input type="text" name="addressMap" placeholder="adresse, ville..." />
         <input type="submit" value="entrer adresse" />

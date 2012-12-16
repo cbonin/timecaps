@@ -49,4 +49,24 @@ class boiteModel extends CI_Model
 		$this->db->delete('boite');
 	}
 
+	function addContributor($data){
+		$this->db->insert('contributeurs', $data);
+	}
+
+	function getAllContributors($idBoite){
+		return $this->db->select()
+			->from('user')
+			->join('contributeurs', 'contributeurs.idUser = user.idUser')
+			->where('contributeurs.idBoite', $idBoite)
+			->get()
+			->result();
+
+/*
+		$this->db->where('idBoite', $idBoite);
+		$query = $this->db->get('contributeurs');
+
+		return $query->result_array();
+		*/
+	}
+
 }

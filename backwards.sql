@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Ven 14 Décembre 2012 à 11:14
+-- Généré le: Lun 17 Décembre 2012 à 16:55
 -- Version du serveur: 5.5.24-log
 -- Version de PHP: 5.4.3
 
@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `boite` (
   `coordY` double NOT NULL,
   `description` text,
   `idOwner` int(11) DEFAULT NULL,
+  `idOwnerFB` int(11) DEFAULT NULL,
   `idReceiver` int(11) NOT NULL,
   `adresse` text NOT NULL,
   `ville` varchar(50) NOT NULL,
@@ -43,16 +44,7 @@ CREATE TABLE IF NOT EXISTS `boite` (
   KEY `idOwner` (`idOwner`),
   KEY `idReceiver` (`idReceiver`),
   KEY `idReceiver_2` (`idReceiver`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Contenu de la table `boite`
---
-
-INSERT INTO `boite` (`idBoite`, `nomBoite`, `coordX`, `coordY`, `description`, `idOwner`, `idReceiver`, `adresse`, `ville`, `codePostal`, `statut`, `targetDate`) VALUES
-(2, 'papa', 48.8516396, 2.4204794, 'coucou du zboub', 3, 3, '10 rue du cul', 'ZboubVille', 66666, 2, '2012-12-01'),
-(3, 'zbouboite', 50, 500, 'bonjour ', 3, 3, '10 rue de la corre', 'vesoul', 70000, 0, '2012-12-25'),
-(4, 'zbouboite2', 50, 50, NULL, 3, 3, '', '', 0, 1, '2012-12-24');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -95,14 +87,7 @@ CREATE TABLE IF NOT EXISTS `file` (
   `type` varchar(10) NOT NULL,
   `taille` int(11) NOT NULL,
   PRIMARY KEY (`idFile`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Contenu de la table `file`
---
-
-INSERT INTO `file` (`idFile`, `nom`, `titre`, `type`, `taille`) VALUES
-(1, 'photo.jpg', 'anniversaire', 'photo', 50);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 -- --------------------------------------------------------
 
@@ -120,14 +105,17 @@ CREATE TABLE IF NOT EXISTS `user` (
   `firstVisit` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`idUser`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Contenu de la table `user`
 --
 
 INSERT INTO `user` (`idUser`, `password`, `prenom`, `nom`, `email`, `actif`, `firstVisit`) VALUES
-(3, '4b76e078e9df24d2da36e4e288ce36a8', 'Charles', 'ZBOUBI', 'c@gmail.com', 0, 1);
+(3, 'ab4f63f9ac65152575886860dde480a1', 'Carlos', 'ZBOUBA', 'c@gmail.com', 0, 1),
+(5, '9be2be7a6695c37836fa2b9ca512d922', 'Clément', 'Procureur', 'procureur.clement@gmail.com', 0, 1),
+(6, '4b76e078e9df24d2da36e4e288ce36a8', 'Henry', 'ZBOUB', 'h@gmail.com', 0, 1),
+(8, '58e6d4fe0ae53eecc7d221419c12ccb3', 'Bastien', 'Penalba', 'bastien.penalba@gmail.com', 0, 1);
 
 --
 -- Contraintes pour les tables exportées
@@ -151,9 +139,9 @@ ALTER TABLE `contributeurs`
 -- Contraintes pour la table `depot`
 --
 ALTER TABLE `depot`
-  ADD CONSTRAINT `depot_ibfk_4` FOREIGN KEY (`idDepositeur`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `depot_ibfk_1` FOREIGN KEY (`idBoite`) REFERENCES `boite` (`idBoite`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `depot_ibfk_2` FOREIGN KEY (`idFile`) REFERENCES `file` (`idFile`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `depot_ibfk_2` FOREIGN KEY (`idFile`) REFERENCES `file` (`idFile`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `depot_ibfk_4` FOREIGN KEY (`idDepositeur`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

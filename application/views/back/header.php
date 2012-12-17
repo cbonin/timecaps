@@ -14,7 +14,7 @@
 	<section>
 		<header>
 			<?php
-				echo '<a href="'.base_url().'userController/editAccount">Mon compte</a>';
+				echo '<a href="'.base_url().'userController/editAccount">Mon compte</a> | ';
 				echo '<a href="'.base_url().'userController/logout">Deconexion</a>';
 			?>
 		</header>

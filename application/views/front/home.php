@@ -10,4 +10,5 @@
 	?>
 
 	<a href="" id="share">PARTAGE BRO</a>
+	<span><?php $nbBoites ?></span>
 </div>

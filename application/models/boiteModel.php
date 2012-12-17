@@ -71,4 +71,11 @@ class boiteModel extends CI_Model
 			->result();
 	}
 
+	function getAmountOfBoite(){
+		$res = $this->db->insert_id()
+			->get('boite');
+		var_dump($res);
+		die();
+	}
+
 }

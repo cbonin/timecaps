@@ -23,7 +23,7 @@ $(document).ready(function(){
 					success : function(data){
 						console.log(data);
 						if(data.status != 'already connected'){
-							document.location = baseUrl+'/boiteController');
+							document.location = baseUrl+'boiteController';
 						}
 					}
 				});
@@ -60,9 +60,9 @@ $(document).ready(function(){
 	
 	function shareFacebookAction(){
 	  FB.api(
-	    '/me/backwards:Creer',
+	    '/me/backwards_app:open',
 	    'post',
-	    { boite: 'http://localhost:8888/backwards/' },
+	    { boite: 'http://borispelardo.alwaysdata.net/' },
 	    function(response) {
 	       if (!response || response.error) {
 	          console.log(response.error);

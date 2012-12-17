@@ -81,6 +81,7 @@ class boiteController extends CI_Controller {
 			// On cree la boite avec toutes les informations necessaires...
 			$this->load->model("boiteModel");
 			// on crée les datas qu'on envvera au model dans un tableau
+			$idFb = $user['idFb'];
 			$data = array(
 				'nomBoite' => $this->input->post('nomBoite'),
 				'coordX' => $this->input->post('coordX'),
@@ -92,6 +93,7 @@ class boiteController extends CI_Controller {
 				'adresse' => $this->input->post('receverAddress'),
 				'codePostal' => $this->input->post('receverZipCode'),
 				'ville' => $this->input->post('receverCity'),
+				'idOwnerFB' => $idFb
 			);
 			$this->boiteModel->addBoite($data);
 

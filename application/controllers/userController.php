@@ -140,7 +140,8 @@ class userController extends CI_Controller
 					$data = array(
 						'idUser' => $user[0]['idUser'],
 						'prenom' => $user[0]['prenom'],
-						'nom' => $user[0]['nom']
+						'nom' => $user[0]['nom'],
+						'idFb' => $idFB,
 					);
 
 					// Creation de la session
@@ -178,7 +179,8 @@ class userController extends CI_Controller
 				$param = array(
 					'idUser' => $idUser,
 					'prenom' => $this->input->post('prenom'),
-					'nom' => $this->input->post('nom')
+					'nom' => $this->input->post('nom'),
+					'idFb' => $idFB,
 				);
 
 				// Creation de la session

@@ -14,7 +14,7 @@
 	</ul>
 	<?php else: echo "Cette boite n'existes pas"; endif; ?></div>
 </div>
-
+	
 <div>
 	<h2>Boites où je contribue</h2>
 	<?php if(!empty($boitesContributor)): ?>

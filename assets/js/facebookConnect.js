@@ -23,7 +23,7 @@ $(document).ready(function(){
 					success : function(data){
 						console.log(data);
 						if(data.status != 'already connected'){
-							document.location = baseUrl;
+							document.location = baseUrl+'/boiteController');
 						}
 					}
 				});

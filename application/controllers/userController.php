@@ -50,6 +50,14 @@ class userController extends CI_Controller
 			// Insertion du nouvel utilisateur
 			$this->load->model("userModel");
 			$this->userModel->addUser($data);
+
+			$this->load->library('email');
+			$this->email->from('no-reply@backwards.fr', 'Backwards');
+			$this->email->to($emailContributor); 
+			$this->email->subject('Bienvenue sur Backwards '.$user['prenom'].' !');
+			$this->email->message("Vous vous êtes inscrit");
+			$this->email->send();
+
 			redirect(base_url());
 		}
 
@@ -91,7 +99,7 @@ class userController extends CI_Controller
 				);
 				// Creation de la session
 				$this->session->set_userdata('user_data', $data);
-				redirect(base_url());
+				redirect(base_url().'/boiteController');
 
 			}else{ // Retente ta chance
 				echo 'Mauvais login ou mauvais mot de passe';
@@ -187,6 +195,56 @@ class userController extends CI_Controller
 		$this->load->library('session');
 		$this->session->sess_destroy();
 		redirect(base_url());
+	}
+
+	function editAccount(){
+
+		// chargement de la librairie de gestion de formulaire
+		$this->load->library('form_validation');
+		$this->load->model("userModel");
+		$user = $this->session->userdata('user_data');
+
+		// Application des regles de securite pour eviter les injections
+		$this->form_validation->set_rules('prenom', 'Prénom', 'trim|required|xss_clean|max_length[50]');
+		$this->form_validation->set_rules('nom', 'Nom', 'trim|required|xss_clean|max_length[50]');
+		$this->form_validation->set_rules('email', 'Adresse mail', 'trim|required|xss_clean|max_length[100]|valid_email');
+		$this->form_validation->set_rules('password', 'Mot de passe', 'trim|required|xss_clean|matches[passwordConf]|md5');
+		$this->form_validation->set_rules('passwordConf', 'confirmation mot de passe', 'trim|required|xss_clean|md5');
+
+		// Tant que les regles ne sont pas respectees
+		if ($this->form_validation->run() == FALSE)
+		{
+			$user = $this->userModel->getUserById($user['idUser']);
+			$param = array(
+				'userType' => 'back',
+				'mainContent' => 'editUser',
+				'title' => 'Modification du compte',
+				'user' => $user
+			);
+			$this->load->view('template', $param);
+		}
+		else  // Si le formulaire à correctement ete rempli
+		{
+			
+			$data = array(
+					'idUser' => $user['idUser'],
+					'nom' => $this->input->post('nom'),
+					'email' => $this->input->post('email'),
+					'prenom' => $this->input->post('prenom'),
+					'password' => $this->input->post('password')
+				);
+			$this->userModel->updateUser($data);
+
+			$this->load->library('email');
+			$this->email->from('no-reply@backwards.fr', 'Backwards');
+			$this->email->to($emailContributor); 
+			$this->email->subject('Modification de votre compte');
+			$this->email->message("Compte modifié");
+			$this->email->send();
+
+			redirect(base_url().'/boiteController');
+		}
+
 	}
 }
 ?>

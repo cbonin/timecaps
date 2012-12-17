@@ -72,7 +72,7 @@ class boiteController extends CI_Controller {
 			// On envoi le mail au destinataire
 			$user = $this->session->userdata('user_data');
 			$this->load->library('email');
-			$this->email->from('no-reply@backwards.fr', 'Backwards');
+			$this->email->from('no-reply@backwards.fr', $user['prenom'].' '.$user['nom']);
 			$this->email->to($this->input->post('emailRecever')); 
 			$this->email->subject($user['prenom'].' '.$user['nom'].' vous offre une capsule temporelle...');
 			$this->email->message($user['prenom'].' '.$user['nom'].' vous offre une capsule temporaire avec ce message : blablabla, venez la decouvrir ici');	
@@ -159,7 +159,7 @@ class boiteController extends CI_Controller {
 
 				// Envoi d'un mail au contributeur
 				$this->load->library('email');
-				$this->email->from('no-reply-invite@backwards.fr', 'Backwards');
+				$this->email->from('no-reply@backwards.fr', $user['prenom'].' '.$user['nom']);
 				$this->email->to($emailContributor); 
 				$this->email->subject($user['prenom'].' '.$user['nom'].' vous invite à créer une capsule temporelle...');
 				$this->email->message($user['prenom'].' '.$user['nom']." vous invite à vréer une capsule temporaire connectez vous à Backwards pour l'aider à remplir sa boite");

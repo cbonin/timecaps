@@ -13,5 +13,6 @@
 <body>
 	<section>
 		<header>
-			<?php echo '<div id="logout"><a href="'.base_url().'userController/logout">Deconexion</a></div>'; ?>
+			<?php echo '<a href="'.base_url().'userController/logout">Deconexion</a>'; ?>
+			<?php echo '<a href="'.base_url().'userController/editAccount">Mon compte</a>'; ?>
 		</header>

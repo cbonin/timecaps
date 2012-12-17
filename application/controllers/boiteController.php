@@ -135,36 +135,36 @@ class boiteController extends CI_Controller {
 					'user' => $this->userModel->getUserById($boite[0]['idReceiver'])
 				);
 				$this->load->view('template', $param);
-			}else{
-				//si le formulaire à correctement été rempli
-			
-				$data = array(
-					'nomBoite' => $this->input->post('nomBoite'),
-					'coordX' => $this->input->post('coordX'),
-					'coordY' => $this->input->post('coordY'),
-					'description' => $this->input->post('description'),
-					'targetDate' => $this->input->post('targetDate'),
-					'adresse' => $this->input->post('receverAddress'),
-					'codePostal' => $this->input->post('receverZipCode'),
-					'ville' => $this->input->post('receverCity'),
-				);
-				$this->boiteModel->updateBoite($id, $data);
+			}
+		else  //si 	le formulaire à correctement été rempli
+		{
+			$data = array(
+				'nomBoite' => $this->input->post('nomBoite'),
+				'coordX' => $this->input->post('coordX'),
+				'coordY' => $this->input->post('coordY'),
+				'description' => $this->input->post('description'),
+				'targetDate' => $this->input->post('targetDate'),
+				'adresse' => $this->input->post('receverAddress'),
+				'codePostal' => $this->input->post('receverZipCode'),
+				'ville' => $this->input->post('receverCity'),
+			);
+			$this->boiteModel->updateBoite($id, $data);
 
 
-				// Si contributeur
-				$emailContributor = $this->input->post('emailContributor');
-				if($emailContributor != ''){
-					// Ajout des relations dans la bdd
-					$this->addContributor($emailContributor, $id);
+			// Si contributeur
+			$emailContributor = $this->input->post('emailContributor');
+			if($emailContributor != ''){
+				// Ajout des relations dans la bdd
+				$this->addContributor($emailContributor, $id);
 
-					// Envoi d'un mail au contributeur
-					var_dump($user);
-					$this->email->from('no-reply-invite@backwards.fr', 'Backwards');
-					$this->email->to($emailContributor); 
-					$this->email->subject($user['prenom'].' '.$user['nom'].' vous invite à créer une capsule temporelle...');
-					$this->email->message($user['prenom'].' '.$user['nom']." vous invite à vréer une capsule temporaire connectez vous à Backwards pour l'aider à remplir sa boite");
-					$this->email->send();
-				}
+				// Envoi d'un mail au contributeur
+				$this->load->library('email');
+				$this->email->from('no-reply-invite@backwards.fr', 'Backwards');
+				$this->email->to($emailContributor); 
+				$this->email->subject($user['prenom'].' '.$user['nom'].' vous invite à créer une capsule temporelle...');
+				$this->email->message($user['prenom'].' '.$user['nom']." vous invite à vréer une capsule temporaire connectez vous à Backwards pour l'aider à remplir sa boite");
+				$this->email->send();
+			}
 
 				redirect("boiteController");
 			}

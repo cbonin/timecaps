@@ -12,11 +12,14 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/front.css">
 	<meta name="description" content="">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script>
+		var baseUrl = "<?php echo base_url(); ?>";
+		var connected = <?php if(isLogged()){echo "true";}else{echo "false";} ?>;
+	</script>
 </head>
 
 <body>
 <div id="fb-root"></div>
-<fb:login-button show-faces="true" width="450" perms="user_groups,publish_stream,email,user_birthday,read_stream,publish_actions"></fb:login-button>
+<fb:login-button show-faces="true" width="450" perms="user_groups,publish_stream,email,user_birthday,read_stream,publish_actions,read_friendlists"></fb:login-button>
 <div id="#fb-profile-pic"></div>
 <div id="#fb-name"></div>
-<div id="#facebook-logout"></div>

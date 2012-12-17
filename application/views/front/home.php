@@ -3,7 +3,7 @@
 	<?php
 		if(isLogged()){
 			echo '<a href="'.base_url().'boiteController">Mes boites</a><br />';
-			echo '<a href="'.base_url().'userController/logout">Deconexion</a>';
+			echo '<div id="logout"><a href="'.base_url().'userController/logout">Deconexion</a></div>';
 		}else{
 			echo '<a href="'.base_url().'userController/signIn">Connexion</a>';
 		}

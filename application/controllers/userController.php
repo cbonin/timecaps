@@ -41,7 +41,6 @@ class userController extends CI_Controller
 
 			// Donnees qui vont etre envoyees a la base de donnees
 			$data = array(
-				'prenom' => $this->input->post('prenom'),
 				'nom' => $this->input->post('nom'),
 				'email' => $this->input->post('email'),
 				'prenom' => $this->input->post('prenom'),
@@ -90,36 +89,34 @@ class userController extends CI_Controller
 					'prenom' => $user[0]['prenom'],
 					'nom' => $user[0]['nom']
 				);
-
 				// Creation de la session
-
 				$this->session->set_userdata('user_data', $data);
 				redirect(base_url());
 
 			}else{ // Retente ta chance
 				echo 'Mauvais login ou mauvais mot de passe';
 				$param = array(
-				'userType' => 'front',
-				'mainContent' => 'loginView',
-				'title' => 'Connexion'
+					'userType' => 'front',
+					'mainContent' => 'loginView',
+					'title' => 'Connexion'
 				);
 				$this->load->view('template', $param);
 			}
 		}
 	}
 
-	function signInFB(){
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('email', 'Adresse mail', 'trim|required|xss_clean|max_length[100]|valid_email');
-		$this->form_validation->set_rules('idFb', 'Facebook ID', 'trim|required|xss_clean');
-
-		if ($this->form_validation->run() == FALSE)
+	function signInFB(){ // connexion facebook
+		$idFB = $this->input->post('id');
+		$prenom = $this->input->post('prenom');
+		$nom = $this->input->post('nom');
+		$email = $this->input->post('email');
+		if(!isset($idFB) && !isset($prenom) && !isset($nom) && !isset($email))
 		{
 			$data = array(
 				'status' => 'error',
 				'message' => 'La connexion Facebook à échoué'
 			); 
-			return json_encode($data);
+			echo(json_encode($data));
 		}
 		else  //Si le formulaire à correctement été rempli
 		{
@@ -128,25 +125,56 @@ class userController extends CI_Controller
 			// Initialisation des variables	
 			$email =  $this->input->post('email');
 			$user = $this->userModel->getUser($email);
+			$connected = $this->session->userdata('user_data');
+			// Si l'user possède déjà un compte
+			if(!empty($user)){ 
+				if($connected == ''){
+					$data = array(
+						'idUser' => $user[0]['idUser'],
+						'prenom' => $user[0]['prenom'],
+						'nom' => $user[0]['nom']
+					);
 
-			if(!empty($user)){ // Si l'user possède déjà un compte
-				
+					// Creation de la session
+					$this->session->set_userdata('user_data', $data);
+					$reponse = array('status' => 'connected', 'message', 'Vous êtes bien connecté');
+					$this->output
+					    ->set_content_type('application/json')
+					    ->set_output(json_encode($reponse));
+				}else{
+					$reponse = array('status' => 'already connected', 'message', 'Vous êtes bien connecté');
+					$this->output
+					    ->set_content_type('application/json')
+					    ->set_output(json_encode($reponse));
+				}
+
+			}else{ // on crée l'user à la volée si c'est sa premiere connexion
+
+				$this->load->model("userModel");
+				$password = md5($this->input->post('nom').time());
 				$data = array(
-					'idUser' => $user[0]['idUser'],
-					'prenom' => $user[0]['prenom'],
-					'nom' => $user[0]['nom']
+					'nom' => $this->input->post('nom'),
+					'email' => $this->input->post('email'),
+					'prenom' => $this->input->post('prenom'),
+					'password' => $password
+				);
+				$idUser = $this->userModel->addUser($data);
+
+				$this->load->library('email');
+				$this->email->from('no-reply-invite@backwards.fr', 'Backwards');
+				$this->email->to($this->input->post('email')); 
+				$this->email->subject('Votre compte Backwards à bien été créé');
+				$this->email->message($this->input->post('prenom').' '.$this->input->post('nom')." votre compte à bien été créé. Vous pouvez dès à présent vous connecter en utiloisant Facebook ou en utilisant votre login/mot de passe : Login:".$this->input->post('email')." et mot de passe : ".$this->input->post('nom').time().". Nous vous conseilons vivement de changer votre mot de passe dès à présent. L'équipe Backwards :)");
+				$this->email->send();
+
+				$param = array(
+					'idUser' => $idUser,
+					'prenom' => $this->input->post('prenom'),
+					'nom' => $this->input->post('nom')
 				);
 
 				// Creation de la session
-				$this->session->set_userdata('user_data', $data);
-				redirect(base_url());
-			}else{
-
-				$this->load->model("userModel");
-
-				$data = array(
-				);
-				$idUser = $this->userModel->addUser($data);
+				$this->session->set_userdata('user_data', $param);
 
 
 			}

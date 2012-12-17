@@ -38,3 +38,5 @@ input[type="submit"] { width: auto; }
 	background: rgba(218,79,73, .8);
 	border: 1px solid #cb423c;
 }
+
+#logout{text-align: right; margin-right: 5%; margin-top: 1%;}

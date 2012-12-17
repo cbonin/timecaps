@@ -7,7 +7,6 @@
 	        xfbml  : true  // active le XFBML (HTML de Facebook)
 	    });
 	</script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/front.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/facebookConnect.js"></script>
 </body>
 </html>

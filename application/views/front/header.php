@@ -3,7 +3,7 @@
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# backwards: http://ogp.me/ns/fb/backwards#">
 	<meta property="fb:app_id" content="303205766457764" />
 	<meta property="og:type"   content="backwards:boite" /> 
-	<meta property="og:url"    content="http://localhost:8888/backwards/" />
+	<meta property="og:url"    content="http://localhost/timecaps/" />
 	<meta property="og:title"  content="Une boite" />
 	<meta property="og:image"  content="https://s-static.ak.fbcdn.net/images/devsite/attachment_blank.png" /> 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>

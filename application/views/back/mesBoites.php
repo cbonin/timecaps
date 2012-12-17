@@ -1,6 +1,5 @@
-
-<?php if(!empty($boites)): ?>
 <a href="<?php echo base_url().'boiteController/create'; ?>">Creer une nouvelle boite</a>
+<?php if(!empty($boites)): ?>
 <ul>
 	<?php foreach($boites as $boite): ?>
 	<li>
@@ -10,4 +9,5 @@
 	<?php endforeach; ?>
 
 </ul>
-<?php endif; ?>
+
+<?php else: echo "Cette boite n'existes pas"; endif; ?>

@@ -10,7 +10,14 @@ if (isset($files) && count($files))
          {
             ?>
             <li class="image_wrap">
-               <a href="#" class="delete_file_link" data-file_id="<?php echo $file->idFile?>" data-boite-id="<?php echo $file->idBoite; ?>">Supprimer</a>
+               
+               <?php
+               foreach ($depots as $d) :
+                  if (in_array($file->idFile, (array)$d)) : ?>  
+                     <a href="#" class="delete_file_link" data-file_id="<?php echo $file->idFile?>" data-boite-id="<?php echo $file->idBoite; ?>">Supprimer</a>
+                  <?php endif;
+               endforeach; ?>
+               
                <strong><?php echo $file->titre; ?></strong>
                <br />
                <a href="<?php echo base_url().'files/'.$file->idBoite.'/'.$file->nom; ?>" rel="shadowbox[images]" title="<?php echo $file->nom; ?>"><img src="<?php echo base_url().'files/'.$file->idBoite.'/thumb/'.$file->nom; ?>" alt="<?php echo $file->nom; ?>" /></a>

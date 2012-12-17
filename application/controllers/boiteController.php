@@ -20,6 +20,7 @@ class boiteController extends CI_Controller {
 			'mainContent' => 'mesBoites',
 			'title' => 'Mes boites',
 			'boites' => $this->boiteModel->getBoiteByUser($idUser),
+			'boitesContributor' => $this->boiteModel->getMyBoiteContributor($idUser)
 		);
 		$this->load->view('template', $param);
 	}
@@ -79,7 +80,8 @@ class boiteController extends CI_Controller {
 
 			// On cree la boite avec toutes les informations necessaires...
 			$this->load->model("boiteModel");
-			$data = array( // on crée les datas qu'on envvera au model dans un tableau
+			// on crée les datas qu'on envvera au model dans un tableau
+			$data = array(
 				'nomBoite' => $this->input->post('nomBoite'),
 				'coordX' => $this->input->post('coordX'),
 				'coordY' => $this->input->post('coordY'),
@@ -102,63 +104,85 @@ class boiteController extends CI_Controller {
 	{
 		$this->load->model("boiteModel");
 		$this->load->model("userModel");
-		$this->load->library('form_validation');
+		$boite = $this->boiteModel->getBoite($id);
+		$user = $this->session->userdata('user_data');
+		$contributors = $this->boiteModel->getAllContributors($id);
 
-		$this->form_validation->set_rules('nomBoite', 'Nom de la boite', 'trim|required|xss_clean|max_length[50]');
-		$this->form_validation->set_rules('coordX', 'Coordonées X', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('coordY', 'Coordonées Y', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('description', 'Description', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('targetDate', 'Date d\'ouverture potentielle', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('receverAddress', 'Adresse postale du destinataire', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('receverCity', 'Ville du destinataire', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('receverZipCode', 'Code Postal du destinataire', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('emailContributor', 'Adresse mail du contributeur', 'trim|xss_clean|valid_email');
+		if($boite[0]['idOwner'] == $user['idUser']){
+			// L'utilisateur est le propriétaire de la boite
 
-		if ($this->form_validation->run() == FALSE)
-		{
-			$boite = $this->boiteModel->getBoite($id);
-			$contributors = $this->boiteModel->getAllContributors($id);
-			$param = array(
-				'userType' => 'back',
-				'mainContent' => 'editBoite',
-				'title' => 'Modifier la boite',
-				'boite' => $boite,
-				'contributors' => $contributors,
-				'user' => $this->userModel->getUserById($boite[0]['idReceiver'])
-			);
-			$this->load->view('template', $param);
-		}
-		else  //si 	le formulaire à correctement été rempli
-		{
-			$data = array(
-				'nomBoite' => $this->input->post('nomBoite'),
-				'coordX' => $this->input->post('coordX'),
-				'coordY' => $this->input->post('coordY'),
-				'description' => $this->input->post('description'),
-				'targetDate' => $this->input->post('targetDate'),
-				'adresse' => $this->input->post('receverAddress'),
-				'codePostal' => $this->input->post('receverZipCode'),
-				'ville' => $this->input->post('receverCity'),
-			);
-			$this->boiteModel->updateBoite($id, $data);
+			
+			$this->load->library('form_validation');
+
+			$this->form_validation->set_rules('nomBoite', 'Nom de la boite', 'trim|required|xss_clean|max_length[50]');
+			$this->form_validation->set_rules('coordX', 'Coordonées X', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('coordY', 'Coordonées Y', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('description', 'Description', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('targetDate', 'Date d\'ouverture potentielle', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('receverAddress', 'Adresse postale du destinataire', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('receverCity', 'Ville du destinataire', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('receverZipCode', 'Code Postal du destinataire', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('emailContributor', 'Adresse mail du contributeur', 'trim|xss_clean|valid_email');
+
+			if ($this->form_validation->run() == FALSE){
+				
+				$param = array(
+					'userType' => 'back',
+					'mainContent' => 'editBoite',
+					'title' => 'Modifier la boite',
+					'boite' => $boite,
+					'contributors' => $contributors,
+					'user' => $this->userModel->getUserById($boite[0]['idReceiver'])
+				);
+				$this->load->view('template', $param);
+			}else{
+				//si le formulaire à correctement été rempli
+			
+				$data = array(
+					'nomBoite' => $this->input->post('nomBoite'),
+					'coordX' => $this->input->post('coordX'),
+					'coordY' => $this->input->post('coordY'),
+					'description' => $this->input->post('description'),
+					'targetDate' => $this->input->post('targetDate'),
+					'adresse' => $this->input->post('receverAddress'),
+					'codePostal' => $this->input->post('receverZipCode'),
+					'ville' => $this->input->post('receverCity'),
+				);
+				$this->boiteModel->updateBoite($id, $data);
 
 
-			// Si contributeur
-			$emailContributor = $this->input->post('emailContributor');
-			if($emailContributor != ''){
-				// Ajout des relations dans la bdd
-				$this->addContributor($emailContributor, $id);
+				// Si contributeur
+				$emailContributor = $this->input->post('emailContributor');
+				if($emailContributor != ''){
+					// Ajout des relations dans la bdd
+					$this->addContributor($emailContributor, $id);
 
-				// Envoi d'un mail au contributeur
-				var_dump($user);
-				$this->email->from('no-reply-invite@backwards.fr', 'Backwards');
-				$this->email->to($emailContributor); 
-				$this->email->subject($user['prenom'].' '.$user['nom'].' vous invite à créer une capsule temporelle...');
-				$this->email->message($user['prenom'].' '.$user['nom']." vous invite à vréer une capsule temporaire connectez vous à Backwards pour l'aider à remplir sa boite");
-				$this->email->send();
+					// Envoi d'un mail au contributeur
+					var_dump($user);
+					$this->email->from('no-reply-invite@backwards.fr', 'Backwards');
+					$this->email->to($emailContributor); 
+					$this->email->subject($user['prenom'].' '.$user['nom'].' vous invite à créer une capsule temporelle...');
+					$this->email->message($user['prenom'].' '.$user['nom']." vous invite à vréer une capsule temporaire connectez vous à Backwards pour l'aider à remplir sa boite");
+					$this->email->send();
+				}
+
+				redirect("boiteController");
 			}
 
-			redirect("boiteController");
+		}else{
+			// L'utilisateur est un contributeur
+
+
+			$param = array(
+					'userType' => 'back',
+					'mainContent' => 'editBoiteContributor',
+					'title' => 'Modifier la boite',
+					'boite' => $boite,
+					'contributors' => $contributors,
+					'user' => $this->userModel->getUserById($boite[0]['idReceiver'])
+				);
+			$this->load->view('template', $param);
+
 		}
 	}
 

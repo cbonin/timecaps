@@ -60,13 +60,15 @@ class boiteModel extends CI_Model
 			->where('contributeurs.idBoite', $idBoite)
 			->get()
 			->result();
+	}
 
-/*
-		$this->db->where('idBoite', $idBoite);
-		$query = $this->db->get('contributeurs');
-
-		return $query->result_array();
-		*/
+	function getMyBoiteContributor($idUser){
+		return $this->db->select()
+			->from('boite')
+			->join('contributeurs', 'contributeurs.idBoite = boite.idBoite')
+			->where('contributeurs.idUser', $idUser)
+			->get()
+			->result();
 	}
 
 }

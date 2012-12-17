@@ -93,4 +93,13 @@ class filesModel extends CI_Model {
 	    return $data;
 	}
 
+	function getMyDepots($idBoite, $idUser){
+		return $this->db->select()
+			->from('depot')
+			->where('idBoite', $idBoite)
+			->where('idDepositeur', $idUser)
+			->get()
+			->result_array();
+	}
+
 }

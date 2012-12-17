@@ -104,7 +104,9 @@ class uploadController extends CI_Controller
    public function files($idBoite)
    {
       $files = $this->filesModel->getFiles($idBoite);
-      $this->load->view('back/files', array('files' => $files));
+      $idUser = $this->session->userdata('user_data')['idUser'];
+      $depots = $this->filesModel->getMyDepots($idBoite, $idUser);
+      $this->load->view('back/files', array('files' => $files, 'depots' => $depots));
    }
 
    public function delete_file($file_id, $boite_id)

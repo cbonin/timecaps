@@ -72,10 +72,9 @@ class boiteModel extends CI_Model
 	}
 
 	function getAmountOfBoite(){
-		$res = $this->db->insert_id()
-			->get('boite');
-		var_dump($res);
-		die();
+		return $this->db->select_max('idBoite')
+			->get('boite')
+			->result();
 	}
 
 }

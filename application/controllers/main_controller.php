@@ -25,7 +25,7 @@ class main_controller extends CI_Controller {
 			'userType' => 'front',
 			'mainContent' => 'home',
 			'title' => 'Backwards ',
-			'nbBoite' => $nbBoites
+			'nbBoites' => $nbBoites[0]->idBoite
 		);
 		$this->load->view('template', $param);
 	}

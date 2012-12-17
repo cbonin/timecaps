@@ -4,7 +4,7 @@ $(document).ready(function(){
   Shadowbox.init(); 
 
   // UPLOAD VIA AJAX
-  var baseUrl = "http://localhost:8888/backwards/";
+  var baseUrl = "http://localhost/timecaps/";
 	refresh_files();
     $(function() {
        $('#upload_file').submit(function(e) {

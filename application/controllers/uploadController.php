@@ -77,7 +77,7 @@ class uploadController extends CI_Controller
                'taille' => $data['file_size'],
             );
 
-            $depositeur = intval($this->session->userdata('idUser'));
+            $depositeur = intval($this->session->userdata('user_data')['idUser']);
             $depositer = array(
                'idBoite' => $dirName,
                'idDepositeur' => $depositeur

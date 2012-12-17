@@ -108,6 +108,52 @@ class userController extends CI_Controller
 		}
 	}
 
+	function signInFB(){
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('email', 'Adresse mail', 'trim|required|xss_clean|max_length[100]|valid_email');
+		$this->form_validation->set_rules('idFb', 'Facebook ID', 'trim|required|xss_clean');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			$data = array(
+				'status' => 'error',
+				'message' => 'La connexion Facebook à échoué'
+			); 
+			return json_encode($data);
+		}
+		else  //Si le formulaire à correctement été rempli
+		{
+			$this->load->model('userModel');
+
+			// Initialisation des variables	
+			$email =  $this->input->post('email');
+			$user = $this->userModel->getUser($email);
+
+			if(!empty($user)){ // Si l'user possède déjà un compte
+				
+				$data = array(
+					'idUser' => $user[0]['idUser'],
+					'prenom' => $user[0]['prenom'],
+					'nom' => $user[0]['nom']
+				);
+
+				// Creation de la session
+				$this->session->set_userdata('user_data', $data);
+				redirect(base_url());
+			}else{
+
+				$this->load->model("userModel");
+
+				$data = array(
+				);
+				$idUser = $this->userModel->addUser($data);
+
+
+			}
+		}
+
+	}
+
 	function logout(){
 		// Destruction de la session
 		$this->load->library('session');

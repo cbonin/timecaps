@@ -44,17 +44,23 @@
 					<p>Bonjour <span id="username"><?php echo $userLogged['prenom']." ".$userLogged['nom']; ?></span></p>
 					<div id="connect">
 						<a href="#" title="Boites">Mes boites</a>
-						<a href="#" title="mon compte" class="inscription-btn">Mon compte</a>
-						<a href="#" title="Connexion" class="connexion-btn">Déconnexion</a>
+						<?php
+							echo '<a title="mon compte" class="inscription-btn" href="'.base_url().'userController/editAccount">Mon compte</a>';
+							echo '<a title="Connexion" class="connexion-btn" href="'.base_url().'userController/logout">Deconexion</a>';
+						?>
 					</div>
 				<?php else: ?>
 					<div id="connect">
-						<a href="#" title="Inscription" class="inscription-btn">Inscription</a>
-						<a href="#" title="Connexion" class="connexion-btn">Connexion</a>
+						<?php
+							echo '<a title="Inscription" class="inscription-btn" href="'.base_url().'userController/signUp">Inscription</a>';
+							echo '<a title="Connexion" class="connexion-btn" href="'.base_url().'userController/signIn">Connexion</a>';
+						?>
 					</div>
 				<?php endif; ?>
+				<a href="<php? base_url()mainController/setLanguage/fr">fr</a> | <a id='en' href="<php? base_url()mainController/setLanguage/en">en</a>
 			</div>
 			<span id="ellipse"><img src="<?php echo base_url(); ?>assets/css/img/ellipse-header.png" alt="Ellipse head"/></span>
 		</section>
 	</header>
 	<div id="container" class="container">
+

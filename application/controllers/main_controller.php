@@ -19,6 +19,29 @@ class main_controller extends CI_Controller {
 	 */
 	public function index()
 	{
+
+		// gestion du multilangage
+		$this->load->helper('cookie');
+		$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
+		$cookie = get_cookie('lang');
+		if($cookie){
+			$lang = $cookie;
+		}
+
+		if ($lang == 'fr') {           // si la langue est 'fr' (français) on inclut le fichier fr-lang.php
+			include('lang/fr-lang.php');
+		} elseif ($lang == 'en') {      // si la langue est 'en' (anglais) on inclut le fichier en-lang.php
+			include('lang/en-lang.php');
+		}
+
+		$cookie = array(
+			'name'   => 'lang',
+			'value'  => $lang,
+			'expire' => '86500',
+		);
+		var_dump($cookie);
+		echo $lang;
+
 		$this->load->model('boiteModel');
 		$nbBoites = $this->boiteModel->getAmountOfBoite();
 		$nbBoites = $nbBoites[0]->idBoite;
@@ -31,6 +54,25 @@ class main_controller extends CI_Controller {
 			'openBoites' => $openBoites
 		);
 		$this->load->view('template', $param);
+	}
+
+	function setLanguage($lang){
+		echo $url;
+		$this->load->helper('cookie');
+		if ($lang == 'fr') {           // si la langue est 'fr' (français) on inclut le fichier fr-lang.php
+			include('lang/fr-lang.php');
+		} elseif ($lang == 'en') {      // si la langue est 'en' (anglais) on inclut le fichier en-lang.php
+			include('lang/en-lang.php');
+		}
+
+		$cookie = array(
+			'name'   => 'lang',
+			'value'  => $lang,
+			'expire' => '86500',
+		);
+
+		set_cookie($cookie);
+		redirect(base_url());
 	}
 }
 

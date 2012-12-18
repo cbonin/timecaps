@@ -30,6 +30,7 @@
 	<![endif]-->
 </head>
 <body>
+<<<<<<< HEAD
 	<div id="fb-root"></div>
 
 	<header>
@@ -58,3 +59,13 @@
 		</section>
 	</header>
 	<div id="container" class="container">
+=======
+	<section>
+		<header>
+			<div id="fb-root"></div>
+			<fb:login-button show-faces="true" width="450" perms="user_groups,publish_stream,email,user_birthday,read_stream,publish_actions,read_friendlists"></fb:login-button>
+			<div id="#fb-profile-pic"></div>
+			<div id="#fb-name"></div>
+			<div class='droite'><a href="<?php echo base_url().'main_controller/setLanguage/fr'; ?>">fr</a> | <a id='en' href="<?php echo base_url().'main_controller/setLanguage/en'; ?>">en</a></div>
+		</header>
+>>>>>>> gestion multilangue ok

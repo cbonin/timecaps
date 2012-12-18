@@ -39,4 +39,4 @@ input[type="submit"] { width: auto; }
 	border: 1px solid #cb423c;
 }
 
-header{text-align: right; margin-right: 5%; margin-top: 1%;}
+.droite{position: relative; right:0; margin-right: 5%; margin-top: 1%; display: inline;}

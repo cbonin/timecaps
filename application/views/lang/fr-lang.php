@@ -6,7 +6,7 @@
 define('BTN_CONNEXION'	, "Connexion");
 define('BTN_DECONNEXION', "Déonnexion");
 define('BTN_INSCRIPTION', "Inscription");
-define('BONJOUR'	, "Bonjour");
+define('BONJOUR'		, "Bonjour");
 //---------------------------------------------------------
 
 
@@ -67,16 +67,16 @@ define('INFORMATION_BOITE'	, "Informations sur la boîte");
 // edition boite
 //---------------------------------------------------------
 define('CONTENU'		, "Contenu de la boîte");
-define('CONTRIBUTEURS'		, "Contributeurs");
+define('CONTRIBUTEURS'	, "Contributeurs");
 //---------------------------------------------------------
 
 
 //---------------------------------------------------------
 // popup connexion
 //---------------------------------------------------------
-define('CONNEXION'		, "Connexion");
-define('TXT_CO_BW'		, "Avec votre compte backwards...");
-define('TXT_CO_FB'		, "...ou gagnez du temps avec Facebook");
+define('CONNEXION', "Connexion");
+define('TXT_CO_BW', "Avec votre compte backwards...");
+define('TXT_CO_FB', "...ou gagnez du temps avec Facebook");
 //---------------------------------------------------------
 
 
@@ -92,17 +92,17 @@ define('TXT_IN_FB'		, "...ou gagnez du temps avec Facebook");
 //---------------------------------------------------------
 // champs formulaires
 //---------------------------------------------------------
-define('PRENOM'			, "Prénom : ");
-define('NOM'			, "Nom : ");
-define('EMAIL'			, "Adresse e-mail : ");
-define('MESSAGE'		, "Votre message : ");
-define('TITRE'			, "Titre : ");
-define('DESCRIPTION'	, "Votre message personnel : ");
-define('ADRESSE'		, "Adresse postale du destionataire : ");
-define('DATE_OUVERTURE'	, "Date d'ouverture : ");
-define('EMAIL_CONNEXION', "E-mail : ");
-define('MDP'		, "Mot de passe : ");
-define('MDP_CONFIRMATION'		, "Confirmation du mot de passe : ");
+define('PRENOM'				, "Prénom : ");
+define('NOM'				, "Nom : ");
+define('EMAIL'				, "Adresse e-mail : ");
+define('MESSAGE'			, "Votre message : ");
+define('TITRE'				, "Titre : ");
+define('DESCRIPTION'		, "Votre message personnel : ");
+define('ADRESSE'			, "Adresse postale du destionataire : ");
+define('DATE_OUVERTURE'		, "Date d'ouverture : ");
+define('EMAIL_CONNEXION'	, "E-mail : ");
+define('MDP'				, "Mot de passe : ");
+define('MDP_CONFIRMATION'	, "Confirmation du mot de passe : ");
 //---------------------------------------------------------
 
 
@@ -110,8 +110,8 @@ define('MDP_CONFIRMATION'		, "Confirmation du mot de passe : ");
 // boutnons
 //---------------------------------------------------------
 define('BTN_ENVOYER'	, "Envoyer");
-define('BTN_RETOUR'	, "Retour");
-define('BTN_ENREGISTRER'	, "Enregistrer les modifications");
+define('BTN_RETOUR'		, "Retour");
+define('BTN_ENREGISTRER', "Enregistrer les modifications");
 define('BTN_CREER'		, "Créer la boîte");
 define('BTN_ENTERRER'	, "Enterrer la boîte");
 define('BTN_AJOUTER'	, "+ Ajouter");

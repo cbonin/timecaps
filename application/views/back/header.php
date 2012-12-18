@@ -11,7 +11,7 @@
 	<meta name="description" content="">
 	<meta property="place:location:latitude"  content="48.852136" />
 	<meta property="place:location:longitude" content="2.420251" />
-	<meta property="backwards_app:sender"     content="1303005294" />
+	<meta property="backwards_app:sender"     content="<?php if(isset($boite)){echo $boite[0]['idOwnerFB']; ?>" />
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/back.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/date.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/shadowbox/shadowbox.css">

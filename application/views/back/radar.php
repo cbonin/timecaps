@@ -6,12 +6,12 @@ Ta Position
 <div id='buttonContainer'></div>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script>
-	var boiteId = "<?php echo $boite[0]['idBoite'] ?>"
-	var boiteX = Number("<?php echo $boite[0]['coordX'] ?>");
-	var boiteY = Number("<?php echo $boite[0]['coordY'] ?>");
-	var boiteDate = "<?php echo str_replace('-', '', $boite[0]['targetDate']) ?>";
-	var baseUrl = "<?php echo base_url(); ?>";
-	var mapOptions;
+    var boiteId = "<?php echo $boite[0]['idBoite'] ?>"
+    var boiteX = Number("<?php echo $boite[0]['coordX'] ?>");
+    var boiteY = Number("<?php echo $boite[0]['coordY'] ?>");
+    var boiteDate = "<?php echo str_replace('-', '', $boite[0]['targetDate']) ?>";
+    var baseUrl = "<?php echo base_url(); ?>";
+    var mapOptions;
     var map;
     /*
     boiteX = 50;
@@ -19,7 +19,7 @@ Ta Position
     */
     var coord = new google.maps.LatLng(boiteX,boiteY);
 
-	mapOptions = {
+    mapOptions = {
         zoom: 20,
         center: coord,
         mapTypeId: google.maps.MapTypeId.SATELLITE
@@ -39,7 +39,7 @@ Ta Position
 
     createMarker(coord, 'Déterre moi !');
 
-	function createMarker(latLng, markerTitle){
+    function createMarker(latLng, markerTitle){
         marker = new google.maps.Marker({
             position: latLng,
             draggable: false,
@@ -49,4 +49,14 @@ Ta Position
         return marker;
     }
 </script>
-<script src="../../assets/js/radar.js"></script>
+<script src="http://connect.facebook.net/fr_FR/all.js"></script>
+<script>
+    FB.init({
+        appId  : '303205766457764',
+        status : true, // verifie le statut de la connexion
+        cookie : true, // active les cookies pour que le serveur puisse accéder à la session
+        xfbml  : true  // active le XFBML (HTML de Facebook)
+    });
+</script>
+<script src="<?php echo base_url(); ?>assets/js/facebookConnect.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/radar.js"></script>

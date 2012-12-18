@@ -58,7 +58,12 @@ $(document).ready(function () {
                     var valeur = document.createTextNode('Déterrer la boîte');
                     button.appendChild(valeur);
                     document.getElementById('buttonContainer').appendChild(button);
-                    button.onclick = function(){window.location.href = baseUrl;return false;};
+                    button.onclick = function(){
+                        var response = shareFacebookAction();
+                        if(response){
+                            window.location.href = baseUrl;
+                        }
+                        return false;};
                     console.log('fin success');
                 },
                 error: function(data){

@@ -57,6 +57,10 @@ $(document).ready(function(){
 	    });
 	    return false;
 	});
+
+	$("#unlocker").live('click', function(){
+		shareFacebookAction();
+	});
 	
 	function shareFacebookAction(){
 	  FB.api(
@@ -67,8 +71,10 @@ $(document).ready(function(){
 	       if (!response || response.error) {
 	          console.log(response.error);
 	          alert('erreur');
+	          return true;
 	       } else {
 	          alert('Cook was successful! Action ID: ' + response.id);
+	          return true;
 	       }
 	    });
 	}

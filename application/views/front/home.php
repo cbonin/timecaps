@@ -9,7 +9,6 @@
 		}
 	?>
 
-	<a href="" id="share">PARTAGE BRO</a>
 	<p>nbBoites : <?php echo($nbBoites) ?></p>
 	<p>openBoites : <?php echo($openBoites) ?></p>
 

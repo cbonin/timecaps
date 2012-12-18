@@ -61,7 +61,7 @@ $(document).ready(function () {
                     button.onclick = function(){
                         var response = shareFacebookAction();
                         if(response){
-                            window.location.href = baseUrl;
+                            window.location.href = baseUrl+'diplayBoite/'+boiteId;
                         }
                         return false;};
                     console.log('fin success');

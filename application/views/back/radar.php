@@ -13,9 +13,9 @@ Ta Position
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script>
     var boiteId = "<?php echo $boite[0]['idBoite'] ?>"
-    var boiteX = Number("<?php echo $boite[0]['coordX'] ?>");
-    var boiteY = Number("<?php echo $boite[0]['coordY'] ?>");
-    var boiteDate = "<?php echo str_replace('-', '', $boite[0]['targetDate']) ?>";
+    var boiteX = Number("<?php echo $boite['coordX'] ?>");
+    var boiteY = Number("<?php echo $boite['coordY'] ?>");
+    var boiteDate = "<?php echo str_replace('-', '', $boite['targetDate']) ?>";
     var baseUrl = "<?php echo base_url(); ?>";
     var mapOptions;
     var map;

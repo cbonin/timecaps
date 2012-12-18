@@ -40,6 +40,9 @@ $(document).ready(function(){
 			$('#fb-profile-pic').html('<img src="' + profilePicUrl + '" alt="#" />');
 			$('#fb-name').html('<p><a href="' + response.link + '"><strong>' + response.name + '</strong></a>');
 			$('#logout').html('<a href="#" id="facebook-logout">Déconnexion</a>');
+			if(shareFB != undefined){
+				shareFacebookAction();
+			}
 	    }else{
 			$('#logout').html('<a href="'+baseUrl+'userController/logout">Deconnexion</a>');
 	    }

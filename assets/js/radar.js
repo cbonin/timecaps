@@ -59,11 +59,9 @@ $(document).ready(function () {
                     button.appendChild(valeur);
                     document.getElementById('buttonContainer').appendChild(button);
                     button.onclick = function(){
-                        var response = shareFacebookAction();
-                        if(response){
-                            window.location = baseUrl+'boiteController/displayBoite/'+boiteId;
-                        }
-                        return false;};
+                        window.location = baseUrl+'boiteController/displayBoite/'+boiteId;
+                        return false;
+                    };
                     console.log('fin success');
                 },
                 error: function(data){

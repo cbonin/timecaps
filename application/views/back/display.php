@@ -15,4 +15,5 @@
 		.success(function (data){
 			$('#files').html(data);
 		});
+	var shareFB = true;
 </script>

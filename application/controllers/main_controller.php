@@ -20,12 +20,14 @@ class main_controller extends CI_Controller {
 	public function index()
 	{
 		$this->load->model('boiteModel');
-		$nbBoites = $this->boiteModel->getAmountOfBoite();
+		$nbBoites = $this->boiteModel->getAmountOfBoite()[0]->idBoite;
+		$openBoites = $this->boiteModel->getAmountOfOpenBoite($nbBoites);
 		$param = array(
 			'userType' => 'front',
 			'mainContent' => 'home',
 			'title' => 'Backwards ',
-			'nbBoites' => $nbBoites[0]->idBoite
+			'nbBoites' => $nbBoites,
+			'openBoites' => $openBoites
 		);
 		$this->load->view('template', $param);
 	}

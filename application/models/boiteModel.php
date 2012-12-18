@@ -77,4 +77,12 @@ class boiteModel extends CI_Model
 			->result();
 	}
 
+	function getAmountOfOpenBoite($nbBoite){
+		$closedBoite =
+			$this->db->where('statut <', 2)
+			->from('boite')
+			->count_all_results();
+		return($nbBoite - $closedBoite);
+	}
+
 }

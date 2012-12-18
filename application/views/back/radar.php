@@ -1,3 +1,9 @@
+<?php if(!isLogged()): ?>
+    <p>Vous devez être connecté pour voir le contenu de la boite</p>
+<?php else: 
+    if(!empty($boite)):
+?>
+
 <div id="boiteMap" style="width: 300px; height: 300px; display: block;"></div>
 Position de la boite
 <span id='targetPosition'>X ; Y</span><br/>
@@ -49,6 +55,9 @@ Ta Position
         return marker;
     }
 </script>
+<?php else: ?>
+    <p>Cette boite n'existe pas...</p>
+<?php endif; endif; ?>
 <script src="http://connect.facebook.net/fr_FR/all.js"></script>
 <script>
     FB.init({

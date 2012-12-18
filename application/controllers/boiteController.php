@@ -5,8 +5,10 @@ class boiteController extends CI_Controller {
 	public function __construct()
    {
 		parent::__construct();
-		if(!isLogged()){
-			redirect("userController/signIn");
+		if($this->uri->segment(2, 0) != "openBoite"){
+			if(!isLogged()){
+				redirect("userController/signIn");
+			}
 		}
    }
 

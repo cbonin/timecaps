@@ -77,7 +77,8 @@ class uploadController extends CI_Controller
                'taille' => $data['file_size'],
             );
 
-            $depositeur = intval($this->session->userdata('user_data')['idUser']);
+            $depositeur = $this->session->userdata('user_data');
+            $depositeur = intval($depositeur['idUser']);
             $depositer = array(
                'idBoite' => $dirName,
                'idDepositeur' => $depositeur
@@ -104,7 +105,8 @@ class uploadController extends CI_Controller
    public function files($idBoite)
    {
       $files = $this->filesModel->getFiles($idBoite);
-      $idUser = $this->session->userdata('user_data')['idUser'];
+      $idUser = $this->session->userdata('user_data');
+      $idUser = $idUser['idUser'];
       $depots = $this->filesModel->getMyDepots($idBoite, $idUser);
       $this->load->view('back/files', array('files' => $files, 'depots' => $depots));
    }

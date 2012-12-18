@@ -53,11 +53,10 @@ class userController extends CI_Controller
 
 			$this->load->library('email');
 			$this->email->from('no-reply@backwards.fr', 'Backwards');
-			$this->email->to($emailContributor); 
-			$this->email->subject('Bienvenue sur Backwards '.$user['prenom'].' !');
+			$this->email->to($this->input->post('email')); 
+			$this->email->subject('Bienvenue sur Backwards '.$this->input->post('prenom').' !');
 			$this->email->message("Vous vous êtes inscrit");
 			$this->email->send();
-
 			redirect(base_url());
 		}
 

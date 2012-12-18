@@ -39,7 +39,7 @@ $(document).ready(function(){
 			var profilePicUrl = 'http://graph.facebook.com/' + response.id + '/picture';
 			$('#fb-profile-pic').html('<img src="' + profilePicUrl + '" alt="#" />');
 			$('#fb-name').html('<p><a href="' + response.link + '"><strong>' + response.name + '</strong></a>');
-			$('#logout').html('<a href="#" id="facebook-logout">Déconnexion</a>');
+			$('.logout-btn').attr('id','facebook-logout');
 			if(shareFB != undefined){
 				shareFacebookAction();
 			}

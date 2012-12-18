@@ -66,7 +66,7 @@ $(document).ready(function(){
 	  FB.api(
 	    '/me/backwards_app:open',
 	    'post',
-	    { boite: 'http://borispelardo.alwaysdata.net/' },
+	    { box: currentUrl },
 	    function(response) {
 	       if (!response || response.error) {
 	          console.log(response.error);

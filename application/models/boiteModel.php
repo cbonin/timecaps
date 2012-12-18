@@ -84,5 +84,4 @@ class boiteModel extends CI_Model
 			->count_all_results();
 		return($nbBoite - $closedBoite);
 	}
-
 }

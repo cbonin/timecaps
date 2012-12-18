@@ -198,12 +198,14 @@ class boiteController extends CI_Controller {
 
 	function openBoite($idBoite){
 		$this->load->model("boiteModel");
+		$boite = $this->boiteModel->getBoite($idBoite);
+		$boite = $boite[0];
 		
 		$param = array(
 			'userType' => 'back',
 			'mainContent' => 'radar',
 			'title' => 'Chercher la boite',
-			'boite' => $this->boiteModel->getBoite($idBoite)
+			'boite' => $boite
 		);
 		$this->load->view('template', $param);
 	}
@@ -234,4 +236,18 @@ class boiteController extends CI_Controller {
 		redirect("boiteController");
 	}
 
+	function displayBoite($idBoite){
+		$this->load->model('boiteModel');
+		$boite = $this->boiteModel->getBoite($idBoite);
+		$contributeurs = $this->boiteModel->getAllContributors($idBoite);
+
+		$param = array(
+			'userType' => 'back',
+			'mainContent' => 'display',
+			'title' => $boite[0]['nomBoite'],
+			'boite' => $boite[0],
+			'contributeurs' => $contributeurs
+		);
+		$this->load->view('template', $param);
+	}
 }

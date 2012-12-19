@@ -1,61 +1,12 @@
-<a href="<?php echo base_url().'boiteController/create'; ?>">Creer une nouvelle boite</a>
-<div>
-	<h2><?php echo MES_BOITES; ?></h2>
-	<?php if(!empty($boites)): ?>
-	<ul>
-		
-		<?php foreach($boites as $boite): ?>
-		<li>
-			<h2><a href="<?php echo base_url().'boiteController/update/'.$boite->idBoite; ?>"><?php echo $boite->nomBoite; ?></a></h2>
-			<p><?php echo $boite->description; ?></p>
-		</li>
-		<?php endforeach; ?>
-
-	</ul>
-	<?php else: echo "Cette boite n'existes pas"; endif; ?></div>
-</div>
-	
-<div>
-	<h2>Boites où je contribue</h2>
-	<?php if(!empty($boitesContributor)): ?>
-	<ul>
-		
-		<?php foreach($boitesContributor as $bc): ?>
-		<li>
-			<h2><a href="<?php echo base_url().'boiteController/update/'.$bc->idBoite; ?>"><?php echo $bc->nomBoite; ?></a></h2>
-			<p><?php echo $bc->description; ?></p>
-		</li>
-		<?php endforeach; ?>
-
-	</ul>
-	<?php else: echo "Vous ne contribuez à aucune boite pour le moment."; endif; ?></div>
-</div>
-
-<div>
-	<h2>Boites à ouvrir</h2>
-	<?php if(!empty($boitesReceiver)): ?>
-	<ul>
-		<?php foreach($boitesReceiver as $boite): ?>
-		<li>
-			<h2><a href="<?php echo base_url().'boiteController/openBoite/'.$boite->idBoite; ?>"><?php echo $boite->nomBoite; ?></a></h2>
-			<p><?php echo $boite->description; ?></p>
-		</li>
-		<?php endforeach; ?>
-	</ul>
-
-	<?php else: echo "Vous n'avez aucune boite à ouvrir pour le moment."; endif; ?>
-
-</div>
-
-<section id="dash-home">
+			<section id="dash-home">
 				<h1 class="ribbon"><?php echo MES_BOITES; ?></h1>
 				<div id="newbox">
-					<img src="img/dashboard/picto-newbox.png" alt="Nouvelle boîte" />
-					<p><a href="#" title="Créer une nouvelle boîte" class="button">+ Nouvelle boîte</a></p>
+					<img src="<?php echo base_url(); ?>assets/css/img/dashboard/picto-newbox.png" alt="Nouvelle boîte" />
+					<p><a href="<?php echo base_url(); ?>boiteController/create" title="Créer une nouvelle boîte" class="button"><?php echo NOUVELLE_BOITE; ?></a></p>
 				</div>
 
 				<section id="boites-encours">
-					<h2 class="bandeau">Boîtes en cours</h2>
+					<h2 class="bandeau"><?php echo BOITES_ENTERREES; ?></h2>
 					<div>
 						<div class="scroller">
 							<?php if(!empty($boites)): ?>
@@ -77,61 +28,47 @@
 				</section>
 
 				<section id="boites-locked">
-					<h2 class="bandeau">Boîtes enterrées</h2>
+					<h2 class="bandeau"><?php echo BOITES_CONTRIBUTEUR; ?></h2>
 					<div>
 						<div class="scroller">
-							<div class="box">
-								<a href="#" title="">
-									<span class="img-box"></span>
-									<span class="title-box">Titre boîte 1</span>
-									<span class="createur collab"></span>
-								</a>
-								<a href="#" class="delete-box" title="Supprimer"></a>
-							</div>
+							<?php if(!empty($boitesContributor)):
+								foreach($boitesContributor as $bc): ?>
+									<div class="box">
+										<a href="<?php echo base_url().'boiteController/update/'.$bc->idBoite; ?>" title="<?php echo $bc->nomBoite; ?>">
+											<span class="img-box"></span>
+											<span class="title-box"><?php echo $bc->nomBoite; ?></span>
+											<span class="createur collab"></span>
+										</a>
+										<a href="<?php echo base_url().'boiteController/delete/'.$bc->idBoite; ?>" class="delete-box" title="Supprimer"></a>
+									</div>
+								<?php endforeach; 
+							else:
+								echo NO_BC;
+							endif; ?>
 						</div>
 					</div>
 				</section>
 
 				<section id="boites-open">
-					<h2 class="bandeau">Boîtes ouvertes</h2>
+					<h2 class="bandeau"><?php echo BOITES_OUVERTES; ?></h2>
 					<div>
 						<div class="scroller">
-							<div class="box">
-								<a href="#" title="">
-									<span class="img-box"></span>
-									<span class="title-box">Titre boîte 1</span>
-									<span class="createur collab"></span>
-								</a>
-								<a href="#" class="delete-box" title="Supprimer"></a>
-							</div>
-							<div class="box">
-								<a href="#" title="">
-									<span class="img-box"></span>
-									<span class="title-box">Titre boîte 1</span>
-									<span class="createur collab"></span>
-								</a>
-								<a href="#" class="delete-box" title="Supprimer"></a>
-							</div>
-							<div class="box">
-								<a href="#" title="">
-									<span class="img-box"></span>
-									<span class="title-box">Titre boîte 1</span>
-									<span class="createur collab"></span>
-								</a>
-								<a href="#" class="delete-box" title="Supprimer"></a>
-							</div>
-							<div class="box">
-								<a href="#" title="">
-									<span class="img-box"></span>
-									<span class="title-box">Titre boîte 1</span>
-									<span class="createur collab"></span>
-								</a>
-								<a href="#" class="delete-box" title="Supprimer"></a>
-							</div>
+							<?php if(!empty($boitesReceiver)):
+								foreach($boitesReceiver as $boite): ?>
+									<div class="box">
+										<a href="<?php echo base_url().'boiteController/displayBoite/'.$boite->idBoite; ?>" title="">
+											<span class="img-box"></span>
+											<span class="title-box"><?php echo $boite->nomBoite; ?></span>
+											<span class="createur collab"></span>
+										</a>
+									</div>
+								<?php endforeach;
+							else:
+								echo NO_RECEIVER;
+							endif; ?>
 						</div>
 					</div>
 				</section>
-
 			</section>
 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/scrollbar/jquery.mousewheel.min.js"></script>

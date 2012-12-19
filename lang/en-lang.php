@@ -44,9 +44,12 @@ define('COMMENCER'		, "Start");
 //---------------------------------------------------------
 define('MES_BOITES'			, "My boxes");
 define('NOUVELLE_BOITE'		, "New box");
-define('BOITES_EN_COURS'	, "Boxes in progress");
+define('BOITES_CONTRIBUTEUR', "Boxes as contributor");
 define('BOITES_ENTERREES'	, "Burried boxes");
 define('BOITES_OUVERTES'	, "Discovered boxes");
+define('NO_BOITES'			, "You didn't created any box yet.");
+define('NO_BC'				, "You're not contributing to any box.");
+define('NO_RECEIVER'		, "You don't got any box yet.");
 //---------------------------------------------------------
 
 

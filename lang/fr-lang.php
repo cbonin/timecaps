@@ -44,10 +44,12 @@ define('COMMENCER'		, "Commencer");
 //---------------------------------------------------------
 define('MES_BOITES'			, "Mes boîtes");
 define('NOUVELLE_BOITE'		, "Nouvelle boîte");
-define('BOITES_EN_COURS'	, "Boîtes en cours");
+define('BOITES_CONTRIBUTEUR', "Boites où je contribue");
 define('BOITES_ENTERREES'	, "Boîtes enterrées");
 define('BOITES_OUVERTES'	, "Boîtes ouvertes");
 define('NO_BOITES'			, "Vous n'avez créé aucune boite pour le moment");
+define('NO_BC'				, "Vous ne contribuez à aucune boite pour le moment.");
+define('NO_RECEIVER'		, "Vous n'avez reçu aucune boite pour le moment.");
 //---------------------------------------------------------
 
 

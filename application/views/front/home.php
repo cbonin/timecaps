@@ -43,7 +43,6 @@
 						<img src="<?php echo base_url(); ?>assets/css/img/schema-picto3.png" alt="Une boîte pleine d'émotions" />
 					</div>
 					<div class="center">
-						<a href="#" title="En savoir plus"><?php echo SAVOIR_PLUS; ?></a>
 						<a href="#" title="Créer sa première boîte"><?php echo COMMENCER; ?></a>
 					</div>
 				</div>

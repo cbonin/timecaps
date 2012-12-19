@@ -42,7 +42,7 @@
 				<?php if(isLogged()) :
 				$userLogged = $this->session->userdata('user_data');
 				?>
-					<p><?php echo(BONJOUR); ?> <span id="username"><?php echo $userLogged['prenom']." ".$userLogged['nom']; ?></span></p>
+					<p><?php echo(BONJOUR); ?> <span id="username"><?php echo $userLogged['prenom']; ?></span></p>
 					<div id="connect">
 						<a href="<?php echo base_url(); ?>boiteController" title="<?php echo MES_BOITES; ?>"><?php echo MES_BOITES; ?></a>
 						<?php

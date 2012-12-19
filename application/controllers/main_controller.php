@@ -39,8 +39,8 @@ class main_controller extends CI_Controller {
 			'value'  => $lang,
 			'expire' => '86500',
 		);
-		var_dump($cookie);
-		echo $lang;
+		//var_dump($cookie);
+		//echo $lang;
 
 		$this->load->model('boiteModel');
 		$nbBoites = $this->boiteModel->getAmountOfBoite();

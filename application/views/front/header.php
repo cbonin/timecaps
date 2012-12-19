@@ -43,10 +43,10 @@
 				?>
 					<p>Bonjour <span id="username"><?php echo $userLogged['prenom']." ".$userLogged['nom']; ?></span></p>
 					<div id="connect">
-						<a href="#" title="Boites">Mes boites</a>
+						<a href="<?php echo base_url(); ?>boiteController" title="Boites">Mes boites</a>
 						<?php
 							echo '<a title="mon compte" href="'.base_url().'userController/editAccount">Mon compte</a>';
-							echo '<a title="Connexion" href="'.base_url().'userController/logout">Deconexion</a>';
+							echo '<a title="Déconnexion" href="'.base_url().'userController/logout">Deconexion</a>';
 						?>
 					</div>
 				<?php else: ?>

@@ -98,7 +98,7 @@ class userController extends CI_Controller
 				);
 				// Creation de la session
 				$this->session->set_userdata('user_data', $data);
-				redirect(base_url().'/boiteController');
+				redirect(base_url().'boiteController');
 
 			}else{ // Retente ta chance
 				echo 'Mauvais login ou mauvais mot de passe';

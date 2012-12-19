@@ -41,19 +41,19 @@
 				<?php if(isLogged()) :
 				$userLogged = $this->session->userdata('user_data');
 				?>
-					<p>Bonjour <span id="username"><?php echo $userLogged['prenom']." ".$userLogged['nom']; ?></span></p>
+					<p><?php echo(BONJOUR); ?> <span id="username"><?php echo $userLogged['prenom']." ".$userLogged['nom']; ?></span></p>
 					<div id="connect">
-						<a href="#" title="Boites">Mes boites</a>
+						<a href="<?php echo base_url(); ?>boiteController" title="Boites">Mes boites</a>
 						<?php
-							echo '<a title="mon compte" class="inscription-btn" href="'.base_url().'userController/editAccount">Mon compte</a>';
-							echo '<a title="Connexion" class="connexion-btn" href="'.base_url().'userController/logout">Deconexion</a>';
+							echo '<a title="mon compte" href="'.base_url().'userController/editAccount">Mon compte</a>';
+							echo '<a title="Déconnexion" href="'.base_url().'userController/logout">Deconexion</a>';
 						?>
 					</div>
 				<?php else: ?>
 					<div id="connect">
 						<?php
-							echo '<a title="Inscription" class="inscription-btn" href="'.base_url().'userController/signUp">Inscription</a>';
-							echo '<a title="Connexion" class="connexion-btn" href="'.base_url().'userController/signIn">Connexion</a>';
+							echo '<a title="Inscription" class="inscription-btn" href="'.base_url().'userController/signUp">'.BTN_INSCRIPTION.'</a>';
+							echo '<a title="Connexion" class="connexion-btn" href="'.base_url().'userController/signIn">'.BTN_CONNEXION.'</a>';
 						?>
 					</div>
 				<?php endif; ?>

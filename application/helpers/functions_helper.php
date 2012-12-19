@@ -37,9 +37,12 @@ function includeLang(){
     $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
     $cookie = get_cookie('lang');
     if($cookie){$lang = $cookie;}
-    if ($lang == 'fr') {           // si la langue est 'fr' (français) on inclut le fichier fr-lang.php
+
+    if ($lang == 'fr') {          
+        // si la langue est 'fr' (français) on inclut le fichier fr-lang.php
         include('lang/fr-lang.php');
-    } elseif ($lang == 'en') {      // si la langue est 'en' (anglais) on inclut le fichier en-lang.php
+    } elseif ($lang == 'en') {
+        // si la langue est 'en' (anglais) on inclut le fichier en-lang.php
         include('lang/en-lang.php');
     }
 }

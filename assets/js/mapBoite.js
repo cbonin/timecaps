@@ -17,14 +17,7 @@ $(document).ready(function(){
         map = new google.maps.Map(document.getElementById('boiteMap'), mapOptions);
         var coord = new google.maps.LatLng(coordX.value,coordY.value)
         createMarker(coord);
-    }else{
-        mapOptions = {
-            zoom: 4,
-            center: new google.maps.LatLng(47.15984,3.028931),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        map = new google.maps.Map(document.getElementById('boiteMap'), mapOptions);
-        /*
+
         var circle = new google.maps.Circle({
             center: coord,
             radius: 10,
@@ -34,7 +27,13 @@ $(document).ready(function(){
             strokeColor: 'blue',
             strokeOpacity: 0.6
         });
-        */
+    }else{
+        mapOptions = {
+            zoom: 4,
+            center: new google.maps.LatLng(47.15984,3.028931),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById('boiteMap'), mapOptions);
     }
 
 

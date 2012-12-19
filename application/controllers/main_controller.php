@@ -13,7 +13,7 @@ class main_controller extends CI_Controller {
 
 		$this->load->model('boiteModel');
 		$nbBoites = $this->boiteModel->getAmountOfBoite();
-		$nbBoites = $nbBoites[0]->idBoite;
+		$nbBoites = $nbBoites->idBoite;
 		$openBoites = $this->boiteModel->getAmountOfOpenBoite($nbBoites);
 		$param = array(
 			'userType' => 'front',

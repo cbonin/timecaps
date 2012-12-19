@@ -93,9 +93,9 @@ class userController extends CI_Controller
 				
 				// Initialisations du tableau de donnees de session
 				$data = array(
-					'idUser' => $user[0]['idUser'],
-					'prenom' => $user[0]['prenom'],
-					'nom' => $user[0]['nom']
+					'idUser' => $user->idUser,
+					'prenom' => $user->prenom,
+					'nom' => $user->nom
 				);
 				// Creation de la session
 				$this->session->set_userdata('user_data', $data);
@@ -138,9 +138,9 @@ class userController extends CI_Controller
 			if(!empty($user)){ 
 				if($connected == ''){
 					$data = array(
-						'idUser' => $user[0]['idUser'],
-						'prenom' => $user[0]['prenom'],
-						'nom' => $user[0]['nom'],
+						'idUser' => $user->idUser,
+						'prenom' => $user->prenom,
+						'nom' => $user->nom,
 						'idFb' => $idFB,
 					);
 
@@ -216,7 +216,7 @@ class userController extends CI_Controller
 		// Tant que les regles ne sont pas respectees
 		if ($this->form_validation->run() == FALSE)
 		{
-			$user = $this->userModel->getUserById($user['idUser']);
+			$user = $this->userModel->getUserById($user->idUser);
 			$param = array(
 				'userType' => 'back',
 				'mainContent' => 'editUser',
@@ -229,7 +229,7 @@ class userController extends CI_Controller
 		{
 			
 			$data = array(
-					'idUser' => $user['idUser'],
+					'idUser' => $user->idUser,
 					'nom' => $this->input->post('nom'),
 					'email' => $this->input->post('email'),
 					'prenom' => $this->input->post('prenom'),

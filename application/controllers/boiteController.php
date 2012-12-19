@@ -22,9 +22,9 @@ class boiteController extends CI_Controller {
 			'userType' => 'back',
 			'mainContent' => 'mesBoites',
 			'title' => 'Mesboites',
-			'boites' => $this->boiteModel->getBoiteByUser($user['idUser']),
-			'boitesContributor' => $this->boiteModel->getMyBoiteContributor($user['idUser']),
-			'boitesReceiver' => $this->boiteModel->getMyReceiverBoite($user['idUser'])
+			'boites' => $this->boiteModel->getBoiteByUser($user->idUser),
+			'boitesContributor' => $this->boiteModel->getMyBoiteContributor($user->idUser),
+			'boitesReceiver' => $this->boiteModel->getMyReceiverBoite($user->idUser)
 		);
 		$this->load->view('template', $param);
 	}
@@ -60,7 +60,7 @@ class boiteController extends CI_Controller {
 			$getUser = $this->userModel->getUser($this->input->post('emailRecever')); // on verifie si email existe dans notre base user
 
 			if(!empty($getUser)){ // si elle existe, on attribut la boite a id iser correspondant a email sinon on cree user fantome
-				$idNewUser = $getUser[0]["idUser"];
+				$idNewUser = $getUser->idUser;
 			}else{
 				// On cree user fantome qui recevra la boite avec un mot de passe temporaire qu'il recevra par mail
 				$password = md5($this->input->post('receverFirstName').time());
@@ -76,23 +76,23 @@ class boiteController extends CI_Controller {
 			// On envoi le mail au destinataire
 			$user = $this->session->userdata('user_data');
 			$this->load->library('email');
-			$this->email->from('no-reply@backwards.fr', $user['prenom'].' '.$user['nom']);
+			$this->email->from('no-reply@backwards.fr', $user->prenom.' '.$user->nom);
 			$this->email->to($this->input->post('emailRecever')); 
-			$this->email->subject($user['prenom'].' '.$user['nom'].' vous offre une capsule temporelle...');
-			$this->email->message($user['prenom'].' '.$user['nom'].' vous offre une capsule temporaire avec ce message : blablabla, venez la decouvrir ici');	
+			$this->email->subject($user->prenom.' '.$user->nom.' vous offre une capsule temporelle...');
+			$this->email->message($user->prenom.' '.$user->nom.' vous offre une capsule temporaire avec ce message : blablabla, venez la decouvrir ici');	
 			$this->email->send();
 
 			// On cree la boite avec toutes les informations necessaires...
 			$this->load->model("boiteModel");
 			// on crée les datas qu'on envvera au model dans un tableau
-			$idFb = $user['idFb'];
+			$idFb = $user->idFb;
 			$data = array(
 				'nomBoite' => $this->input->post('nomBoite'),
 				'coordX' => $this->input->post('coordX'),
 				'coordY' => $this->input->post('coordY'),
 				'description' => $this->input->post('description'),
 				'targetDate' => date("Y-m-d", strtotime($this->input->post('targetDate'))),
-				'idOwner' => $user['idUser'],
+				'idOwner' => $user->idUser,
 				'idReceiver' => $idNewUser,
 				'adresse' => $this->input->post('receverAddress'),
 				'codePostal' => $this->input->post('receverZipCode'),
@@ -111,11 +111,10 @@ class boiteController extends CI_Controller {
 		$this->load->model("boiteModel");
 		$this->load->model("userModel");
 		$boite = $this->boiteModel->getBoite($id);
-		$boite = $boite[0];
 		$user = $this->session->userdata('user_data');
 		$contributors = $this->boiteModel->getAllContributors($id);
 
-		if($boite[0]['idOwner'] == $user['idUser']){
+		if($boite->idOwner == $user->idUser){
 			// L'utilisateur est le propriétaire de la boite
 
 			
@@ -139,7 +138,7 @@ class boiteController extends CI_Controller {
 					'title' => 'Modifier la boite',
 					'boite' => $boite,
 					'contributors' => $contributors,
-					'user' => $this->userModel->getUserById($boite[0]['idReceiver'])
+					'user' => $this->userModel->getUserById($boite->idReceiver)
 				);
 				$this->load->view('template', $param);
 			}
@@ -166,10 +165,10 @@ class boiteController extends CI_Controller {
 
 				// Envoi d'un mail au contributeur
 				$this->load->library('email');
-				$this->email->from('no-reply@backwards.fr', $user['prenom'].' '.$user['nom']);
+				$this->email->from('no-reply@backwards.fr', $user->prenom.' '.$user->nom);
 				$this->email->to($emailContributor); 
-				$this->email->subject($user['prenom'].' '.$user['nom'].' vous invite à créer une capsule temporelle...');
-				$this->email->message($user['prenom'].' '.$user['nom']." vous invite à vréer une capsule temporaire connectez vous à Backwards pour l'aider à remplir sa boite");
+				$this->email->subject($user->prenom.' '.$user->nom.' vous invite à créer une capsule temporelle...');
+				$this->email->message($user->prenom.' '.$user->nom." vous invite à vréer une capsule temporaire connectez vous à Backwards pour l'aider à remplir sa boite");
 				$this->email->send();
 			}
 
@@ -186,7 +185,7 @@ class boiteController extends CI_Controller {
 					'title' => 'Modifier la boite',
 					'boite' => $boite,
 					'contributors' => $contributors,
-					'user' => $this->userModel->getUserById($boite[0]['idReceiver'])
+					'user' => $this->userModel->getUserById($boite->idReceiver)
 				);
 			$this->load->view('template', $param);
 
@@ -202,7 +201,6 @@ class boiteController extends CI_Controller {
 	function openBoite($idBoite){
 		$this->load->model("boiteModel");
 		$boite = $this->boiteModel->getBoite($idBoite);
-		$boite = $boite[0];
 		
 		$param = array(
 			'userType' => 'back',
@@ -228,7 +226,7 @@ class boiteController extends CI_Controller {
 		if(!empty($contributeur)){
 			$data = array(
 				'idBoite' => $idBoite,
-				'idUser' => $contributeur[0]['idUser']
+				'idUser' => $contributeur->idUser
 			);
 			$this->boiteModel->addContributor($data);
 		}else{
@@ -247,8 +245,8 @@ class boiteController extends CI_Controller {
 		$param = array(
 			'userType' => 'back',
 			'mainContent' => 'display',
-			'title' => $boite[0]['nomBoite'],
-			'boite' => $boite[0],
+			'title' => $boite->nomBoite,
+			'boite' => $boite,
 			'contributeurs' => $contributeurs
 		);
 		$this->load->view('template', $param);

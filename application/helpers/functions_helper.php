@@ -55,5 +55,11 @@ function boiteOpenable($boite){
     if($now >= $target) return true; else return false;
 }
 
+function formatDate($date){
+    $tab = explode('-', $date);
+    $date = $tab[2].'/'.$tab[1].'/'.$tab[0];
+    return $date;
+}
+
 
 ?>

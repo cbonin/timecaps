@@ -66,6 +66,7 @@
 										<span class="img-box"></span>
 										<span class="title-box"><?php echo $boite->nomBoite; ?></span>
 										<span class="createur collab"></span>
+										<span>A partir du <?php echo formatDate($boite->targetDate); ?></span>
 									<?php endif; ?>
 									</div>
 								<?php endforeach;

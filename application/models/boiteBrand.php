@@ -10,14 +10,13 @@ class boiteModel extends CI_Model
 
 	function addBoite($data)
 	{
-		$this->db->insert('boite', $data);
+		$this->db->insert('boiteBrand', $data);
 	}
 
 	function getBoite($id)
 	{
-		$this->db->where('idBoiteBrand
-			', $id);
-		$query = $this->db->get('boiteBrand');
+		$this->db->where('idBoite', $id);
+		$query = $this->db->get('boite');
 
 		return $query->row();
 	}

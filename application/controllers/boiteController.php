@@ -168,8 +168,8 @@ class boiteController extends CI_Controller {
 				$this->load->library('email');
 				$this->email->from('no-reply@backwards.fr', $user->prenom.' '.$user->nom);
 				$this->email->to($emailContributor); 
-				$this->email->subject($user->prenom.' '.$user->nom.' vous invite à créer une capsule temporelle...');
-				$this->email->message($user->prenom.' '.$user->nom." vous invite à vréer une capsule temporaire connectez vous à Backwards pour l'aider à remplir sa boite");
+				$this->email->subject($user['prenom'].' '.$user['nom'].' vous invite à créer une capsule temporelle...');
+				$this->email->message($user['prenom'].' '.$user['nom']." vous invite à vréer une capsule temporaire connectez vous à Backwards pour l'aider à remplir sa boite");
 				$this->email->send();
 			}
 
@@ -182,7 +182,7 @@ class boiteController extends CI_Controller {
 
 			$param = array(
 					'userType' => 'back',
-					'mainContent' => 'editBoiteContributor',
+					'mainContent' => 'editBoite',
 					'title' => 'Modifier la boite',
 					'boite' => $boite,
 					'contributors' => $contributors,
@@ -277,8 +277,6 @@ class boiteController extends CI_Controller {
 		else  //si 	le formulaire à correctement été rempli
 		{
 			$user = $this->session->userdata('user_data');
-			var_dump($user);
-			die();
 			/*
 			$this->load->model("userBrandModel");
 			
@@ -293,6 +291,7 @@ class boiteController extends CI_Controller {
 			$this->email->message($user->prenom.' '.$user->nom.' vous offre une capsule temporaire avec ce message : blablabla, venez la decouvrir ici');	
 			$this->email->send();
 */
+			
 			// On cree la boite avec toutes les informations necessaires...
 			$this->load->model("boiteBrandModel");
 			// on crée les datas qu'on envvera au model dans un tableau
@@ -302,7 +301,7 @@ class boiteController extends CI_Controller {
 				'coordY' => $this->input->post('coordY'),
 				'description' => $this->input->post('description'),
 				'targetDate' => date("Y-m-d", strtotime($this->input->post('targetDate'))),
-				'idOwner' => $user->idUser,
+				'idOwner' => $user['idUser'],
 			);
 			$this->boiteBrandModel->addBoiteBrand($data);
 

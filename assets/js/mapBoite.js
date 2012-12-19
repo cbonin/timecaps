@@ -7,6 +7,7 @@ $(document).ready(function(){
     var coordY = document.querySelector("input[name=coordY]");
     var mapOptions;
     var map;
+    var circle;
 
     if(coordX.value != '' && coordY.value != ''){
         mapOptions = {
@@ -15,18 +16,8 @@ $(document).ready(function(){
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         map = new google.maps.Map(document.getElementById('boiteMap'), mapOptions);
-        var coord = new google.maps.LatLng(coordX.value,coordY.value)
+        var coord = new google.maps.LatLng(coordX.value,coordY.value);
         createMarker(coord);
-
-        var circle = new google.maps.Circle({
-            center: coord,
-            radius: 10,
-            map: map,
-            fillColor: 'red',
-            fillOpacity: 0.5,
-            strokeColor: 'blue',
-            strokeOpacity: 0.6
-        });
     }else{
         mapOptions = {
             zoom: 4,
@@ -76,9 +67,20 @@ $(document).ready(function(){
         coordX.value = marker.position.Za;
         coordY.value = marker.position.$a;
 
+        circle = new google.maps.Circle({
+            center: latLng,
+            radius: 25,
+            map: map,
+            fillColor: 'red',
+            fillOpacity: 0.5,
+            strokeColor: 'blue',
+            strokeOpacity: 0.6
+        });
+
         google.maps.event.addListener(marker, 'dragend', function(){
             coordX.value = marker.position.Za;
             coordY.value = marker.position.$a;
+            circle.setCenter(new google.maps.LatLng(coordX.value,coordY.value));
         });
     }
 
@@ -86,6 +88,7 @@ $(document).ready(function(){
         map.setCenter(latLng);
         map.setZoom(15);
         marker.setPosition(latLng);
+        circle.setCenter(latLng);
         coordX.value = marker.position.Za;
         coordY.value = marker.position.$a;
     }

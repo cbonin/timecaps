@@ -23,7 +23,8 @@ class boiteController extends CI_Controller {
 			'mainContent' => 'mesBoites',
 			'title' => 'Mesboites',
 			'boites' => $this->boiteModel->getBoiteByUser($user['idUser']),
-			'boitesContributor' => $this->boiteModel->getMyBoiteContributor($user['idUser'])
+			'boitesContributor' => $this->boiteModel->getMyBoiteContributor($user['idUser']),
+			'boitesReceiver' => $this->boiteModel->getMyReceiverBoite($user['idUser'])
 		);
 		$this->load->view('template', $param);
 	}

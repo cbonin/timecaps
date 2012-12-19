@@ -26,7 +26,7 @@ Ta Position
     var coord = new google.maps.LatLng(boiteX,boiteY);
 
     mapOptions = {
-        zoom: 20,
+        zoom: 19,
         center: coord,
         mapTypeId: google.maps.MapTypeId.SATELLITE
     };
@@ -35,7 +35,7 @@ Ta Position
    
     var circle = new google.maps.Circle({
         center: coord,
-        radius: 10,
+        radius: 25,
         map: map,
         fillColor: 'red',
         fillOpacity: 0.5,

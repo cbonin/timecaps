@@ -34,7 +34,7 @@ class boiteModel extends CI_Model
 		$this->db->where('idOwner', $idOwner);
 		$query = $this->db->get('boite');
 
-		return $query->result_array();
+		return $query->result();
 	}
 
 	function updateBoite($id, $data)
@@ -51,6 +51,13 @@ class boiteModel extends CI_Model
 
 	function addContributor($data){
 		$this->db->insert('contributeurs', $data);
+	}
+
+	function getMyReceiverBoite($idUser){
+		return $this->db->select()
+			->where('idReceiver', $idUser)
+			->get('boite')
+			->result();
 	}
 
 	function getAllContributors($idBoite){

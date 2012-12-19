@@ -6,8 +6,8 @@
 		
 		<?php foreach($boites as $boite): ?>
 		<li>
-			<h2><a href="<?php echo base_url().'boiteController/update/'.$boite['idBoite']; ?>"><?php echo $boite["nomBoite"]; ?></a></h2>
-			<p><?php echo $boite["description"]; ?></p>
+			<h2><a href="<?php echo base_url().'boiteController/update/'.$boite->idBoite; ?>"><?php echo $boite->nomBoite; ?></a></h2>
+			<p><?php echo $boite->description; ?></p>
 		</li>
 		<?php endforeach; ?>
 
@@ -28,5 +28,22 @@
 		<?php endforeach; ?>
 
 	</ul>
-	<?php else: echo "Vous ne contribuez à aucune boite pour le moment."; endif; ?></div>
+	<?php else: echo "Vous ne contribuez à aucune boite pour le moment."; endif; ?>
+</div>
+
+<div>
+	<h2>Boites à ouvrir</h2>
+	<?php if(!empty($boitesReceiver)): ?>
+	<ul>
+		<?php foreach($boites as $boite): ?>
+		<?php echo 'zboub<br/>;'?>
+		<li>
+			<h2><a href="<?php echo base_url().'boiteController/openBoite/'.$boite->idBoite; ?>"><?php echo $boite->nomBoite; ?></a></h2>
+			<p><?php echo $boite->description; ?></p>
+		</li>
+		<?php endforeach; ?>
+	</ul>
+
+	<?php else: echo "Vous n'avez aucune boite à ouvrir pour le moment."; endif; ?>
+
 </div>

@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // Stockage de la date du jour
-    var today = new Date, rayon = 0.00000001;
+    var today = new Date, rayon = 0.000000025;
     today = today.getFullYear()+''+(today.getMonth()+1)+''+today.getDate();
 /*
     latitude = 50.00007;
@@ -32,7 +32,8 @@ $(document).ready(function () {
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
         i++;
-        createMarker(new google.maps.LatLng(latitude,longitude), i+'');
+        // cree marker à chaque check       createMarker(new google.maps.LatLng(latitude,longitude), i+'');
+        marker.setPosition(new google.maps.LatLng(latitude,longitude));
 
         console.log('________'+i+'________');
         console.log('CurrentX '+latitude);
@@ -41,7 +42,7 @@ $(document).ready(function () {
         console.log('boiteY '+boiteY);
         console.log('accuracy '+position.coords.accuracy);
 
-        //AB = \sqrt{(x_B-x_A)^2 + (y_B-y_A)^2}
+        //distance entre 2 points AB = \sqrt{(x_B-x_A)^2 + (y_B-y_A)^2}
         console.log(Number((boiteX-latitude)*(boiteX-latitude) + (boiteY-longitude)*(boiteY-longitude)));
 
 

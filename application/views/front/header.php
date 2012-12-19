@@ -45,8 +45,8 @@
 					<div id="connect">
 						<a href="#" title="Boites">Mes boites</a>
 						<?php
-							echo '<a title="mon compte" class="inscription-btn" href="'.base_url().'userController/editAccount">Mon compte</a>';
-							echo '<a title="Connexion" class="connexion-btn" href="'.base_url().'userController/logout">Deconexion</a>';
+							echo '<a title="mon compte" href="'.base_url().'userController/editAccount">Mon compte</a>';
+							echo '<a title="Connexion" href="'.base_url().'userController/logout">Deconexion</a>';
 						?>
 					</div>
 				<?php else: ?>

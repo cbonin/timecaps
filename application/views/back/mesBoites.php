@@ -1,6 +1,6 @@
 <a href="<?php echo base_url().'boiteController/create'; ?>">Creer une nouvelle boite</a>
 <div>
-	<h2>Mes boites</h2>
+	<h2><?php echo MES_BOITES; ?></h2>
 	<?php if(!empty($boites)): ?>
 	<ul>
 		

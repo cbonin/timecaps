@@ -10,6 +10,7 @@ class boiteController extends CI_Controller {
 				redirect("userController/signIn");
 			}
 		}
+		includeLang();
    }
 
 	public function index()

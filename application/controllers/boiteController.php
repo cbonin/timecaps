@@ -213,13 +213,6 @@ class boiteController extends CI_Controller {
 		$this->load->view('template', $param);
 	}
 
-	function boiteOpenable($boite){
-		$this->load->helper('date');
-		$now = now();
-		$target = strtotime($boite['targetDate']);
-		if($now >= $target) return true; else return false;
-	}
-
 	function updateStatus($id){
 		$this->load->model("boiteModel");
 		$data = array('statut' => 2);

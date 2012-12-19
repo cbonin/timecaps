@@ -47,4 +47,13 @@ function includeLang(){
     }
 }
 
+function boiteOpenable($boite){
+    $ci=& get_instance();
+    $ci->load->helper('date');
+    $now = now();
+    $target = strtotime($boite['targetDate']);
+    if($now >= $target) return true; else return false;
+}
+
+
 ?>

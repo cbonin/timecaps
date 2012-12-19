@@ -24,7 +24,21 @@ $(document).ready(function(){
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         map = new google.maps.Map(document.getElementById('boiteMap'), mapOptions);
+        /*
+        var circle = new google.maps.Circle({
+            center: coord,
+            radius: 10,
+            map: map,
+            fillColor: 'red',
+            fillOpacity: 0.5,
+            strokeColor: 'blue',
+            strokeOpacity: 0.6
+        });
+        */
     }
+
+
+
 
     if(coordX.value == '' && coordY.value == ''){
 

@@ -26,25 +26,7 @@ class main_controller extends CI_Controller {
 	}
 
 	function setLanguage($lang){
-		/*
-		$this->load->helper('cookie');
-		if ($lang == 'fr') {           // si la langue est 'fr' (français) on inclut le fichier fr-lang.php
-			include('lang/fr-lang.php');
-		} elseif ($lang == 'en') {      // si la langue est 'en' (anglais) on inclut le fichier en-lang.php
-			include('lang/en-lang.php');
-		}
-
-		$cookie = array(
-			'name'   => 'lang',
-			'value'  => $lang,
-			'expire' => '86500',
-		);
-
-		set_cookie($cookie);
-		redirect(base_url());
-		*/
 		setLanguage($lang);
-		
 	}
 }
 

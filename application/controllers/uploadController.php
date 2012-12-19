@@ -8,6 +8,7 @@ class uploadController extends CI_Controller
       $this->load->model('filesModel');
       $this->load->database();
       $this->load->helper('url');
+      includeLang();
    }
    public function index()
    {

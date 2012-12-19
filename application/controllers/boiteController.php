@@ -91,7 +91,7 @@ class boiteController extends CI_Controller {
 				'coordX' => $this->input->post('coordX'),
 				'coordY' => $this->input->post('coordY'),
 				'description' => $this->input->post('description'),
-				'targetDate' => $this->input->post('targetDate'),
+				'targetDate' => date("Y-m-d", strtotime($this->input->post('targetDate'))),
 				'idOwner' => $user['idUser'],
 				'idReceiver' => $idNewUser,
 				'adresse' => $this->input->post('receverAddress'),
@@ -111,6 +111,7 @@ class boiteController extends CI_Controller {
 		$this->load->model("boiteModel");
 		$this->load->model("userModel");
 		$boite = $this->boiteModel->getBoite($id);
+		$boite = $boite[0];
 		$user = $this->session->userdata('user_data');
 		$contributors = $this->boiteModel->getAllContributors($id);
 
@@ -210,6 +211,13 @@ class boiteController extends CI_Controller {
 			'boite' => $boite
 		);
 		$this->load->view('template', $param);
+	}
+
+	function boiteOpenable($boite){
+		$this->load->helper('date');
+		$now = now();
+		$target = strtotime($boite['targetDate']);
+		if($now >= $target) return true; else return false;
 	}
 
 	function updateStatus($id){

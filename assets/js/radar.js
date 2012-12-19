@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // Stockage de la date du jour
-    var today = new Date, rayon = 0.000000025;
+    var today = new Date, rayon = 0.00000012;
     today = today.getFullYear()+''+(today.getMonth()+1)+''+today.getDate();
 /*
     latitude = 50.00007;

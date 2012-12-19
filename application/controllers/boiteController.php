@@ -35,7 +35,7 @@ class boiteController extends CI_Controller {
 				'userType' => 'back',
 				'mainContent' => 'mesBoites',
 				'title' => 'Mesboites',
-				'boites' => $this->boiteBrandModel->getBoiteBrandByuser($user['idUser']),
+				'boites' => $this->boiteBrandModel->getBoiteBrandByUser($user['idUser']),
 			);
 		}
 		$this->load->view('template', $param);
@@ -290,20 +290,18 @@ class boiteController extends CI_Controller {
 		else  //si 	le formulaire à correctement été rempli
 		{
 			$user = $this->session->userdata('user_data');
-			/*
 			$this->load->model("userBrandModel");
-			
-			$user = $this->userModel->getUser($this->input->post('emailRecever')); // on verifie si email existe dans notre base user
+			$userBrand = $this->userBrandModel->getUserBrand($this->input->post('emailRecever'));
+
 
 			// On envoi le mail au destinataire
-			$user = $this->session->userdata('user_data');
 			$this->load->library('email');
-			$this->email->from('no-reply@backwards.fr', $user->prenom.' '.$user->nom);
+			$this->email->from('no-reply@backwards.fr', $user['prenom']);
 			$this->email->to($this->input->post('emailRecever')); 
-			$this->email->subject($user->prenom.' '.$user->nom.' vous offre une capsule temporelle...');
-			$this->email->message($user->prenom.' '.$user->nom.' vous offre une capsule temporaire avec ce message : blablabla, venez la decouvrir ici');	
+			$this->email->subject($user['prenom'].' vous offre une capsule temporelle...');
+			$this->email->message($user['prenom'].' vous offre une capsule temporaire avec ce message : blablabla, venez la decouvrir ici');	
 			$this->email->send();
-*/
+
 			// On cree la boite avec toutes les informations necessaires...
 			$this->load->model("boiteBrandModel");
 			// on crée les datas qu'on envvera au model dans un tableau
@@ -318,13 +316,12 @@ class boiteController extends CI_Controller {
 			$idBoiteBrand = $this->boiteBrandModel->addBoiteBrand($data);
 
 
-			$this->load->model("userBrandModel");
-			$user = $this->userBrandModel->getUserBrand($this->input->post('emailRecever'));
+
 			
 			// on crée les datas qu'on envvera au model dans un tableau
 			$data = array(
 				'idBoiteBrand' => $idBoiteBrand,
-				'idUserBrand' => $user->idUser,
+				'idUserBrand' => $userBrand->idUser,
 				'code' => $this->input->post('code')
 			);
 			$this->boiteBrandModel->addPool($data);

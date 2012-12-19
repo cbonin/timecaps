@@ -57,7 +57,6 @@ class main_controller extends CI_Controller {
 	}
 
 	function setLanguage($lang){
-		echo $url;
 		$this->load->helper('cookie');
 		if ($lang == 'fr') {           // si la langue est 'fr' (français) on inclut le fichier fr-lang.php
 			include('lang/fr-lang.php');

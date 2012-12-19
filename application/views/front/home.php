@@ -8,7 +8,9 @@
 					<p class="middle"><span><?php echo($openBoites); ?></span> <?php echo BOITES_OUVERTES; ?></p>
 					<p class="last"><span>100%</span> <?php echo SOUVENIRS; ?></p>
 				</div>
-				<a href="#" title="Inscription" class="button inscription-btn"><?php echo INSCRIVEZ_VOUS; ?></a>
+				<?php if(!isLogged()){ ?>
+					<a href="#" title="Inscription" class="button inscription-btn"><?php echo INSCRIVEZ_VOUS; ?></a>
+				<?php } ?>
 			</section>
 			<section id="schema-home">
 				<h1 class="ribbon"><?php echo BACKWARDS_TITLE; ?></h1>

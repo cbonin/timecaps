@@ -89,7 +89,7 @@ class userController extends CI_Controller
 			$user = $this->userModel->getUser($email);
 
 			// Si l'email est correct et si le mot de passe correspond
-			if(!empty($user) && $password === $user[0]['password']){
+			if(!empty($user) && $password === $user->password){
 				
 				// Initialisations du tableau de donnees de session
 				$data = array(
@@ -216,7 +216,7 @@ class userController extends CI_Controller
 		// Tant que les regles ne sont pas respectees
 		if ($this->form_validation->run() == FALSE)
 		{
-			$user = $this->userModel->getUserById($user->idUser);
+			$user = $this->userModel->getUserById($user['idUser']);
 			$param = array(
 				'userType' => 'back',
 				'mainContent' => 'editUser',

@@ -22,9 +22,9 @@ class boiteController extends CI_Controller {
 			'userType' => 'back',
 			'mainContent' => 'mesBoites',
 			'title' => 'Mesboites',
-			'boites' => $this->boiteModel->getBoiteByUser($user->idUser),
-			'boitesContributor' => $this->boiteModel->getMyBoiteContributor($user->idUser),
-			'boitesReceiver' => $this->boiteModel->getMyReceiverBoite($user->idUser)
+			'boites' => $this->boiteModel->getBoiteByUser($user['idUser']),
+			'boitesContributor' => $this->boiteModel->getMyBoiteContributor($user['idUser']),
+			'boitesReceiver' => $this->boiteModel->getMyReceiverBoite($user['idUser'])
 		);
 		$this->load->view('template', $param);
 	}
@@ -114,7 +114,7 @@ class boiteController extends CI_Controller {
 		$user = $this->session->userdata('user_data');
 		$contributors = $this->boiteModel->getAllContributors($id);
 
-		if($boite->idOwner == $user->idUser){
+		if($boite->idOwner == $user['idUser']){
 			// L'utilisateur est le propriétaire de la boite
 
 			

@@ -19,7 +19,7 @@ class boiteModel extends CI_Model
 		$this->db->where('idOwner', 3);
 		$query = $this->db->get('boite');
 
-		return $query->result_array();
+		return $query->result();
 	}
 
 	function getBoite($id)
@@ -27,7 +27,7 @@ class boiteModel extends CI_Model
 		$this->db->where('idBoite', $id);
 		$query = $this->db->get('boite');
 
-		return $query->result_array();
+		return $query->row();
 	}
 
 	function getBoiteByUser($idOwner){
@@ -81,7 +81,7 @@ class boiteModel extends CI_Model
 	function getAmountOfBoite(){
 		return $this->db->select_max('idBoite')
 			->get('boite')
-			->result();
+			->row();
 	}
 
 	function getAmountOfOpenBoite($nbBoite){

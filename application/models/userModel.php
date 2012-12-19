@@ -19,7 +19,7 @@ class userModel extends CI_Model
 		$this->db->where('email', $email);
 		$query = $this->db->get('user');
 
-		return $query->result_array();
+		return $query->row();
 	}
 
 	function getUserById($id)
@@ -27,7 +27,7 @@ class userModel extends CI_Model
 		$this->db->where('idUser', $id);
 		$query = $this->db->get('user');
 
-		return $query->result_array();
+		return $query->row();
 	}
 
 	function updateUser($data)

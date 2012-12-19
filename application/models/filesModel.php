@@ -99,7 +99,7 @@ class filesModel extends CI_Model {
 			->where('idBoite', $idBoite)
 			->where('idDepositeur', $idUser)
 			->get()
-			->result_array();
+			->result();
 	}
 
 }

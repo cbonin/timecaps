@@ -6,9 +6,9 @@
 	<meta property="og:url"    content="<?php echo current_url(); ?>" />
 	<meta property="og:title"  content="Boite " />
 	<meta property="og:image"  content="<?php echo base_url(); ?>assets/css/images/fin3.png" /> 
-  	<meta property="place:location:latitude"  content="<?php if(isset($boite)){echo $boite['coordX']; }?>" /> 
-  	<meta property="place:location:longitude" content="<?php if(isset($boite)){echo $boite['coordY']; }?>" /> 
-	<meta property="backwards_app:sender"     content="<?php if(isset($boite)){echo $boite['idOwnerFB']; }?>" />
+  	<meta property="place:location:latitude"  content="<?php if(isset($boite)){echo $boite->coordX; }?>" /> 
+  	<meta property="place:location:longitude" content="<?php if(isset($boite)){echo $boite->coordY; }?>" /> 
+	<meta property="backwards_app:sender"     content="<?php if(isset($boite)){echo $boite->idOwnerFB; }?>" />
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>

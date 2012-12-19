@@ -84,6 +84,17 @@
 	.ribbon:after {content:'';background:url(img/ribbon-sprite.png) no-repeat 0 -61px;right:-70px;}
 	.content-main {padding:0 10%;}
 	.content-main a {color:#2E8D8D;}
+	.contenu {padding:30px 1%;}
+	/* FORM */
+	input, textarea {background:#fff;border:1px solid #bbb;-webkit-border-radius: 5px;border-radius: 5px; outline: none;}
+	input {line-height:2.5em;height:2.5em;font-size:0.8em;padding:0 5px;width:100%;}
+	input[disabled] {background:none;border:none;padding:0;font-size:0.9em;}
+	textarea {width:100%;max-width:100%;height:50px;}
+	label {display:block;padding:0 0 2px;}
+	.asterix {font-size:0.8em;color:#73BEBA;}
+	input[name=addressMap]{
+		width: 50%;
+	}
 
 
     /* EN-TETE 
@@ -189,7 +200,7 @@
 
 
 
-    /* MEDIA QUERIES
+   /* MEDIA QUERIES
 -------------------------------------------------- */
 @media only screen and (max-width: 1024px) {
 	#espace-user p {display:block;text-align:center;padding:0 0 5px;}
@@ -197,12 +208,24 @@
 	#schema2 .texte-bloc {width:70%;margin-left:30%;}
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 868px) {
 	header section {width:95%;}
 	.ribbon:after, .ribbon:before {background:none;}
 	#container {width:95%;}
 	footer section {width:95%;}
 	#retour-haut a {right:45%;}
+}
+
+@media only screen and (max-width: 650px) {
+	#edit-boite form p {display:block;width:100%;}
+	input[id="date-boite"] {width:100%;}
+	#edit-boite form .left, #edit-boite form .right {padding:10px 0 0 0;}
+	#map-boite form .left, #map-boite form .right {padding:0 0 0 0;}
+}
+
+@media only screen and (max-width: 600px) {
+	#button-ribbon a {top:110%;}
+	#contenu-boite, #contributeurs {float:none;width:100%;}
 }
 
 @media only screen and (max-width: 550px) {
@@ -221,8 +244,104 @@
 	#schema2 .texte-bloc {margin-left:0;width:100%;}
 	#schema3 {margin:0;}
 	#schema3 .texte-bloc {top:0;}
+	#edit-boite .contenu div.left, #edit-boite #map-boite {width:100%;float:none;}
+	input[disabled] {font-size:1em;}
 	#retour-haut a {right:42%;}
 }
+
+/* CONTENT - DASHBOARD CREER BOITE / EDITER BOITE
+-------------------------------------------------- */
+	#edit-boite section {background:#e3e4d2;border:2px solid #dfe0cd;padding:15px 0;margin:10px 0;}
+	#edit-boite .contenu div.left, #edit-boite #map-boite {width:49%;}
+	#edit-boite #map-boite {background:#fff;float:right;}
+	#edit-boite .contenu div.left {float:left;}
+	#edit-boite section form {padding:0 4% 10px;}
+	/* Boutons ruban */
+	#button-ribbon {position:relative;}
+	#button-ribbon a {position:absolute;top:20%;color:#fff;}
+	#button-ribbon .retour {left:1%;}
+	#button-ribbon .enregistrer {right:1%;}
+	#button-ribbon .button {border:2px solid #5cb0ab;font-size:0.9em;background: #7ccac6;
+		background: -moz-linear-gradient(top, #7ccac6 20%, #73beba 80%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#7ccac6), color-stop(80%,#73beba));
+		background: -webkit-linear-gradient(top, #7ccac6 20%,#73beba 80%);
+		background: -o-linear-gradient(top, #7ccac6 20%,#73beba 80%);
+		background: -ms-linear-gradient(top, #7ccac6 20%,#73beba 80%);
+		background: linear-gradient(to bottom, #7ccac6 20%,#73beba 80%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7ccac6', endColorstr='#73beba',GradientType=0 );}
+	#button-ribbon .button:hover {background: #73beba;
+		background: -moz-linear-gradient(top, #73beba 20%, #7ccac6 80%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#73beba), color-stop(80%,#7ccac6));
+		background: -webkit-linear-gradient(top, #73beba 20%,#7ccac6 80%);
+		background: -o-linear-gradient(top, #73beba 20%,#7ccac6 80%);
+		background: -ms-linear-gradient(top, #73beba 20%,#7ccac6 80%);
+		background: linear-gradient(to bottom, #73beba 20%,#7ccac6 80%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#73beba', endColorstr='#7ccac6',GradientType=0 );}
+	#button-ribbon .button:active {color:#2E8D8D;}
+	/* Form */
+	label .picto-form {display:inline-block;background:url(img/dashboard/sprite-picto.png) no-repeat;width:17px;height:20px;vertical-align:bottom;margin:0 5px 0 0;}
+	label[for="prenom"] .picto-form {background-position:0 0;}
+	label[for="nom"] .picto-form {background-position:-17px 0;}
+	label[for="email"] .picto-form {background-position:-34px 0;}
+	label[for="titre-boite"] .picto-form {background-position:-51px 0;}
+	label[for="description-boite"] .picto-form {background-position:-68px 0;}
+	label[for="adresse-user"] .picto-form, label[for="codep-user"] .picto-form, label[for="ville-user"] .picto-form {background-position:-85px 0;}
+	label[for="date-boite"] .picto-form {background-position:-102px 0;}
+	label[for="adresse-boite"] .picto-form {background-position:-120px 0;}
+	#edit-boite form p {display:inline-block;width:50%;padding:10px 0 0;}
+	#map-boite form p {padding:0;}
+	#edit-boite form > span {display:block;padding:10px 0 0;}
+	#edit-boite form .left {padding:10px 2% 0 0;}
+	#edit-boite form .right {padding:10px 0 0 2%;}
+	#map-boite form .left {padding:0 2% 0 0;}
+	#map-boite form .right {padding:0 0 0 2%;}
+	label[for="date-boite"] {width:100%;}
+	input[id="date-boite"] {width:50%;}
+	/* Map */
+	#map-boite label{padding:0 0 5px;font-size:1.1em}
+	#map-boite{
+		padding: 2%!important;
+	}
+	#map {border:1px solid #dadbc8;width:100%;height:389px;margin:10px 0 0;}
+	/* Bouton créer boite */
+	#edit-boite #bouton-creer {text-align:center;font-size:1.2em;}
+
+
+	#boiteMap{
+		display: block;
+		width: 100%;
+		height: 300px;
+		margin-top: 20px;
+	}
+
+	#date-boite{
+		margin-bottom: 10px;
+	}
+
+	/* CONTENT - DASHBOARD EDITER BOITE
+-------------------------------------------------- */
+	#contenu-boite {width:69%;float:left;}
+	#contenu-boite > div {overflow-x:auto;margin:30px 2%;}
+	#contenu-boite #photos {margin:0 2% 30px;}
+	#contenu-boite #sons {margin:30px 2% 0;}
+	input[id="nom"] {text-transform:uppercase;}
+	.item {width:95px;overflow:hidden;display:inline-block;vertical-align:top;position:relative;}
+	.item span {display:block;}
+	.item img {width:89px;height:89px;background:#000;}
+	.item .title-item {font-size:0.8em;color:#737373;height:20px;text-align:center;}
+	.item .play {display:block;background:url(../img/dashboard/play.png) no-repeat;width:23px;height:31px;position:absolute;top:25%;left:40%}
+	/* Contributeurs */
+	#contributeurs {width:29%;float:right;}
+	#contributeurs form p {width:100%;}
+	#contributeurs .bouton-ajouter {text-align:center;font-size:0.9em;}
+	#contributeurs form a {text-align:center;}
+	.num-contributeur {color:#2E8D8D;text-align:center;display:block;}
+
+	#edit-boite #bouton-envoyer {text-align:center;font-size:1.2em;}
+
+
+
+
 
     /* POP-UPS
 -------------------------------------------------- */
@@ -320,7 +439,7 @@
 		background: -o-linear-gradient(top, #389a9a 20%,#2e8d8d 80%); /* Opera 11.10+ */
 		background: -ms-linear-gradient(top, #389a9a 20%,#2e8d8d 80%); /* IE10+ */
 		background: linear-gradient(to bottom, #389a9a 20%,#2e8d8d 80%); /* W3C */
-		margin: 0 auto; display:block;
+		margin: 0 auto;
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#389a9a', endColorstr='#2e8d8d',GradientType=0 ); /* IE6-9 */}
 .submit:hover {background: #2e8d8d; /* Old browsers */
 	background: -moz-linear-gradient(top, #2e8d8d 20%, #389a9a 80%); /* FF3.6+ */

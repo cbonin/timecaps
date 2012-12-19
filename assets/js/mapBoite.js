@@ -27,9 +27,6 @@ $(document).ready(function(){
         map = new google.maps.Map(document.getElementById('boiteMap'), mapOptions);
     }
 
-
-
-
     if(coordX.value == '' && coordY.value == ''){
 
         google.maps.event.addListenerOnce(map, 'click', function(e){
@@ -40,7 +37,7 @@ $(document).ready(function(){
         }); 
     }
 
-    $("#addressMap").submit(function(){
+    $("#searchMaps").click(function(){
         var address = document.querySelector("input[name='addressMap']");
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({"address":address.value}, function(data,status){

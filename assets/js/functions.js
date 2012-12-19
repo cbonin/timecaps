@@ -5,6 +5,13 @@ $(document).ready(function(){
 		$( 'html, body' ).animate( {scrollTop: 0}, 700 );
 	});
 
+	/* Largeur conteneur liste d'éléments en fonction de leur nombre */
+	$('.scroller').each(function(){
+		var largeScroller = $(this).find('div').length;
+		var largeItem = $(this).find('div').width()+5;
+		$(this).css('width', (largeScroller*largeItem)+'px');
+	});
+
 	// Ouverture et fermeture des pop ups
 
 	$(".connexion-btn").live('click', function(){

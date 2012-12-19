@@ -56,11 +56,17 @@
 							<?php if(!empty($boitesReceiver)):
 								foreach($boitesReceiver as $boite): ?>
 									<div class="box">
+									<?php if(boiteOpenable($boite)): ?>
 										<a href="<?php echo base_url().'boiteController/displayBoite/'.$boite->idBoite; ?>" title="">
 											<span class="img-box"></span>
 											<span class="title-box"><?php echo $boite->nomBoite; ?></span>
 											<span class="createur collab"></span>
 										</a>
+									<?php else: ?>
+										<span class="img-box"></span>
+										<span class="title-box"><?php echo $boite->nomBoite; ?></span>
+										<span class="createur collab"></span>
+									<?php endif; ?>
 									</div>
 								<?php endforeach;
 							else:

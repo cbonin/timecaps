@@ -15,17 +15,29 @@ class boiteController extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->model("boiteModel");
+		
 		$user = $this->session->userdata('user_data');
 
-		$param = array(
-			'userType' => 'back',
-			'mainContent' => 'mesBoites',
-			'title' => 'Mesboites',
-			'boites' => $this->boiteModel->getBoiteByUser($user['idUser']),
-			'boitesContributor' => $this->boiteModel->getMyBoiteContributor($user['idUser']),
-			'boitesReceiver' => $this->boiteModel->getMyReceiverBoite($user['idUser'])
-		);
+
+		if($user['isBrand']==0){
+			$this->load->model("boiteModel");
+			$param = array(
+				'userType' => 'back',
+				'mainContent' => 'mesBoites',
+				'title' => 'Mesboites',
+				'boites' => $this->boiteModel->getBoiteByUser($user['idUser']),
+				'boitesContributor' => $this->boiteModel->getMyBoiteContributor($user['idUser']),
+				'boitesReceiver' => $this->boiteModel->getMyReceiverBoite($user['idUser'])
+			);
+		}else{
+			$this->load->model("boiteBrandModel");
+			$param = array(
+				'userType' => 'back',
+				'mainContent' => 'mesBoites',
+				'title' => 'Mesboites',
+				'boites' => $this->boiteBrandModel->getBoiteBrandByuser($user['idUser']),
+			);
+		}
 		$this->load->view('template', $param);
 	}
 
@@ -264,6 +276,7 @@ class boiteController extends CI_Controller {
 		$this->form_validation->set_rules('description', 'Description', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('targetDate', 'Date d\'ouverture potentielle', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('emailRecever', 'Adresse mail du destinataire', 'trim|required|xss_clean|valid_email');
+		$this->form_validation->set_rules('code', 'Code de déverrouillage', 'trim|required|xss_clean');
 		
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -291,7 +304,6 @@ class boiteController extends CI_Controller {
 			$this->email->message($user->prenom.' '.$user->nom.' vous offre une capsule temporaire avec ce message : blablabla, venez la decouvrir ici');	
 			$this->email->send();
 */
-			
 			// On cree la boite avec toutes les informations necessaires...
 			$this->load->model("boiteBrandModel");
 			// on crée les datas qu'on envvera au model dans un tableau
@@ -303,7 +315,19 @@ class boiteController extends CI_Controller {
 				'targetDate' => date("Y-m-d", strtotime($this->input->post('targetDate'))),
 				'idOwner' => $user['idUser'],
 			);
-			$this->boiteBrandModel->addBoiteBrand($data);
+			$idBoiteBrand = $this->boiteBrandModel->addBoiteBrand($data);
+
+
+			$this->load->model("userBrandModel");
+			$user = $this->userBrandModel->getUserBrand($this->input->post('emailRecever'));
+			
+			// on crée les datas qu'on envvera au model dans un tableau
+			$data = array(
+				'idBoiteBrand' => $idBoiteBrand,
+				'idUserBrand' => $user->idUser,
+				'code' => $this->input->post('code')
+			);
+			$this->boiteBrandModel->addPool($data);
 
 			redirect("boiteController");
 		}

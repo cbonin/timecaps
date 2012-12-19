@@ -95,7 +95,8 @@ class userController extends CI_Controller
 				$data = array(
 					'idUser' => $user->idUser,
 					'prenom' => $user->prenom,
-					'nom' => $user->nom
+					'nom' => $user->nom,
+					'isBrand' => $user->isBrand
 				);
 				// Creation de la session
 				$this->session->set_userdata('user_data', $data);

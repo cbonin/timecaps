@@ -11,6 +11,12 @@ class boiteBrandModel extends CI_Model
 	function addBoiteBrand($data)
 	{
 		$this->db->insert('boiteBrand', $data);
+		return $this->db->insert_id();
+	}
+
+	function addPool($data)
+	{
+		$this->db->insert('pool', $data);
 	}
 
 	function getBoiteBrand($id)
@@ -21,9 +27,9 @@ class boiteBrandModel extends CI_Model
 		return $query->row();
 	}
 
-	function getBoiteByUser($idOwner){
+	function getBoiteBrandByUser($idOwner){
 		$this->db->where('idOwner', $idOwner);
-		$query = $this->db->get('boite');
+		$query = $this->db->get('boiteBrand');
 
 		return $query->result();
 	}

@@ -30,6 +30,10 @@
                                 <label for="description-boite"><span class="picto-form"></span>Description :</label>
                                 <textarea id="description-boite" name="description" value="<?php echo set_value('description'); ?>"></textarea>
                             </span>
+                            <span>
+                                <label for="code"><span class="picto-form"></span>Code :</label>
+                                <textarea id="code" name="code" value="<?php echo set_value('code'); ?>"></textarea>
+                            </span>
                         
                     </section>
                 </div>

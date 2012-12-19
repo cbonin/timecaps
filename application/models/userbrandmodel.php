@@ -1,6 +1,6 @@
 <?php 
 
-class userModel extends CI_Model
+class userBrandModel extends CI_Model
 {
 
 	function __construct()
@@ -14,10 +14,10 @@ class userModel extends CI_Model
 		return $this->db->insert_id();
 	}
 
-	function getUser($email)
+	function getUserBrand($email)
 	{
 		$this->db->where('email', $email);
-		$query = $this->db->get('user');
+		$query = $this->db->get('userBrand');
 
 		return $query->row();
 	}

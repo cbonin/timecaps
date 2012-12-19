@@ -1,6 +1,6 @@
-    <?php echo validation_errors(); ?>
     <section id="edit-boite">
         <form method="POST" action="<?php echo base_url(); ?>boiteController/create">
+
             <div id="button-ribbon">
                 <h1 class="ribbon">Titre boîte</h1>
                 <a href="#" title="Retour à Mes Boîtes" class="button retour">Retour</a>
@@ -11,7 +11,6 @@
                 <div class="left">
                     <section id="destinataire-boite">
                         <h2 class="bandeau">Destinataire</h2>
-                        <form>
                             <p class="left">
                                 <label for="prenom"><span class="picto-form"></span>Prénom : <span class="asterix">*</span></label>
                                 <input type="text" id="prenom" name="receverName" value="<?php echo set_value('receverName'); ?>" />
@@ -23,12 +22,10 @@
                                 <label for="email"><span class="picto-form"></span>Adresse e-mail : <span class="asterix">*</span></label>
                                 <input type="text" id="email" name="emailRecever" value="<?php echo set_value('emailRecever'); ?>" />
                             </p>
-                        </form>
                     </section>
     
                     <section id="infos-boite">
                         <h2 class="bandeau">Informations boîte</h2>
-                        <form>
                             <p class="left">
                                 <label for="titre-boite"><span class="picto-form"></span>Titre : <span class="asterix">*</span></label>
                                 <input type="text" id="titre-boite" name="nomBoite" value="<?php echo set_value('nomBoite'); ?>" />
@@ -48,7 +45,6 @@
                                 <label for="ville-user"><span class="picto-form"></span>Ville :</label>
                                 <input type="text" id="ville-user" name="receverCity" value="<?php echo set_value('receverCity'); ?>" />
                             </p>
-                        </form>
                     </section>
                 </div>
 
@@ -68,7 +64,7 @@
                 </section>
             </div>
             <div id="bouton-creer">
-                <a href="#" title="Créer la boîte" class="button">Créer la boîte</a>
+                <input type="submit" value="Créer la boîte" class="button" />
             </div>
         </form>
     </section>

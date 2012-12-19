@@ -76,23 +76,23 @@ class boiteController extends CI_Controller {
 			// On envoi le mail au destinataire
 			$user = $this->session->userdata('user_data');
 			$this->load->library('email');
-			$this->email->from('no-reply@backwards.fr', $user->prenom.' '.$user->nom);
+			$this->email->from('no-reply@backwards.fr', $user['prenom'].' '.$user['nom']);
 			$this->email->to($this->input->post('emailRecever')); 
-			$this->email->subject($user->prenom.' '.$user->nom.' vous offre une capsule temporelle...');
-			$this->email->message($user->prenom.' '.$user->nom.' vous offre une capsule temporaire avec ce message : blablabla, venez la decouvrir ici');	
+			$this->email->subject($user['prenom'].' '.$user['nom'].' vous offre une capsule temporelle...');
+			$this->email->message($user['prenom'].' '.$user['nom'].' vous offre une capsule temporaire avec ce message : blablabla, venez la decouvrir ici');	
 			$this->email->send();
 
 			// On cree la boite avec toutes les informations necessaires...
 			$this->load->model("boiteModel");
 			// on crée les datas qu'on envvera au model dans un tableau
-			$idFb = $user->idFb;
+			$idFb = $user['idFb'];
 			$data = array(
 				'nomBoite' => $this->input->post('nomBoite'),
 				'coordX' => $this->input->post('coordX'),
 				'coordY' => $this->input->post('coordY'),
 				'description' => $this->input->post('description'),
 				'targetDate' => date("Y-m-d", strtotime($this->input->post('targetDate'))),
-				'idOwner' => $user->idUser,
+				'idOwner' => $user['idUser'],
 				'idReceiver' => $idNewUser,
 				'adresse' => $this->input->post('receverAddress'),
 				'codePostal' => $this->input->post('receverZipCode'),

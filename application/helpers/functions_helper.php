@@ -26,18 +26,17 @@ function setLanguage($lang){
     );
 
     set_cookie($cookie);
-    includeLang();
     redirect(base_url());
 }
 
 function includeLang(){
     $ci=& get_instance();
     $ci->load->helper('cookie');
+
     
     $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
     $cookie = get_cookie('lang');
     if($cookie){$lang = $cookie;}
-
     if ($lang == 'fr') {           // si la langue est 'fr' (français) on inclut le fichier fr-lang.php
         include('lang/fr-lang.php');
     } elseif ($lang == 'en') {      // si la langue est 'en' (anglais) on inclut le fichier en-lang.php

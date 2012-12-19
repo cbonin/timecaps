@@ -57,10 +57,9 @@
 						?>
 					</div>
 				<?php endif; ?>
-				<a href="<php? base_url()mainController/setLanguage/fr">fr</a> | <a id='en' href="<php? base_url()mainController/setLanguage/en">en</a>
+				<a href="<?php echo base_url().'main_controller/setLanguage/fr'; ?>">fr</a> | <a id='en' href="<?php echo base_url().'main_controller/setLanguage/en' ; ?>">en</a>
 			</div>
 			<span id="ellipse"><img src="<?php echo base_url(); ?>assets/css/img/ellipse-header.png" alt="Ellipse head"/></span>
 		</section>
 	</header>
 	<div id="container" class="container">
-

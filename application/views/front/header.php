@@ -30,7 +30,6 @@
 	<![endif]-->
 </head>
 <body>
-<<<<<<< HEAD
 	<div id="fb-root"></div>
 
 	<header>
@@ -44,28 +43,23 @@
 				?>
 					<p>Bonjour <span id="username"><?php echo $userLogged['prenom']." ".$userLogged['nom']; ?></span></p>
 					<div id="connect">
-						<a href="<?php echo base_url(); ?>boiteController/" title="Boites">Mes boites</a>
-						<a href="<?php echo base_url(); ?>userController/editAccount/<?php echo $userLogged['idUser']; ?>" title="mon compte">Mon compte</a>
-						<a href="<?php echo base_url(); ?>userController/logout" title="Connexion" class="logout-btn">Déconnexion</a>
+						<a href="#" title="Boites">Mes boites</a>
+						<?php
+							echo '<a title="mon compte" class="inscription-btn" href="'.base_url().'userController/editAccount">Mon compte</a>';
+							echo '<a title="Connexion" class="connexion-btn" href="'.base_url().'userController/logout">Deconexion</a>';
+						?>
 					</div>
 				<?php else: ?>
 					<div id="connect">
-						<a href="#" title="Inscription" class="inscription-btn">Inscription</a>
-						<a href="#" title="Connexion" class="connexion-btn">Connexion</a>
+						<?php
+							echo '<a title="Inscription" class="inscription-btn" href="'.base_url().'userController/signUp">Inscription</a>';
+							echo '<a title="Connexion" class="connexion-btn" href="'.base_url().'userController/signIn">Connexion</a>';
+						?>
 					</div>
 				<?php endif; ?>
+				<a href="<?php echo base_url().'main_controller/setLanguage/fr'; ?>">fr</a> | <a id='en' href="<?php echo base_url().'main_controller/setLanguage/en' ; ?>">en</a>
 			</div>
 			<span id="ellipse"><img src="<?php echo base_url(); ?>assets/css/img/ellipse-header.png" alt="Ellipse head"/></span>
 		</section>
 	</header>
 	<div id="container" class="container">
-=======
-	<section>
-		<header>
-			<div id="fb-root"></div>
-			<fb:login-button show-faces="true" width="450" perms="user_groups,publish_stream,email,user_birthday,read_stream,publish_actions,read_friendlists"></fb:login-button>
-			<div id="#fb-profile-pic"></div>
-			<div id="#fb-name"></div>
-			<div class='droite'><a href="<?php echo base_url().'main_controller/setLanguage/fr'; ?>">fr</a> | <a id='en' href="<?php echo base_url().'main_controller/setLanguage/en'; ?>">en</a></div>
-		</header>
->>>>>>> gestion multilangue ok

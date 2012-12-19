@@ -1,6 +1,7 @@
 
 			<section id="intro">
-				<p>Avec Backwards, permettez à n'importe qui de revivre les moments forts qui ont marqué leur vie.</p>
+				<p><?php echo TXT_PRINCIPE;?>
+					<!--Avec Backwards, permettez à n'importe qui de revivre les moments forts qui ont marqué leur vie.--></p>
 				<p style="margin:5px 0;font-size:1.1em;">Offrez un merveilleux cadeau plein d'émotions.</p>
 				<div id="intro-num">
 					<p><span><?php echo($nbBoites); ?></span> boîtes créées</p>

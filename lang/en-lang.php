@@ -7,7 +7,6 @@ define('BTN_CONNEXION'	, "Log in");
 define('BTN_DECONNEXION', "Logout");
 define('BTN_INSCRIPTION', "Register");
 define('BONJOUR'		, "Hello");
-define('MON_COMPTE'		, "My account");
 //---------------------------------------------------------
 
 
@@ -23,19 +22,17 @@ define('A_PROPOS'	, "About");
 //---------------------------------------------------------
 // home
 //--------------------------------------------------------- 
-define('TXT_PRINCIPE'	, "With Backwards, let anyone relive the strongest moments of their life.");
-define('OFFREZ'			, "Offer them a wonderful gift full of emotions.");
-define('BOITE_CREES'	, "Created boxes");
+define('TXT_PRINCIPE'	, "With Backwards, let anyone relive the strongest moments of their life. Offer them a wonderful gift full of emotions.");
+define('BOITE_CREES'	, "Existing boxes");
 define('SOUVENIRS'		, "of recovered memories");
 define('INSCRIVEZ_VOUS'	, "Register");
-define('BACKWARDS_TITLE', "Backwards, how it works ?");
+define('BACKWARDS_TITLE', "Backwards, how does it work?");
 define('CREEZ'			, "Create your virtual box");
-define('TXT_CREEZ'		, "Full of memories, Pleine de souvenirs, send it to a loved one.");
-define('CADEAU'			, "A surprising gift");
-define('TXT_CADEAU'		, "To open it, just being in the right place in the right time.");
-define('EMOTIONS'		, "EMOTIONS");
-define('SAVOIR_PLUS'	, "More infos ?");
-define('COMMENCER'		, "Start");
+define('TXT_CREEZ'		, "Full of memories, send it to a loved one.");
+define('CADEAU'			, "a surprising gift");
+define('TXT_CADEAU'		, "To open it, just be in the right place at the right time.");
+define('EMOTIONS'		, "emotions");
+define('SAVOIR_PLUS'	, "Know more");
 //---------------------------------------------------------
 
 
@@ -47,7 +44,6 @@ define('NOUVELLE_BOITE'		, "New box");
 define('BOITES_EN_COURS'	, "Boxes in progress");
 define('BOITES_ENTERREES'	, "Burried boxes");
 define('BOITES_OUVERTES'	, "Discovered boxes");
-define('NO_BOITES'			, "You didn't created any box yet");
 //---------------------------------------------------------
 
 
@@ -62,7 +58,7 @@ define('REMPLISSEZ'		, "Please, fill this form");
 //---------------------------------------------------------
 // creation boite
 //---------------------------------------------------------
-define('DESTINATAIRE'		, "Receiver");
+define('DESTINATAIRE'		, "Recipient");
 define('INFORMATION_BOITE'	, "Informations about the box");
 //---------------------------------------------------------
 
@@ -79,7 +75,7 @@ define('CONTRIBUTEURS'	, "Contributors");
 // popup connexion
 //---------------------------------------------------------
 define('CONNEXION', "Log in");
-define('TXT_CO_BW', "Through your Bacwards account...");
+define('TXT_CO_BW', "To your Backwards account...");
 define('TXT_CO_FB', "...or save time with Facebook");
 //---------------------------------------------------------
 
@@ -102,7 +98,7 @@ define('EMAIL'				, "Your email: ");
 define('MESSAGE'			, "Your message: ");
 define('TITRE'				, "Title: ");
 define('DESCRIPTION'		, "Your personnal message: ");
-define('ADRESSE'			, "Postale address of the receiver: ");
+define('ADRESSE'			, "Postal address of the recipient: ");
 define('DATE_OUVERTURE'		, "Opening date: ");
 define('EMAIL_CONNEXION'	, "Email: ");
 define('MDP'				, "Password: ");

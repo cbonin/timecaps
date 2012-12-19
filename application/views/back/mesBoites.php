@@ -35,8 +35,7 @@
 	<h2>Boites à ouvrir</h2>
 	<?php if(!empty($boitesReceiver)): ?>
 	<ul>
-		<?php foreach($boites as $boite): ?>
-		<?php echo 'zboub<br/>;'?>
+		<?php foreach($boitesReceiver as $boite): ?>
 		<li>
 			<h2><a href="<?php echo base_url().'boiteController/openBoite/'.$boite->idBoite; ?>"><?php echo $boite->nomBoite; ?></a></h2>
 			<p><?php echo $boite->description; ?></p>

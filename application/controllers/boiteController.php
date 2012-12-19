@@ -23,7 +23,7 @@ class boiteController extends CI_Controller {
 			$this->load->model("boiteModel");
 			$param = array(
 				'userType' => 'back',
-				'mainContent' => 'mesBoites',
+				'mainContent' => 'mesBoitesBrand',
 				'title' => 'Mesboites',
 				'boites' => $this->boiteModel->getBoiteByUser($user['idUser']),
 				'boitesContributor' => $this->boiteModel->getMyBoiteContributor($user['idUser']),
@@ -293,7 +293,6 @@ class boiteController extends CI_Controller {
 			$this->load->model("userBrandModel");
 			$userBrand = $this->userBrandModel->getUserBrand($this->input->post('emailRecever'));
 
-
 			// On envoi le mail au destinataire
 			$this->load->library('email');
 			$this->email->from('no-reply@backwards.fr', $user['prenom']);
@@ -314,9 +313,6 @@ class boiteController extends CI_Controller {
 				'idOwner' => $user['idUser'],
 			);
 			$idBoiteBrand = $this->boiteBrandModel->addBoiteBrand($data);
-
-
-
 			
 			// on crée les datas qu'on envvera au model dans un tableau
 			$data = array(
@@ -328,5 +324,58 @@ class boiteController extends CI_Controller {
 
 			redirect("boiteController");
 		}
+	}
+
+	function updateBoiteBrand($idBoiteBrand){
+		$this->load->model("boiteBrandModel");
+		$this->load->model("userBrandModel");
+		$boite = $this->boiteBrandModel->getBoiteBrand($idBoiteBrand);
+		$user = $this->session->userdata('user_data');
+
+		if($boite->idOwner == $user['idUser']){
+			// L'utilisateur est le propriétaire de la boite
+
+			
+			$this->load->library('form_validation');
+
+			$this->form_validation->set_rules('nomBoite', 'Nom de la boite', 'trim|required|xss_clean|max_length[50]');
+			$this->form_validation->set_rules('coordX', 'Coordonées X', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('coordY', 'Coordonées Y', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('description', 'Description', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('targetDate', 'Date d\'ouverture potentielle', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('emailRecever', 'Adresse mail du destinataire', 'trim|required|xss_clean|valid_email');
+			$this->form_validation->set_rules('code', 'Code de déverrouillage', 'trim|required|xss_clean');
+
+			if ($this->form_validation->run() == FALSE){
+				
+				$param = array(
+					'userType' => 'back',
+					'mainContent' => 'editBoiteBrand',
+					'title' => 'Modifier la boite',
+					'boite' => $boite
+				);
+				$this->load->view('template', $param);
+			}
+			else  //si 	le formulaire à correctement été rempli
+			{
+				$data = array(
+				'nomBoite' => $this->input->post('nomBoite'),
+				'coordX' => $this->input->post('coordX'),
+				'coordY' => $this->input->post('coordY'),
+				'description' => $this->input->post('description'),
+				'targetDate' => date("Y-m-d", strtotime($this->input->post('targetDate'))),
+				'idOwner' => $user['idUser'],
+				);
+				$this->boiteBrandModel->updateBoiteBrand($id, $data);
+
+				redirect("boiteController");
+			}
+		}
+	}
+
+	function deleteBoiteBrand($idBoiteBrand){
+		$this->load->model("boiteBrandModel");
+		$this->boiteBrandModel->deleteBoiteBrand($idBoiteBrand);
+		redirect(base_url().'boiteController');
 	}
 }

@@ -34,58 +34,16 @@ class boiteBrandModel extends CI_Model
 		return $query->result();
 	}
 
-	function updateBoite($id, $data)
+	function updateBoiteBrand($id, $data)
 	{
-		$this->db->where('idBoite', $id);		
-		$this->db->update('boite', $data);
+		$this->db->where('idBoiteBrand', $id);		
+		$this->db->update('boiteBrand', $data);
 	}
 
-	function deleteBoite($id)
+	function deleteBoiteBrand($id)
 	{
-		$this->db->where("idBoite", $id);
-		$this->db->delete('boite');
+		$this->db->where("idBoiteBrand", $id);
+		$this->db->delete('boiteBrand');
 	}
 
-	function addContributor($data){
-		$this->db->insert('contributeurs', $data);
-	}
-
-	function getMyReceiverBoite($idUser){
-		return $this->db->select()
-			->where('idReceiver', $idUser)
-			->get('boite')
-			->result();
-	}
-
-	function getAllContributors($idBoite){
-		return $this->db->select()
-			->from('user')
-			->join('contributeurs', 'contributeurs.idUser = user.idUser')
-			->where('contributeurs.idBoite', $idBoite)
-			->get()
-			->result();
-	}
-
-	function getMyBoiteContributor($idUser){
-		return $this->db->select()
-			->from('boite')
-			->join('contributeurs', 'contributeurs.idBoite = boite.idBoite')
-			->where('contributeurs.idUser', $idUser)
-			->get()
-			->result();
-	}
-
-	function getAmountOfBoite(){
-		return $this->db->select_max('idBoite')
-			->get('boite')
-			->row();
-	}
-
-	function getAmountOfOpenBoite($nbBoite){
-		$closedBoite =
-			$this->db->where('statut <', 2)
-			->from('boite')
-			->count_all_results();
-		return($nbBoite - $closedBoite);
-	}
 }

@@ -253,4 +253,60 @@ class boiteController extends CI_Controller {
 		);
 		$this->load->view('template', $param);
 	}
+
+
+	function createBoiteBrand(){
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('nomBoite', 'Nom de la boite', 'trim|required|xss_clean|max_length[50]');
+		$this->form_validation->set_rules('coordX', 'Coordonées X', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('coordY', 'Coordonées Y', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('description', 'Description', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('targetDate', 'Date d\'ouverture potentielle', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('emailRecever', 'Adresse mail du destinataire', 'trim|required|xss_clean|valid_email');
+		
+		if ($this->form_validation->run() == FALSE)
+		{
+			$param = array(
+				'userType' => 'back',
+				'mainContent' => 'create_boite_brand',
+				'title' => 'Créer une boite',
+			);
+			$this->load->view('template', $param);
+		}
+		else  //si 	le formulaire à correctement été rempli
+		{
+			$user = $this->session->userdata('user_data');
+			var_dump($user);
+			die();
+			/*
+			$this->load->model("userBrandModel");
+			
+			$user = $this->userModel->getUser($this->input->post('emailRecever')); // on verifie si email existe dans notre base user
+
+			// On envoi le mail au destinataire
+			$user = $this->session->userdata('user_data');
+			$this->load->library('email');
+			$this->email->from('no-reply@backwards.fr', $user->prenom.' '.$user->nom);
+			$this->email->to($this->input->post('emailRecever')); 
+			$this->email->subject($user->prenom.' '.$user->nom.' vous offre une capsule temporelle...');
+			$this->email->message($user->prenom.' '.$user->nom.' vous offre une capsule temporaire avec ce message : blablabla, venez la decouvrir ici');	
+			$this->email->send();
+*/
+			// On cree la boite avec toutes les informations necessaires...
+			$this->load->model("boiteBrandModel");
+			// on crée les datas qu'on envvera au model dans un tableau
+			$data = array(
+				'nomBoite' => $this->input->post('nomBoite'),
+				'coordX' => $this->input->post('coordX'),
+				'coordY' => $this->input->post('coordY'),
+				'description' => $this->input->post('description'),
+				'targetDate' => date("Y-m-d", strtotime($this->input->post('targetDate'))),
+				'idOwner' => $user->idUser,
+			);
+			$this->boiteBrandModel->addBoiteBrand($data);
+
+			redirect("boiteController");
+		}
+	}
 }

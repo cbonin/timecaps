@@ -1,6 +1,6 @@
 <?php 
 
-class boiteModel extends CI_Model
+class boiteBrandModel extends CI_Model
 {
 
 	function __construct()
@@ -8,15 +8,15 @@ class boiteModel extends CI_Model
 		parent::__construct();
 	}
 
-	function addBoite($data)
+	function addBoiteBrand($data)
 	{
 		$this->db->insert('boiteBrand', $data);
 	}
 
-	function getBoite($id)
+	function getBoiteBrand($id)
 	{
-		$this->db->where('idBoite', $id);
-		$query = $this->db->get('boite');
+		$this->db->where('idBoiteBrand', $id);
+		$query = $this->db->get('boiteBrand');
 
 		return $query->row();
 	}

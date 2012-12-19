@@ -56,7 +56,7 @@
     .center {text-align:center;}
     header, footer {background:url(img/texture-header.jpg) repeat;width:100%;}
     header a, footer a {color:#e3e3e3;}
-    .button {border:1px solid #2a8585;font-size:1.1em;line-height: 2em;display: inline-block;padding:0 18px;-webkit-border-radius: 3px; width: auto;border-radius: 3px;
+    .button {border:1px solid #2a8585;cursor: pointer;color: #FFF;font-size:1.1em;line-height: 2em;display: inline-block;padding:0 18px;-webkit-border-radius: 3px; width: auto;border-radius: 3px;
     	background: #389a9a; /* Old browsers */
 		background: -moz-linear-gradient(top, #389a9a 20%, #2e8d8d 80%); /* FF3.6+ */
 		background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#389a9a), color-stop(80%,#2e8d8d)); /* Chrome,Safari4+ */
@@ -254,14 +254,14 @@
 
 /* CONTENT - DASHBOARD CREER BOITE / EDITER BOITE
 -------------------------------------------------- */
-	#edit-boite section {background:#e3e4d2;border:2px solid #dfe0cd;padding:15px 0;margin:10px 0;}
+	#edit-boite section {background:#e3e4d2;border:2px solid #dfe0cd;padding:2%;margin:10px 0;}
 	#edit-boite .contenu div.left, #edit-boite #map-boite {width:49%;}
 	#edit-boite #map-boite {background:#fff;float:right;}
 	#edit-boite .contenu div.left {float:left;}
 	#edit-boite section form {padding:0 4% 10px;}
 	/* Boutons ruban */
 	#button-ribbon {position:relative;}
-	#button-ribbon a {position:absolute;top:20%;color:#fff;}
+	#button-ribbon a, #button-ribbon input.enregistrer{position:absolute;top:20%;color:#fff;}
 	#button-ribbon .retour {left:1%;}
 	#button-ribbon .enregistrer {right:1%;}
 	#button-ribbon .button {border:2px solid #5cb0ab;font-size:0.9em;background: #7ccac6;
@@ -434,7 +434,7 @@
 	border-radius: 5px;
 }
 
-.submit {border:1px solid #2a8585;font-size: 13px;line-height: 1;display: inline-block;padding:5px 10px;-webkit-border-radius: 3px;border-radius: 3px; color: #FFF;
+.submit {border:1px solid #FFF;font-size: 13px;line-height: 1;display: inline-block;padding:5px 10px;-webkit-border-radius: 3px;border-radius: 3px; color: #FFF;
     	background: #389a9a; /* Old browsers */
 		background: -moz-linear-gradient(top, #389a9a 20%, #2e8d8d 80%); /* FF3.6+ */
 		background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#389a9a), color-stop(80%,#2e8d8d)); /* Chrome,Safari4+ */

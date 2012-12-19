@@ -1,83 +1,73 @@
-    <?php echo validation_errors(); ?>
+    <section id="edit-boite">
+        <form method="POST" action="<?php echo base_url(); ?>boiteController/update/<?php echo $boite->idBoite; ?>">
 
-    <div id="boite_info">
-        <h2>Informations sur le destinataire</h2>
-        <p>Nom : <?php echo $user->nom; ?></p>
-        <p>Prénom : <?php echo $user->prenom; ?></p>
-        <p>Email : <?php echo $user->email; ?></p>
-    </div>
+            <div id="button-ribbon">
+                <h1 class="ribbon"><?php echo $boite->nomBoite;?></h1>
+                <a href="#" title="Retour à Mes Boîtes" class="button retour"><?php echo BTN_RETOUR; ?></a>
+                <input type="submit" class="button enregistrer" value="<?php echo BTN_ENREGISTRER; ?>" />
+            </div>
+            <div class="contenu clearfix">
 
-    <div id="contributors">
-        <h2>Contributeurs</h2>
-        <ul>
-    <?php
-    foreach ($contributors as $c) {
-        echo '<li>'.$c->prenom.' '.$c->nom.'</li>';
-    }
-    ?>
-        </ul>
-    </div>
-
-    <div>
-        <h2>Informations sur la boite</h2>
-    <?php
-    echo form_open('boiteController/update/'.$boite->idBoite); ?>
-
-        <input type="hidden" name="coordX" value="<?php echo $boite->coordX; ?>" />
-        <input type="hidden" name="coordY" value="<?php echo $boite->coordY; ?>" />
-
-        <?php
-        echo form_label('Nom de la boite', 'Nom de la boite')."<br />";
-        echo form_input('nomBoite', $boite->nomBoite)."<br />";
-
-        echo form_label('Description', 'description')."<br />";
-        echo form_textarea('description', $boite->description)."<br />";
-
-        echo form_label('Date de débloquage', 'targetDate')."<br />";
-        echo form_input('targetDate', $boite->targetDate)."<br />";
-
-        echo form_label('Adresse du gars', 'receverAddress')."<br />";
-        echo form_input('receverAddress', $boite->adresse)."<br />";
-
-        echo form_label('Ville du gars', 'receverCity')."<br />";
-        echo form_input('receverCity', $boite->ville)."<br />";
-
-        echo form_label('Code Postal du gars', 'receverZipCode')."<br />";
-        echo form_input('receverZipCode', $boite->codePostal)."<br />";
-
-        echo form_label('Ajouter un contributeur', 'emailContributor')."<br />";
-        echo form_input('emailContributor', set_value('emailContributor'))."<br />";
-        
-        echo form_submit('updateBoite', 'Modifier la boite');
-
-    echo form_close();
-    ?>
-    </div>
+                <div class="left">
+                    <section id="destinataire-boite">
+                        <h2 class="bandeau"><?php echo DESTINATAIRE;?></h2>
+                            <p class="left">
+                                <label for="prenom"><span class="picto-form"></span><?php echo PRENOM;?><span class="asterix">*</span></label>
+                                <input type="text" id="prenom" name="receverName" disabled value="<?php echo $user->prenom; ?>" />
+                            </p><p class="right">
+                                <label for="nom"><span class="picto-form"></span><?php echo NOM;?><span class="asterix">*</span></label>
+                                <input type="text" id="nom" name="receverLastName" disabled value="<?php echo $user->nom; ?>" />
+                            </p>
+                            <p class="left">
+                                <label for="email"><span class="picto-form"></span><?php echo EMAIL;?><span class="asterix">*</span></label>
+                                <input type="text" id="email" name="emailRecever" disabled value="<?php echo $user->email; ?>" />
+                            </p>
+                    </section>
     
-    <form id="addressMap">
-        <input type="text" name="addressMap" placeholder="adresse, ville..." />
-        <input type="submit" value="entrer adresse" />
-    </form>
-    <div id="boiteMap" style="width: 300px; height: 300px; display: block;"></div>
+                    <section id="infos-boite">
+                        <h2 class="bandeau"><?php echo INFORMATION_BOITE; ?></h2>
+                            <p class="left">
+                                <label for="titre-boite"><span class="picto-form"></span><?php echo TITRE; ?><span class="asterix">*</span></label>
+                                <input type="text" id="titre-boite" name="nomBoite" value="<?php echo set_value('nomBoite'); ?>" />
+                            </p>
+                            <span>
+                                <label for="description-boite"><span class="picto-form"></span><?php echo DESCRIPTION; ?></label>
+                                <textarea id="description-boite" name="description" value="<?php echo set_value('description'); ?>"></textarea>
+                            </span>
+                            <span>
+                                <label for="adresse-user"><span class="picto-form"></span><?php echo ADRESSE; ?></label>
 
-    <h2>Uploads</h2>
+                                <textarea id="adresse-user" name="receverAddress" value="<?php echo set_value('receverAddress'); ?>"></textarea>
+                            </span>
+                            <p class="left">
+                                <label for="codep-user"><span class="picto-form"></span><?php echo CODE_POSTAL; ?></label>
+                                <input type="text" id="codep-user" name="receverZipCode" value="<?php echo set_value('receverZipCode'); ?>" />
+                            </p><p class="right">
+                                <label for="ville-user"><span class="picto-form"></span><?php echo VILLE; ?></label>
+                                <input type="text" id="ville-user" name="receverCity" value="<?php echo set_value('receverCity'); ?>" />
+                            </p>
+                    </section>
+                </div>
 
-    <form method="post" action="" id="upload_file">
-      <label for="title">Title</label>
-      <input type="text" name="title" id="title" value="" />
-      <label for="userfile">File</label>
-      <input type="file" name="userfile" id="userfile" size="20" />
-      <input type="hidden" name="idBoite" value="<?php echo $boite->idBoite; ?>" />
-      <input type="submit" name="submit" id="submit" />
-    </form>
-    <h2>Files</h2>
-    <div id="files"></div>
-    <div class="alertUpload"></div>
-    <script>
-        var idBoite = "<?php echo $boite->idBoite; ?>";
-    </script>
+                <section id="map-boite">
+                        <span class="left">
+                            <label for="date-boite"><span class="picto-form"></span><?php echo DATE_OUVERTURE; ?><span class="asterix">*</span></label>
+                            <input type="text" id="date-boite" name="targetDate" />
+                        </span>
+                        <span>
+                            <label for="adresse-boite"><span class="picto-form"></span><?php echo LIEU; ?></label>
+                            <input type="text" name="addressMap" placeholder="adresse, ville..." />
+                            <button id="searchMaps" class="submit"><?php echo RECHERCHER; ?></button>
+                        </span>
+                        <input type="hidden" name="coordX" value="<?php echo set_value('coordX') ?>" />
+                        <input type="hidden" name="coordY" value="<?php echo set_value('coordY') ?>" />
+                        <div id="boiteMap"></div>
+                </section>
+            </div>
+            <div id="bouton-creer">
+                <input type="submit" value="<?php echo BTN_CREER; ?>" class="button" />
+            </div>
+        </form>
+    </section>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-    <script src="<?php echo base_url(); ?>assets/js/ajaxfileupload.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/mapBoite.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/shadowbox/shadowbox.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/uploadBoite.js"></script>

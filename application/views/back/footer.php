@@ -6,9 +6,9 @@
 				<a href="#" title="Page Twitter"></a>
 			</div>
 			<ul id="navig-footer">
-				<li><a href="#" title="Charte de confidentialité">Charte de confidentialité</a></li>
-				<li><a href="#" title="À propos">À propos</a></li>
-				<li class="last"><a href="#" title="Contact">Contact</a></li>
+				<li><a href="#" title="Charte de confidentialité"><?php echo CGU; ?></a></li>
+				<li><a href="#" title="À propos"><?php echo A_PROPOS; ?></a></li>
+				<li class="last"><a href="#" title="Contact"><?php echo CONTACT; ?></a></li>
 			</ul>
 			<p>© Backwards - 2012</p>
 			<div id="retour-haut">
@@ -19,19 +19,19 @@
 
 	<div id="shadow-layer">
 		<div id="connexion-box" class="popup-container">
-				<span class="popup-title">Connexion</span>
+				<span class="popup-title"><?php echo CONNEXION; ?></span>
 				<div class="popup-left">
-					<p>Avec votre compte Backwards ...</p>
-					<form>
-						<label>Email : </label>
-						<input type="text" name="" value="" placeholder="ex : marie.durand@mail.com" />
-						<label>Mot de passe : </label>
-						<input type="password" name="" value="" placeholder="motdepasse" />
-						<input type="submit" value="Connexion" class="submit"/>
+					<p><?php echo TXT_CO_BW; ?></p>
+					<form method="POST" action="<?php echo base_url();?>userController/signIn">
+						<label><?php echo EMAIL; ?></label>
+						<input type="text" name="email" value="" placeholder="ex : marie.durand@mail.com" />
+						<label><?php echo MDP; ?></label>
+						<input type="password" name="password" value="" placeholder="motdepasse" />
+						<input type="submit" value="<?php echo CONNEXION; ?>" class="submit"/>
 					</form>
 				</div>
 				<div class="popup-right">
-					<p>... Ou gagnez du temps en vous inscrivant grâce à Facebook :</p>
+					<p><?php echo TXT_IN_FB; ?></p>
 					<div class="fb-button-container">
 						<div id="fb-root"></div>
 						<fb:login-button show-faces="true" width="250" perms="user_groups,publish_stream,email,user_birthday,read_stream,publish_actions,read_friendlists"></fb:login-button>
@@ -42,25 +42,25 @@
 		</div>
 
 		<div id="inscription-box" class="popup-container">
-			<span class="popup-title">Inscription</span>
+			<span class="popup-title"><?php echo INSCRIPTION; ?></span>
 				<div class="popup-left">
-					<p>Pour utiliser Backwards, inscrivez-vous simplement en remplissant le formulaire...</p>
-					<form>
-						<label>Prénom : </label>
-						<input type="text" name="" value="" placeholder="ex : Marie" />
-						<label>Nom : </label>
-						<input type="text" name="" value="" placeholder="ex : Dupond" />
-						<label>Email : </label>
-						<input type="text" name="" value="" placeholder="ex : marie.durand@mail.com" />
-						<label>Mot de passe : </label>
-						<input type="password" name="" value="" placeholder="motdepasse" />
-						<label>Confirmez le pass : </label>
-						<input type="password" name="" value="" placeholder="motdepasse" />
-						<input type="submit" value="Inscription" class="submit" />
+					<p><?php echo TXT_IN_BW; ?></p>
+					<form method="POST" action="<?php echo base_url();?>userController/signUp">
+						<label><?php echo PRENOM; ?></label>
+						<input type="text" name="prenom" value="" placeholder="ex : Marie" />
+						<label><?php echo NOM; ?></label>
+						<input type="text" name="nom" value="" placeholder="ex : Dupond" />
+						<label><?php echo EMAIL; ?></label>
+						<input type="text" name="email" value="" placeholder="ex : marie.durand@mail.com" />
+						<label><?php echo MDP; ?></label>
+						<input type="password" name="password" value="" placeholder="motdepasse" />
+						<label><?php echo MDP_CONFIRMATION; ?></label>
+						<input type="password" name="passwordConf" value="" placeholder="motdepasse" />
+						<input type="submit" value="<?php echo INSCRIPTION; ?>" class="submit" />
 					</form>
 				</div>
 				<div class="popup-right">
-					<p>... Ou gagnez du temps avec Facebook</p>
+					<p><?php echo TXT_IN_FB; ?></p>
 					<div class="fb-button-container">
 						<fb:login-button show-faces="true" width="250" perms="user_groups,publish_stream,email,user_birthday,read_stream,publish_actions,read_friendlists"></fb:login-button>
 						<div id="#fb-profile-pic"></div>

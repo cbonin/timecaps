@@ -4,7 +4,7 @@
 // header
 //---------------------------------------------------------
 define('BTN_CONNEXION'	, "Connexion");
-define('BTN_DECONNEXION', "Déonnexion");
+define('BTN_DECONNEXION', "Déconnexion");
 define('BTN_INSCRIPTION', "Inscription");
 define('BONJOUR'		, "Bonjour");
 define('MON_COMPTE'		, "Mon compte");
@@ -23,7 +23,8 @@ define('A_PROPOS'	, "À propos");
 //---------------------------------------------------------
 // home
 //--------------------------------------------------------- 
-define('TXT_PRINCIPE'	, "Avec Backwards, permettez à n'importe qui de revivre les moments forts qui ont marqués leur vie.Offrez un merveilleux cadeau plein d'émotions.");
+define('TXT_PRINCIPE'	, "Avec Backwards, permettez à n'importe qui de revivre les moments forts qui ont marqués leur vie.");
+define('OFFREZ'			, "Offrez un merveilleux cadeau plein d'émotions.");
 define('BOITE_CREES'	, "boîtes créées");
 define('SOUVENIRS'		, "de souvenirs retrouvés");
 define('INSCRIVEZ_VOUS'	, "Inscrivez-vous");
@@ -32,8 +33,9 @@ define('CREEZ'			, "Créez votre boîte virtuelle");
 define('TXT_CREEZ'		, "Pleine de souvenirs, envoyez-la à l’un de vos proches.");
 define('CADEAU'			, "Un cadeau surprenant");
 define('TXT_CADEAU'		, "Pour l’ouvrir, il suffit de se trouver au bon endroit au bon moment.");
-define('EMOTIONS'		, "émotions");
-define('SAVOIR_PLUS'	, "En savoir plus, Commencer");
+define('EMOTIONS'		, "EMOTIONS");
+define('SAVOIR_PLUS'	, "En savoir plus");
+define('COMMENCER'		, "Commencer");
 //---------------------------------------------------------
 
 
@@ -45,6 +47,7 @@ define('NOUVELLE_BOITE'		, "Nouvelle boîte");
 define('BOITES_EN_COURS'	, "Boîtes en cours");
 define('BOITES_ENTERREES'	, "Boîtes enterrées");
 define('BOITES_OUVERTES'	, "Boîtes ouvertes");
+define('NO_BOITES'			, "Vous n'avez créé aucune boite pour le moment");
 //---------------------------------------------------------
 
 

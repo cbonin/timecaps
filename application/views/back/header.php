@@ -19,6 +19,7 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/date.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/shadowbox/shadowbox.css">
 	<link rel="shortcut icon" type="image/png" href="<?php echo base_url(); ?>assets/css/img/favicon.png" />
+	<link href="<?php echo base_url(); ?>assets/js/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   	<script>
 		var baseUrl = "<?php echo base_url(); ?>";
@@ -41,19 +42,19 @@
 				<?php if(isLogged()) :
 				$userLogged = $this->session->userdata('user_data');
 				?>
-					<p><?php echo BONJOUR; ?> <span id="username"><?php echo $userLogged['prenom']." ".$userLogged['nom']; ?></span></p>
+					<p><?php echo(BONJOUR); ?> <span id="username"><?php echo $userLogged['prenom']." ".$userLogged['nom']; ?></span></p>
 					<div id="connect">
-						<a href="<?php echo base_url(); ?>boiteController" title="Boites"><?php echo MES_BOITES; ?></a>
+						<a href="<?php echo base_url(); ?>boiteController" title="<?php echo MES_BOITES; ?>"><?php echo MES_BOITES; ?></a>
 						<?php
-							echo '<a title="mon compte" href="'.base_url().'userController/editAccount">Mon compte</a>';
-							echo '<a title="Déconnexion" href="'.base_url().'userController/logout">Deconexion</a>';
+							echo '<a title="'.MON_COMPTE.'" href="'.base_url().'userController/editAccount">'.MON_COMPTE.'</a>';
+							echo '<a title="'.BTN_DECONNEXION.'" href="'.base_url().'userController/logout">'.BTN_DECONNEXION.'</a>';
 						?>
 					</div>
 				<?php else: ?>
 					<div id="connect">
 						<?php
-							echo '<a title="Inscription" class="inscription-btn" href="'.base_url().'userController/signUp">'.BTN_INSCRIPTION.'</a>';
-							echo '<a title="Connexion" class="connexion-btn" href="'.base_url().'userController/signIn">'.BTN_CONNEXION.'</a>';
+							echo '<a title="'.BTN_INSCRIPTION.'" class="inscription-btn" href="'.base_url().'userController/signUp">'.BTN_INSCRIPTION.'</a>';
+							echo '<a title="'.BTN_CONNEXION.'" class="connexion-btn" href="'.base_url().'userController/signIn">'.BTN_CONNEXION.'</a>';
 						?>
 					</div>
 				<?php endif; ?>

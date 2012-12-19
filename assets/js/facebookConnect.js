@@ -1,13 +1,8 @@
 $(document).ready(function(){
 	//	FACEBOOK CONNECT
 
-	$("#share").click(function(){
-		shareFacebookAction();
-		return false;
-	});
-
 	if(connected){
-		
+		//do something
 	}else{
 		FB.Event.subscribe('auth.login', function(response)
 		{

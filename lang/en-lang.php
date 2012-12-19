@@ -23,17 +23,19 @@ define('A_PROPOS'	, "About");
 //---------------------------------------------------------
 // home
 //--------------------------------------------------------- 
-define('TXT_PRINCIPE'	, "With Backwards, let anyone relive the strongest moments of their life. Offer them a wonderful gift full of emotions.");
+define('TXT_PRINCIPE'	, "With Backwards, let anyone relive the strongest moments of their life.");
+define('OFFREZ'			, "Offer them a wonderful gift full of emotions.");
 define('BOITE_CREES'	, "Created boxes");
 define('SOUVENIRS'		, "of recovered memories");
 define('INSCRIVEZ_VOUS'	, "Register");
 define('BACKWARDS_TITLE', "Backwards, how it works ?");
 define('CREEZ'			, "Create your virtual box");
 define('TXT_CREEZ'		, "Full of memories, Pleine de souvenirs, send it to a loved one.");
-define('CADEAU'			, "a surprising gift");
+define('CADEAU'			, "A surprising gift");
 define('TXT_CADEAU'		, "To open it, just being in the right place in the right time.");
-define('EMOTIONS'		, "emotions");
-define('SAVOIR_PLUS'	, "More to start");
+define('EMOTIONS'		, "EMOTIONS");
+define('SAVOIR_PLUS'	, "More infos ?");
+define('COMMENCER'		, "Start");
 //---------------------------------------------------------
 
 
@@ -45,6 +47,7 @@ define('NOUVELLE_BOITE'		, "New box");
 define('BOITES_EN_COURS'	, "Boxes in progress");
 define('BOITES_ENTERREES'	, "Burried boxes");
 define('BOITES_OUVERTES'	, "Discovered boxes");
+define('NO_BOITES'			, "You didn't created any box yet");
 //---------------------------------------------------------
 
 

@@ -26,7 +26,7 @@ function setLanguage($lang){
     );
 
     set_cookie($cookie);
-    redirect(base_url());
+    redirect($_SERVER['HTTP_REFERER']);
 }
 
 function includeLang(){

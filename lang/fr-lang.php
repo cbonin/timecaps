@@ -109,6 +109,9 @@ define('DATE_OUVERTURE'		, "Date d'ouverture : ");
 define('EMAIL_CONNEXION'	, "E-mail : ");
 define('MDP'				, "Mot de passe : ");
 define('MDP_CONFIRMATION'	, "Confirmation du mot de passe : ");
+define('CODE_POSTAL'		, "Code postal : ");
+define('VILLE'				, "Ville : ");
+define('LIEU'				, "Lieu d'ouverture : ");
 //---------------------------------------------------------
 
 
@@ -122,6 +125,7 @@ define('BTN_CREER'		, "Créer la boîte");
 define('BTN_ENTERRER'	, "Enterrer la boîte");
 define('BTN_AJOUTER'	, "+ Ajouter");
 define('BTN_FICHIER'	, "Choisir un fichier");
+define('RECHERCHER'		, "Rechercher");
 //---------------------------------------------------------
 
 ?>

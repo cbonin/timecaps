@@ -109,6 +109,9 @@ define('DATE_OUVERTURE'		, "Opening date: ");
 define('EMAIL_CONNEXION'	, "Email: ");
 define('MDP'				, "Password: ");
 define('MDP_CONFIRMATION'	, "Confirm password: ");
+define('CODE_POSTAL'		, "Zip code : ");
+define('VILLE'				, "city : ");
+define('LIEU'				, "Opening place : ");
 //---------------------------------------------------------
 
 
@@ -122,6 +125,7 @@ define('BTN_CREER'		, "New box");
 define('BTN_ENTERRER'	, "Burry the box");
 define('BTN_AJOUTER'	, "+ Add");
 define('BTN_FICHIER'	, "Choose a file");
+define('RECHERCHER'		, "Search");
 //---------------------------------------------------------
 
 ?>

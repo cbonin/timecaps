@@ -14,7 +14,7 @@
   echo form_label('Mot de passe : ', 'password')."<br />";
   echo form_password('password', '')."<br />";
 
-  echo form_label('Confirmation du mot de passe : ', 'passwordConf')."<br />";
+  echo form_label(MDP_CONFIRMATION, 'passwordConf')."<br />";
   echo form_password('passwordConf', '')."<br />";
 
   echo form_submit('saveModif', 'Enregistrer les modifications');

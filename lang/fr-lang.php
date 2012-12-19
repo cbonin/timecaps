@@ -7,6 +7,7 @@ define('BTN_CONNEXION'	, "Connexion");
 define('BTN_DECONNEXION', "Déonnexion");
 define('BTN_INSCRIPTION', "Inscription");
 define('BONJOUR'		, "Bonjour");
+define('MON_COMPTE'		, "Mon compte");
 //---------------------------------------------------------
 
 

@@ -153,7 +153,10 @@
 	#dash-home section, #dash-home #newbox {margin:10px 1%;}
 	#dash-home section {background:#e3e4d2;border:2px solid #dfe0cd;padding:10px 0;}
 	#dash-home section > div {overflow-x:auto;}
-	.scroller {max-width:3000px;}
+	.scroller {
+		max-width: 3000px;
+		padding-bottom: 20px;
+		}
 
 	.box {position:relative;width:300px;display:inline-block;text-align:center;margin:40px 0 0;}
 	.box .title-box {font-size:1.1em;color:#737373;margin:10px 0 0;}

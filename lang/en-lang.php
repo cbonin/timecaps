@@ -6,7 +6,8 @@
 define('BTN_CONNEXION'	, "Log in");
 define('BTN_DECONNEXION', "Logout");
 define('BTN_INSCRIPTION', "Register");
-define('BONJOUR'		, "Hello");
+define('BONJOUR'		, "Hi");
+define('MON_COMPTE'		, "My account");
 //---------------------------------------------------------
 
 
@@ -22,7 +23,8 @@ define('A_PROPOS'	, "About");
 //---------------------------------------------------------
 // home
 //--------------------------------------------------------- 
-define('TXT_PRINCIPE'	, "With Backwards, let anyone relive the strongest moments of their life. Offer them a wonderful gift full of emotions.");
+define('TXT_PRINCIPE'	, "With Backwards, let anyone relive the strongest moments of their life.");
+define('OFFREZ'			, "Offer them a wonderful gift full of emotions.");
 define('BOITE_CREES'	, "Existing boxes");
 define('SOUVENIRS'		, "of recovered memories");
 define('INSCRIVEZ_VOUS'	, "Register");
@@ -33,6 +35,7 @@ define('CADEAU'			, "a surprising gift");
 define('TXT_CADEAU'		, "To open it, just be in the right place at the right time.");
 define('EMOTIONS'		, "emotions");
 define('SAVOIR_PLUS'	, "Know more");
+define('COMMENCER'		, "Start");
 //---------------------------------------------------------
 
 

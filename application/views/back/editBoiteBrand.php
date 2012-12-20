@@ -72,9 +72,10 @@
     <div class="alertUpload"></div>
     <script>
         var idBoite = "<?php echo $boite->idBoiteBrand; ?>";
+        var isBrand = true;
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script src="<?php echo base_url(); ?>assets/js/mapBoite.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/ajaxfileupload.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/shadowBox/shadowbox.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/uploadBoite.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/uploadBoiteBrand.js"></script>

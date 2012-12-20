@@ -100,6 +100,7 @@
     <div class="alertUpload"></div>
     <script>
         var idBoite = "<?php echo $boite->idBoite; ?>";
+        var isBrand = false;
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script src="<?php echo base_url(); ?>assets/js/mapBoite.js"></script>

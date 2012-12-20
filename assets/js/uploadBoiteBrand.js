@@ -12,13 +12,13 @@ $(document).ready(function(){
        $('#upload_file').submit(function(e) {
           e.preventDefault();
           $.ajaxFileUpload({
-             url         : baseUrl+'uploadController/upload_file/',
+             url         : baseUrl+'uploadController/upload_file_brand/',
              secureuri      :false,
              fileElementId  :'userfile',
              dataType    : 'json',
              data        : {
                 'title' : $('#title').val(),
-                'idBoite' : $('input[name=idBoite]').val()
+                'idBoite' : idBoite
              },
              success  : function (data, status)
              {
@@ -86,35 +86,8 @@ $(document).ready(function(){
         });
     }
 
-
-    $("#addContributor").submit(function(e){
-        e.preventDefault();
-          $.ajax({
-             url : baseUrl+'boiteController/addContributor/',
-             type: "POST",
-             dataType : 'json',
-             data: {
-                'email' : $('#emailContributor').val(),
-                'idBoite' : idBoite
-             },
-             success     : function (data)
-             {
-                if(data.status != 'error')
-                {
-                   $('#contributors').html('<p>Rechargement des fichiers</p>');
-                   showAlert(data.status, data.msg);
-                   refresh_contributors();
-                   $('#emailContributor').val('');
-                }else{
-                   showAlert(data.status, data.msg);
-                }
-             }
-          });
-          return false;
-    });
-
     function refresh_contributors(){
-        $.get(baseUrl+'boiteController/getContributorsByIdBoite/'+idBoite) // var idBoite se crée en php dans editBoite.php
+        $.get(baseUrl+'boiteController/getContributors/'+idBoite) // var idBoite se crée en php dans editBoite.php
          .success(function (data){
             $('#contributors').html(data);
          });

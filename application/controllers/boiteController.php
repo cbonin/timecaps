@@ -380,4 +380,20 @@ class boiteController extends CI_Controller {
 		$this->boiteBrandModel->deleteBoiteBrand($idBoiteBrand);
 		redirect(base_url().'boiteController');
 	}
+
+	function testCsv(){
+		$this->load->library('getcsv');
+		$this->load->library('email');
+
+	 	$user = $this->session->userdata('user_data');
+		$data = $this->getcsv->set_file_path(base_url()."files/test_email.csv")->get_array();
+
+		foreach ($data as $row) {
+			$this->email->from('no-reply@backwards.fr', $user['prenom']);
+			$this->email->to($row['email']); 
+			$this->email->subject($user['prenom'].' vous offre une capsule temporelle...');
+			$this->email->message($user['prenom'].' vous offre une capsule temporaire avec ce message : blablabla, venez la decouvrir ici');	
+			$this->email->send();
+		}
+	}
 }

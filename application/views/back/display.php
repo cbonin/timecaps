@@ -40,5 +40,3 @@ $(document).ready(function(){
 	Shadowbox.init();
 });
 </script>
-
-</body>

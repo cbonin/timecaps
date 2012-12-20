@@ -223,12 +223,16 @@ class boiteController extends CI_Controller {
 		$this->boiteModel->updateBoite($id, $data);
 	}
 
-	function addContributor($email, $idBoite){
-		echo $email;
+	function addContributor(){
+
+		$email = $this->input->post("email");
+      	$idBoite = $this->input->post("idBoite");
+
+
 		$this->load->model('userModel');
 		$this->load->model('boiteModel');
 		$contributeur = $this->userModel->getUser($email);
-		var_dump($contributeur);
+		$user = $this->session->userdata('user_data');
 		if(!empty($contributeur)){
 			$data = array(
 				'idBoite' => $idBoite,
@@ -239,15 +243,24 @@ class boiteController extends CI_Controller {
 			$this->load->library('email');
 			$this->email->from('no-reply@backwards.fr', $contributeur->prenom.' '.$contributeur->nom);
 			$this->email->to($contributeur->email); 
-			$this->email->subject($contributeur['prenom'].' '.$contributeur['nom'].' vous invite à créer une capsule temporelle...');
-			$this->email->message($contributeur['prenoms'].' '.$contributeur['nom']." vous invite à vréer une capsule temporaire connectez vous à Backwards pour l'aider à remplir sa boite");
+			$this->email->subject($user['prenom'].' '.$user['nom'].' vous invite à créer une capsule temporelle...');
+			$this->email->message($contributeur->prenom.' '.$contributeur->nom." vous invite à vréer une capsule temporaire connectez vous à Backwards pour l'aider à remplir sa boite");
 			$this->email->send();
+
+			$status = "success";
+			$msg = "Le contributeur à bien été ajouté";
 		}else{
 			// le contributeur n'existe pas dans la bdd pb a resoudre
-			echo 'pas de contributeur dans la bdd';
+			$status = "error";
+			$msg = "Cet utilisateur n'est pas inscrit";
 		}
+		echo json_encode(array('status' => $status, 'msg' => $msg));
+	}
 
-		redirect("boiteController");
+	function getContributorsByIdBoite($idBoite){
+		$this->load->model('boiteModel');
+		$contributors = $this->boiteModel->getAllContributors($idBoite);
+		$this->load->view('back/contributors', array('contributors' => $contributors));
 	}
 
 	function displayBoite($idBoite){

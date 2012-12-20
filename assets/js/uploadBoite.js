@@ -84,8 +84,35 @@ $(document).ready(function(){
         });
     }
 
+
+    $("#addContributor").submit(function(e){
+        e.preventDefault();
+          $.ajax({
+             url : baseUrl+'boiteController/addContributor/',
+             type: "POST",
+             dataType : 'json',
+             data: {
+                'email' : $('#emailContributor').val(),
+                'idBoite' : idBoite
+             },
+             success     : function (data)
+             {
+                if(data.status != 'error')
+                {
+                   $('#contributors').html('<p>Rechargement des fichiers</p>');
+                   showAlert(data.status, data.msg);
+                   refresh_contributors();
+                   $('#emailContributor').val('');
+                }else{
+                   showAlert(data.status, data.msg);
+                }
+             }
+          });
+          return false;
+    });
+
     function refresh_contributors(){
-        $.get(baseUrl+'boiteController/getContributors/'+idBoite) // var idBoite se crée en php dans editBoite.php
+        $.get(baseUrl+'boiteController/getContributorsByIdBoite/'+idBoite) // var idBoite se crée en php dans editBoite.php
          .success(function (data){
             $('#contributors').html(data);
          });

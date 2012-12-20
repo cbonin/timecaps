@@ -84,17 +84,10 @@
                 <h2 class="bandeau"><?php echo CONTRIBUTEURS; ?></h2>
                 <div class="boite-container">
                     <div id="contributors"></div>
-                    <p>
-                        <span class="num-contributeur">Contributeur n°1</span>
-                        <label for="email"><span class="picto-form"></span>Adresse e-mail : <span class="asterix">*</span></label>
-                        <input type="text" id="email" name="" />
-                    </p>
-                    <p>
-                        <span class="num-contributeur">Contributeur n°2</span>
-                        <label for="email"><span class="picto-form"></span>Adresse e-mail : <span class="asterix">*</span></label>
-                        <input type="text" id="email" name="" />
-                    </p>
-                    <p class="bouton-ajouter"><a href="#" title="Ajouter un contributeur" class="button">+ Ajouter</a></p>
+                        <form id="addContributor">
+                            <input type="text" id="emailContributor" name="emailContributor" placeholder="Nouveau contributeur"/>
+                            <input type="submit" value="Ajouter un contributeur" class="submit" />
+                        </form>
                 </div>
             </section>
 

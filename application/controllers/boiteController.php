@@ -241,6 +241,19 @@ class boiteController extends CI_Controller {
 		$this->load->view('template', $param);
 	}
 
+	function openBoiteBrand($idBoite){
+		$this->load->model("boiteBrandModel");
+		$boite = $this->boiteBrandModel->getBoiteBrand($idBoite);
+		
+		$param = array(
+			'userType' => 'back',
+			'mainContent' => 'radar',
+			'title' => 'Chercher la boite',
+			'boite' => $boite
+		);
+		$this->load->view('template', $param);
+	}
+
 	function openBoiteMobile($idBoite){
 		$this->load->model("boiteModel");
 		$boite = $this->boiteModel->getBoite($idBoite);
@@ -322,16 +335,14 @@ class boiteController extends CI_Controller {
 	}
 
 	function displayBoiteMobile($idBoite){
-		$this->load->model('boiteModel');
-		$boite = $this->boiteModel->getBoite($idBoite);
-		$contributeurs = $this->boiteModel->getAllContributors($idBoite);
+		$this->load->model('boiteBrandModel');
+		$boite = $this->boiteBrandModel->getBoiteBrand($idBoite);
 
 		$param = array(
 			'userType' => 'mobile',
 			'mainContent' => 'display',
 			'title' => $boite->nomBoite,
 			'boite' => $boite,
-			'contributeurs' => $contributeurs
 		);
 		$this->load->view('template', $param);
 	}
@@ -342,7 +353,7 @@ class boiteController extends CI_Controller {
 
 		$param = array(
 			'userType' => 'back',
-			'mainContent' => 'display',
+			'mainContent' => 'displayBrand',
 			'title' => $boite->nomBoite,
 			'boite' => $boite,
 		);

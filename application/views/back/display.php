@@ -1,12 +1,3 @@
-<html>
-<head>
-
-
-	<link rel="stylesheet" href="css/styles.css">
-</head>
-
-<body>
-
 <h1><?php echo $boite->nomBoite; ?></h1>
 <p><?php echo $boite->description; ?></p>
 <?php

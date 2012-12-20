@@ -53,6 +53,7 @@
                 }
 
             </script>
+            <script src="<?php echo base_url(); ?>assets/js/radar.js"></script>
 
 		<?php else: ?>
 			<p><center><img src="<?php echo base_url(); ?>/assets/css/img/Fin1.png" alt="Attnedre un peu" /></center></p>

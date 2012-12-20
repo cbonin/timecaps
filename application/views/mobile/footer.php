@@ -24,6 +24,5 @@
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.fitmaps.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/functionsMobile.js"></script>
 	<script src="<?php echo base_url(); ?>assets/js/facebookConnect.js"></script>
-	<script src="<?php echo base_url(); ?>assets/js/radar.js"></script>
 </body>
 </html>

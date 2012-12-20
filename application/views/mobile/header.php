@@ -37,9 +37,9 @@
             </div>
             <div id="connect">
             	<?php if(isLogged()): ?>
-                	<a href="<?php echo base_url(); ?>/userController/logout" title="deconnexion">Déconnexion</a>
+                	<a href="<?php echo base_url(); ?>userController/logout" title="deconnexion">Déconnexion</a>
                 <?php else: ?>
-                	<a href="<?php echo base_url(); ?>/userController/signInMobile" title="Connexion">Connexion</a>
+                	<a href="<?php echo base_url(); ?>userController/signInMobile" title="Connexion">Connexion</a>
             	<?php endif; ?>
             </div>
             <?php if(isLogged()):

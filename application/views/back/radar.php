@@ -12,6 +12,13 @@
             <div id='buttonContainer'></div>
             <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
             <script>
+                var isBoiteBrand = "<?php echo $boite->isBoiteBrand ?>";
+                var urlUpdate = 'boiteController/updateStatus/';
+                var urlDisplay = 'boiteController/displayBoite/';
+                if(isBoiteBrand == 1){
+                    urlUpdate = 'boiteController/updateStatusBrand/';
+                    urlDisplay = 'boiteController/displayBoiteBrand/';
+                }
                 var boiteId = "<?php if($boite->isBoiteBrand == 1){echo $boite->idBoiteBrand;}else{echo $boite->idBoite;} ?>";
                 var boiteX = Number("<?php echo $boite->coordX; ?>");
                 var boiteY = Number("<?php echo $boite->coordY; ?>");

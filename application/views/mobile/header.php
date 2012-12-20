@@ -45,7 +45,6 @@
             <?php if(isLogged()):
             $user = $this->session->userdata('user_data');
              ?>
-            	<p id="user"><?php echo $user['prenom']; ?> <?php echo $user['nom']; ?></p>
         	<?php endif; ?>
             <span id="ellipse"><img src="<?php echo base_url(); ?>assets/css/img/mobile/ellipse-header.png" alt="Ellipse head"/></span>
         </section>

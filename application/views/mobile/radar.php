@@ -1,8 +1,8 @@
 <?php if(isLogged()): 
 	if(!empty($boite)): 
 		if(boiteOpenable($boite)): ?>
+            <div id='buttonContainer'></div>
 			<div id="boiteMap"></div>
-			<div id='buttonContainer'></div>
 
 			<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
             <script>
@@ -13,6 +13,13 @@
                 var baseUrl = "<?php echo base_url(); ?>";
                 var mapOptions;
                 var map;
+                var isBoiteBrand = "<?php echo $boite->isBoiteBrand ?>";
+                var urlUpdate = 'boiteController/updateStatus/';
+                var urlDisplay = 'boiteController/displayBoite/';
+                if(isBoiteBrand == 1){
+                    urlUpdate = 'boiteController/updateStatusBrand/';
+                    urlDisplay = 'boiteController/displayBoiteBrand/';
+                }
                
                 var coord = new google.maps.LatLng(boiteX,boiteY);
 

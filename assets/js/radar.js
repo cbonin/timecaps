@@ -55,6 +55,7 @@ $(document).ready(function () {
                     button.setAttribute('id','unlocker');
                     var valeur = document.createTextNode('Déterrer la boîte');
                     button.appendChild(valeur);
+                    button.className = "submit deterer-btn";
                     document.getElementById('buttonContainer').appendChild(button);
                     button.onclick = function(){
                         window.location = baseUrl+urlDisplay+boiteId;

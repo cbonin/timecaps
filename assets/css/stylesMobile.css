@@ -163,6 +163,33 @@
 	#retour-haut {position: absolute;bottom:95%;right:4%;text-align:right;}
 	#retour-haut a {background:url(img/mobile/sprite.png) no-repeat -85px 0;display:block;width:25px;height:18px;z-index:12;position:absolute;bottom:-8px;right:28px;}
 
+	.submit {border:1px solid #2e8d8d;font-size: 13px;line-height: 1;display: inline-block;padding:5px 10px;-webkit-border-radius: 3px;border-radius: 3px; color: #FFF;
+    	background: #389a9a; /* Old browsers */
+		background: -moz-linear-gradient(top, #389a9a 20%, #2e8d8d 80%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#389a9a), color-stop(80%,#2e8d8d)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #389a9a 20%,#2e8d8d 80%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #389a9a 20%,#2e8d8d 80%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top, #389a9a 20%,#2e8d8d 80%); /* IE10+ */
+		background: linear-gradient(to bottom, #389a9a 20%,#2e8d8d 80%); /* W3C */
+		margin: 0 auto; width: auto;
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#389a9a', endColorstr='#2e8d8d',GradientType=0 ); /* IE6-9 */}
+.submit:hover {background: #2e8d8d; /* Old browsers */
+	background: -moz-linear-gradient(top, #2e8d8d 20%, #389a9a 80%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#2e8d8d), color-stop(80%,#389a9a)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #2e8d8d 20%,#389a9a 80%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #2e8d8d 20%,#389a9a 80%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #2e8d8d 20%,#389a9a 80%); /* IE10+ */
+	background: linear-gradient(to bottom, #2e8d8d 20%,#389a9a 80%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2e8d8d', endColorstr='#389a9a',GradientType=0 ); /* IE6-9 */
+	cursor: pointer;
+}
+.submit:active {color:#303030;}
+
+.deterer-btn{
+	margin: 10px auto;
+	display: block;
+}
+
     /* MEDIA QUERIES
 -------------------------------------------------- 
 	@media screen and (-webkit-min-device-pixel-ratio: 2), screen and (max--moz-device-pixel-ratio: 2),

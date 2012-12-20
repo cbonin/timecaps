@@ -437,4 +437,26 @@ class boiteController extends CI_Controller {
 			*/
 		}
 	}
+
+
+	function unlockBrand($code){
+		$this->load->model('boiteBrandModel');
+		$this->load->model('userBrandModel');
+		$pool = $this->boiteBrandModel->getPool($code);
+		$userBrand = $this->userBrandModel->getUserBrand($pool->idUserBrand);
+		$boiteBrand = $this->boiteBrandModel->getBoiteBrand($pool->idBoiteBrand);
+		$user = $this->session->userdata('user_data');
+		var_dump($pool);
+		if(sizeof($pool) > 0){
+			$param = array(
+				'userType' => 'back',
+				'mainContent' => 'radar',
+				'title' => 'Ouvrir la boite '.$user['prenom'],
+				'userBrand' => $userBrand,
+				'boiteBrand' => $boiteBrand
+			);
+		}
+		$this->load->view('template', $param);
+
+	}
 }

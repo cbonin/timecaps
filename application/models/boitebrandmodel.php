@@ -46,4 +46,11 @@ class boiteBrandModel extends CI_Model
 		$this->db->delete('boiteBrand');
 	}
 
+	function getPool($code)
+	{
+		return $this->db->where("code", $code)
+			->get('pool')
+			->row();
+	}
+
 }

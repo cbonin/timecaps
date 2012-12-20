@@ -18,22 +18,22 @@ class boiteController extends CI_Controller {
 		
 		$user = $this->session->userdata('user_data');
 
-
 		if($user['isBrand']==0){
 			$this->load->model("boiteModel");
 			$param = array(
 				'userType' => 'back',
-				'mainContent' => 'mesBoitesBrand',
+				'mainContent' => 'mesBoites',
 				'title' => 'Mesboites',
 				'boites' => $this->boiteModel->getBoiteByUser($user['idUser']),
 				'boitesContributor' => $this->boiteModel->getMyBoiteContributor($user['idUser']),
 				'boitesReceiver' => $this->boiteModel->getMyReceiverBoite($user['idUser'])
 			);
 		}else{
+			echo 'brand';
 			$this->load->model("boiteBrandModel");
 			$param = array(
 				'userType' => 'back',
-				'mainContent' => 'mesBoites',
+				'mainContent' => 'mesBoitesBrand',
 				'title' => 'Mesboites',
 				'boites' => $this->boiteBrandModel->getBoiteBrandByUser($user['idUser']),
 			);
@@ -358,6 +358,8 @@ class boiteController extends CI_Controller {
 			}
 			else  //si 	le formulaire à correctement été rempli
 			{
+				echo "y'a de l'idée";
+				die();
 				$data = array(
 				'nomBoite' => $this->input->post('nomBoite'),
 				'coordX' => $this->input->post('coordX'),

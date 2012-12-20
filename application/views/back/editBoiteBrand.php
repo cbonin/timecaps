@@ -3,7 +3,7 @@
     <div>
         <h2>Informations sur la boite</h2>
     <?php
-    echo form_open('boiteController/update/'.$boite->idBoiteBrand); ?>
+    echo form_open('boiteController/updateBoiteBrand/'.$boite->idBoiteBrand); ?>
 
         <input type="hidden" name="coordX" value="<?php echo $boite->coordX; ?>" />
         <input type="hidden" name="coordY" value="<?php echo $boite->coordY; ?>" />

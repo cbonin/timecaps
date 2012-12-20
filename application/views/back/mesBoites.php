@@ -84,5 +84,18 @@
 				</section>
 			</section>
 
+<script src="<?php echo base_url(); ?>/assets/js/redirection-mobile.js"></script>
+<script>
+    FB.init({
+        appId  : '303205766457764',
+        status : true, // verifie le statut de la connexion
+        cookie : true, // active les cookies pour que le serveur puisse accéder à la session
+        xfbml  : true  // active le XFBML (HTML de Facebook)
+    });
+    SA.redirection_mobile ({
+        tablet_redirection : "true",
+        mobile_url : baseUrl+"boiteController/mobile",
+    });
+</script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/scrollbar/jquery.mousewheel.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assetsjs/scrollbar/jquery.mCustomScrollbar.js"></script>

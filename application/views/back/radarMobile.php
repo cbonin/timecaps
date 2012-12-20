@@ -1,4 +1,41 @@
-<?php if(!isLogged()): ?>
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Titre boîte ⎪ Backwards</title>
+    <meta name="description" content="Bienvenue sur Backwards. Venez découvrir ">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/stylesMobile.css">
+    <script type="text/javascript" language="javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+</head>
+<body>
+
+<?php if(!isLogged()): 
+    $user = $this->session->userdata('user_data');
+?>
+
+    <header>
+        <section>
+            <div id="logo">
+                <a href="index.php"><img src="<?php echo base_url(); ?>assets/css/img/logo.png" alt="Logo Backwards" title="Backwards" /></a>
+            </div>
+            <div id="connect">
+                <a href="#" title="Connexion">Déconnexion</a>
+            </div>
+            <p id="user"><?php echo $user['prenom']; ?> <?php echo $user['nom']; ?></p>
+            <span id="ellipse"><img src="<?php echo base_url(); ?>assets/css/img/ellipse-header.png" alt="Ellipse head"/></span>
+        </section>
+    </header>
+
+
+
     <p>Vous devez être connecté pour voir le contenu de la boite</p>
 <?php else: 
     if(!empty($boite)):

@@ -1,6 +1,6 @@
 <? echo validation_errors(); ?>
     <section id="edit-boite">
-        <form method="POST" action="<?php echo base_url(); ?>boiteController/updateBoiteBrand/<?php echo $boite->idBoiteBrand; ?>">
+        <form method="POST" action="<?php echo base_url(); ?>boiteController/updateBoiteBrand/<?php echo $boite->idBoiteBrand; ?>"  enctype="multipart/form-data">
             <div id="button-ribbon">
                 <h1 class="ribbon"><?php echo $boite->nomBoite;?></h1>
                 <a href="<?php echo base_url(); ?>/boiteController" title="Retour à Mes Boîtes" class="button retour"><?php echo BTN_RETOUR; ?></a>
@@ -13,8 +13,8 @@
                         <h2 class="bandeau"><?php echo DESTINATAIRE;?></h2>
                         <div class="boite-container">
                             <p class="left">
-                                <label for="email"><span class="picto-form"></span><?php echo EMAIL;?><span class="asterix">*</span></label>
-                                <input type="text" id="email" name="emailRecever" value="<?php echo 'j@gmail.com' ?>" />
+                                <label for="mailing"><span class="picto-form"></span><?php echo 'mailing list'; ?><span class="asterix">*</span></label>
+                                <input type="file" name="mailing" id="mailing" size="20" />
                             </p>
                         </div>
                     </section>

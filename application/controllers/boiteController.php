@@ -29,7 +29,6 @@ class boiteController extends CI_Controller {
 				'boitesReceiver' => $this->boiteModel->getMyReceiverBoite($user['idUser'])
 			);
 		}else{
-			echo 'brand';
 			$this->load->model("boiteBrandModel");
 			$param = array(
 				'userType' => 'back',
@@ -354,9 +353,8 @@ class boiteController extends CI_Controller {
 			$this->form_validation->set_rules('coordY', 'Coordonées Y', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('description', 'Description', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('targetDate', 'Date d\'ouverture potentielle', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('emailRecever', 'Adresse mail du destinataire', 'trim|required|xss_clean|valid_email');
 
-			if ($this->form_validation->run() == FALSE){
+			if ($this->form_validation->run() == FALSE || $_FILES['mailing']['error'] == 4){
 				
 				$param = array(
 					'userType' => 'back',
@@ -369,14 +367,32 @@ class boiteController extends CI_Controller {
 			else  //si 	le formulaire à correctement été rempli
 			{
 				$data = array(
-				'nomBoite' => $this->input->post('nomBoite'),
-				'coordX' => $this->input->post('coordX'),
-				'coordY' => $this->input->post('coordY'),
-				'description' => $this->input->post('description'),
-				'targetDate' => date("Y-m-d", strtotime($this->input->post('targetDate'))),
-				'idOwner' => $user['idUser'],
+					'nomBoite' => $this->input->post('nomBoite'),
+					'coordX' => $this->input->post('coordX'),
+					'coordY' => $this->input->post('coordY'),
+					'description' => $this->input->post('description'),
+					'targetDate' => date("Y-m-d", strtotime($this->input->post('targetDate'))),
+					'idOwner' => $user['idUser'],
 				);
 				$this->boiteBrandModel->updateBoiteBrand($idBoiteBrand, $data);
+				$file_element_name = 'mailing';
+				$config['upload_path'] = './files/temp';
+		        $config['allowed_types'] = 'csv';
+		        $config['max_size']  = 1024 * 20;
+		        $config['encrypt_name'] = FALSE;
+		        $this->load->library('upload', $config);
+		        if (!$this->upload->do_upload($file_element_name)) {
+		            $status = 'error';
+		            $msg = $this->upload->display_errors('', '');
+		        }
+         		else
+         		{
+         			$data = $this->upload->data();
+         			var_dump($data);
+         			$brandTab = $this->parserCsv($data['full_path']);
+         			$this->linkPool($brandTab, $idBoiteBrand);
+         			unlink($data['full_path']);
+         		}
 				redirect("boiteController");
 			}
 		}
@@ -386,21 +402,39 @@ class boiteController extends CI_Controller {
 		$this->load->model("boiteBrandModel");
 		$this->boiteBrandModel->deleteBoiteBrand($idBoiteBrand);
 		redirect(base_url().'boiteController');
-	}
+	}		
 
-	function testCsv(){
+	function parserCsv($pathCsv){
 		$this->load->library('getcsv');
 		$this->load->library('email');
+		$this->load->model("userBrandModel");
 
 	 	$user = $this->session->userdata('user_data');
 		$data = $this->getcsv->set_file_path(base_url()."files/test_email.csv")->get_array();
+		return $data;
+	}
 
-		foreach ($data as $row) {
+	function linkPool($brandTab, $idBoiteBrand){
+		$this->load->model('boiteBrandModel');
+		$data = array(
+			'idBoiteBrand' => $idBoiteBrand,
+			'code' => '',
+			'idUserBrand' => ''
+		);
+		foreach ($brandTab as $row) {
+			$userBrand = $this->userBrandModel->getUserBrand($row['email']);
+			$data['idUserBrand'] = $userBrand->idUser;
+			$data['code'] = substr($userBrand->prenom, 0, 2).$userBrand->idUser;
+			$this->boiteBrandModel->addPool($data);
+
+
+			/*
 			$this->email->from('no-reply@backwards.fr', $user['prenom']);
 			$this->email->to($row['email']); 
 			$this->email->subject($user['prenom'].' vous offre une capsule temporelle...');
 			$this->email->message($user['prenom'].' vous offre une capsule temporaire avec ce message : blablabla, venez la decouvrir ici');	
 			$this->email->send();
+			*/
 		}
 	}
 }

@@ -1,6 +1,6 @@
 <?php if(!isLogged()): ?>
     <p>Vous devez être connecté pour voir le contenu de la boite</p>
-<?php else: 
+<?php else:
     if(!empty($boite)):
         if(boiteOpenable($boite)): ?>
 
@@ -12,17 +12,14 @@
             <div id='buttonContainer'></div>
             <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
             <script>
-                var boiteId = "<?php echo $boite->idBoite; ?>";
+                var boiteId = "<?php if($boite->isBoiteBrand == 1){echo $boite->idBoiteBrand;}else{echo $boite->idBoite;} ?>";
                 var boiteX = Number("<?php echo $boite->coordX; ?>");
                 var boiteY = Number("<?php echo $boite->coordY; ?>");
                 var boiteDate = "<?php echo str_replace('-', '', $boite->targetDate); ?>";
                 var baseUrl = "<?php echo base_url(); ?>";
                 var mapOptions;
                 var map;
-                /*
-                boiteX = 50;
-                boiteY = 3;
-                */
+               
                 var coord = new google.maps.LatLng(boiteX,boiteY);
 
                 mapOptions = {
@@ -53,6 +50,7 @@
                     });
                     return marker;
                 }
+
             </script>
         <?php else: ?>
             <p><img src="<?php echo base_url(); ?>/assets/css/img/Fin1.png" alt="Attnedre un peu" /></p>
@@ -62,9 +60,12 @@
         <p>Cette boite n'existe pas...</p>
     <?php endif; 
 endif; ?>
+
 <script src="http://connect.facebook.net/fr_FR/all.js"></script>
 <script src="<?php echo base_url(); ?>/assets/js/redirection-mobile.js"></script>
+
 <script>
+
     FB.init({
         appId  : '303205766457764',
         status : true, // verifie le statut de la connexion
@@ -75,6 +76,8 @@ endif; ?>
         tablet_redirection : "true",
         mobile_url : baseUrl+"boiteController/openBoiteMobile/<?php echo $boite->idBoite; ?>",
     });
+
 </script>
+
 <script src="<?php echo base_url(); ?>assets/js/facebookConnect.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/radar.js"></script>

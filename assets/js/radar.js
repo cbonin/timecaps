@@ -50,7 +50,8 @@ $(document).ready(function () {
         if(Number((boiteX-latitude)*(boiteX-latitude) + (boiteY-longitude)*(boiteY-longitude)) < rayon && (today >= boiteDate)){
             navigator.geolocation.clearWatch(watchId);
             $.ajax({
-                url: baseUrl+'boiteController/updateStatus/'+boiteId,
+
+                url: baseUrl+"<? if($boite->isBoiteBrand == 1){echo 'boiteController/updateStatusBrand/';}else{echo 'boiteController/updateStatus/';} ?>"+boiteId,
                 cache: false,
                 success: function(data){
                     var button = document.createElement('button');

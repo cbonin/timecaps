@@ -379,7 +379,7 @@ class boiteController extends CI_Controller {
 			$this->form_validation->set_rules('description', 'Description', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('targetDate', 'Date d\'ouverture potentielle', 'trim|required|xss_clean');
 
-			if ($this->form_validation->run() == FALSE || $_FILES['mailing']['error'] == 4){
+			if ($this->form_validation->run() == FALSE ){
 				
 				$param = array(
 					'userType' => 'back',
@@ -471,7 +471,7 @@ class boiteController extends CI_Controller {
 		$userBrand = $this->userBrandModel->getUserBrand($pool->idUserBrand);
 		$boiteBrand = $this->boiteBrandModel->getBoiteBrand($pool->idBoiteBrand);
 		$user = $this->session->userdata('user_data');
-		var_dump($pool);
+		
 		if(sizeof($pool) > 0){
 			$param = array(
 				'userType' => 'back',

@@ -7,7 +7,9 @@ class boiteController extends CI_Controller {
 		parent::__construct();
 		if($this->uri->segment(2, 0) != "displayBoite"){
 			if(!isLogged()){
-				redirect("userController/signIn");
+				if(!isLoggedBrand()){
+					redirect("userController/signIn");
+				}
 			}
 		}
 		includeLang();
@@ -521,25 +523,38 @@ class boiteController extends CI_Controller {
 		}
 	}
 
+	function unlockBrand(){
+		$this->load->library('form_validation');
 
-	function unlockBrand($code){
-		$this->load->model('boiteBrandModel');
-		$this->load->model('userBrandModel');
-		$pool = $this->boiteBrandModel->getPool($code);
-		$userBrand = $this->userBrandModel->getUserBrand($pool->idUserBrand);
-		$boiteBrand = $this->boiteBrandModel->getBoiteBrand($pool->idBoiteBrand);
-		$user = $this->session->userdata('user_data');
-		
-		if(sizeof($pool) > 0){
+		$this->form_validation->set_rules('code', 'Code', 'trim|required|xss_clean|max_length[50]');
+
+		if ($this->form_validation->run() == FALSE ){
 			$param = array(
 				'userType' => 'back',
-				'mainContent' => 'radar',
-				'title' => 'Ouvrir la boite '.$user['prenom'],
-				'userBrand' => $userBrand,
-				'boite' => $boiteBrand
+				'mainContent' => 'unlocker',
+				'title' => 'Boite sponsorisée',
+				'code' => $this->input->post('code')
 			);
+		}else{
+
+			$this->load->model('boiteBrandModel');
+			$this->load->model('userBrandModel');
+			$pool = $this->boiteBrandModel->getPool( $this->input->post('code'));
+			$userBrand = $this->userBrandModel->getUserBrand($pool->idUserBrand);
+			$boiteBrand = $this->boiteBrandModel->getBoiteBrand($pool->idBoiteBrand);
+			$user = $this->session->userdata('user_data');
+			
+			if(sizeof($pool) > 0){
+				$param = array(
+					'userType' => 'back',
+					'mainContent' => 'radar',
+					'title' => 'Ouvrir la boite '.$user['prenom'],
+					'userBrand' => $userBrand,
+					'boite' => $boiteBrand
+				);
+			}
 		}
 		$this->load->view('template', $param);
-
 	}
+
 }

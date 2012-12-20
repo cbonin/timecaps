@@ -11,7 +11,22 @@ if ( ! function_exists('isLogged')){
     	if(!empty($user)){
     		$logged = true;
     	}
+
     	return $logged;
+    }
+}
+
+if ( ! function_exists('isLoggedBrand')){
+    function isLoggedBrand(){
+        $ci=& get_instance();
+
+        $logged = false;
+
+        if($ci->uri->segment(2, 0) != "displayBoite"){
+            $logged = true;
+        }
+        
+        return $logged;
     }
 }
 

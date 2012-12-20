@@ -241,6 +241,19 @@ class boiteController extends CI_Controller {
 		$this->load->view('template', $param);
 	}
 
+	function openBoiteMobile($idBoite){
+		$this->load->model("boiteModel");
+		$boite = $this->boiteModel->getBoite($idBoite);
+		
+		$param = array(
+			'userType' => 'mobile',
+			'mainContent' => 'radar',
+			'title' => 'Chercher la boite',
+			'boite' => $boite
+		);
+		$this->load->view('template', $param);
+	}
+
 	function updateStatus($id){
 		$this->load->model("boiteModel");
 		$data = array('statut' => 2);

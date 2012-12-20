@@ -83,6 +83,7 @@
             <section id="contributeurs">
                 <h2 class="bandeau"><?php echo CONTRIBUTEURS; ?></h2>
                 <div class="boite-container">
+                    <div id="contributors"></div>
                     <p>
                         <span class="num-contributeur">Contributeur n°1</span>
                         <label for="email"><span class="picto-form"></span>Adresse e-mail : <span class="asterix">*</span></label>

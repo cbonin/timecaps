@@ -5,6 +5,7 @@ $(document).ready(function(){
 
   // UPLOAD VIA AJAX
 	refresh_files();
+  refresh_contributors();
     $(function() {
        $('#upload_file').submit(function(e) {
           e.preventDefault();
@@ -81,5 +82,12 @@ $(document).ready(function(){
         $(".alertUpload").slideToggle().delay(2000).fadeOut(500, function(){
             $(this).removeClass(status);
         });
+    }
+
+    function refresh_contributors(){
+        $.get(baseUrl+'boiteController/getContributors/'+idBoite) // var idBoite se crée en php dans editBoite.php
+         .success(function (data){
+            $('#contributors').html(data);
+         });
     }
 });

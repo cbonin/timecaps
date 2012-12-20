@@ -175,14 +175,6 @@ class boiteController extends CI_Controller {
 			if($emailContributor != ''){
 				// Ajout des relations dans la bdd
 				$this->addContributor($emailContributor, $id);
-
-				// Envoi d'un mail au contributeur
-				$this->load->library('email');
-				$this->email->from('no-reply@backwards.fr', $user->prenom.' '.$user->nom);
-				$this->email->to($emailContributor); 
-				$this->email->subject($user['prenom'].' '.$user['nom'].' vous invite à créer une capsule temporelle...');
-				$this->email->message($user['prenom'].' '.$user['nom']." vous invite à vréer une capsule temporaire connectez vous à Backwards pour l'aider à remplir sa boite");
-				$this->email->send();
 			}
 
 				redirect("boiteController");
@@ -243,6 +235,13 @@ class boiteController extends CI_Controller {
 				'idUser' => $contributeur->idUser
 			);
 			$this->boiteModel->addContributor($data);
+			// Envoi d'un mail au contributeur
+			$this->load->library('email');
+			$this->email->from('no-reply@backwards.fr', $contributeur->prenom.' '.$contributeur->nom);
+			$this->email->to($contributeur->email); 
+			$this->email->subject($contributeur['prenom'].' '.$contributeur['nom'].' vous invite à créer une capsule temporelle...');
+			$this->email->message($contributeur['prenoms'].' '.$contributeur['nom']." vous invite à vréer une capsule temporaire connectez vous à Backwards pour l'aider à remplir sa boite");
+			$this->email->send();
 		}else{
 			// le contributeur n'existe pas dans la bdd pb a resoudre
 			echo 'pas de contributeur dans la bdd';

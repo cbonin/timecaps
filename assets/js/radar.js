@@ -51,7 +51,7 @@ $(document).ready(function () {
             navigator.geolocation.clearWatch(watchId);
             $.ajax({
 
-                url: baseUrl+"<? if($boite->isBoiteBrand == 1){echo 'boiteController/updateStatusBrand/';}else{echo 'boiteController/updateStatus/';} ?>"+boiteId,
+                url: baseUrl+"<php? if($boite->isBoiteBrand == 1){echo 'boiteController/updateStatusBrand/';}else{echo 'boiteController/updateStatus/';} ?>"+boiteId,  
                 cache: false,
                 success: function(data){
                     var button = document.createElement('button');
@@ -61,7 +61,7 @@ $(document).ready(function () {
                     button.appendChild(valeur);
                     document.getElementById('buttonContainer').appendChild(button);
                     button.onclick = function(){
-                        window.location = baseUrl+'boiteController/displayBoite/'+boiteId;
+                        window.location = baseUrl+"<? if($boite->isBoiteBrand == 1){echo 'boiteController/displayBoiteBrand/';}else{echo 'boiteController/displayBoite/';} ?>"+boiteId;
                         return false;
                     };
                     console.log('fin success');

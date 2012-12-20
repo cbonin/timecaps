@@ -74,7 +74,7 @@ endif; ?>
     });
     SA.redirection_mobile ({
         tablet_redirection : "true",
-        mobile_url : baseUrl+"boiteController/openBoiteMobile/<?php echo $boite->idBoite; ?>",
+        mobile_url : baseUrl+"boiteController/openBoiteMobile/"+boiteId,
     });
 
 </script>

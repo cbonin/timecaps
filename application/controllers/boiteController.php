@@ -260,6 +260,12 @@ class boiteController extends CI_Controller {
 		$this->boiteModel->updateBoite($id, $data);
 	}
 
+	function updateStatusBrand($id){
+		$this->load->model("boiteBrandModel");
+		$data = array('statut' => 2);
+		$this->boiteBrandModel->updateBoiteBrand($id, $data);
+	}
+
 	function addContributor(){
 
 		$email = $this->input->post("email");
@@ -311,6 +317,19 @@ class boiteController extends CI_Controller {
 			'title' => $boite->nomBoite,
 			'boite' => $boite,
 			'contributeurs' => $contributeurs
+		);
+		$this->load->view('template', $param);
+	}
+
+	function displayBoiteBrand($idBoite){
+		$this->load->model('boiteBrandModel');
+		$boite = $this->boiteBrandModel->getBoiteBrand($idBoite);
+
+		$param = array(
+			'userType' => 'back',
+			'mainContent' => 'display',
+			'title' => $boite->nomBoite,
+			'boite' => $boite,
 		);
 		$this->load->view('template', $param);
 	}

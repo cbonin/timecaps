@@ -1,90 +1,87 @@
 <?php
-if (isset($files) && count($files))
-{
-   ?>
+if (isset($files) && count($files)):
 
-      <h2>Images</h2>
-      <ul>
-         <?php
-         foreach ($files['image'] as $file)
-         {
-            ?>
-            <li class="image_wrap">
+   if(!empty($files['image'])): ?>
+      <div id="photos">
+         <div class="scroller">
+            <?php foreach ($files['image'] as $file): ?>
+            <div class="item">
+               <a href="<?php echo base_url().'files/'.$file->idBoite.'/'.$file->nom; ?>" rel="shadowbox[images]" title="<?php echo $file->nom; ?>">
+                  <img src="<?php echo base_url().'files/'.$file->idBoite.'/thumb/'.$file->nom; ?>" alt="<?php echo $file->nom; ?>"/>
+               </a>
+                  <span class="title-item"><?php echo $file->titre; ?></span>
+                  <?php
+                  foreach ($depots as $d) :
+                     if (in_array($file->idFile, (array)$d)) : ?>  
+                        <a href="#" class="delete-contenu delete_file_link" title="Supprimer"></a>
+                  <?php endif; endforeach; ?>
                
-               <?php
-               foreach ($depots as $d) :
-                  if (in_array($file->idFile, (array)$d)) : ?>  
-                     <a href="#" class="delete_file_link" data-file_id="<?php echo $file->idFile?>" data-boite-id="<?php echo $file->idBoite; ?>">Supprimer</a>
-                  <?php endif;
-               endforeach; ?>
-               
-               <strong><?php echo $file->titre; ?></strong>
-               <br />
-               <a href="<?php echo base_url().'files/'.$file->idBoite.'/'.$file->nom; ?>" rel="shadowbox[images]" title="<?php echo $file->nom; ?>"><img src="<?php echo base_url().'files/'.$file->idBoite.'/thumb/'.$file->nom; ?>" alt="<?php echo $file->nom; ?>" /></a>
-            </li>
-            <?php
-         }
-         ?>
-      </ul>
+            </div>
+         <?php endforeach; ?>
+         </div>
+      </div>
+   <?php endif;
 
-      <h2>Texte</h2>
-      <ul>
-         <?php
-         foreach ($files['text'] as $file)
-         {
-            ?>
-            <li class="image_wrap">
-               <a href="#" class="delete_file_link" data-file_id="<?php echo $file->idFile?>" data-boite-id="<?php echo $file->idBoite; ?>">Supprimer</a>
-               <strong><?php echo $file->titre; ?></strong>
-               <br />
-               <a href="<?php echo base_url().'files/'.$file->idBoite.'/'.$file->nom; ?>" title="<?php echo $file->nom; ?>"><?php echo $file->nom; ?></a>
-            </li>
-            <?php
-         }
-         ?>
-      </ul>
+   if(!empty($files['text'])): ?>
+      <div id="textes">
+         <div class="scroller">
+            <?php foreach ($files['text'] as $file): ?>
+               <div class="item">
+                  <a href="#" title="">
+                     <img src="<?php echo base_url(); ?>assets/css/img/dashboard/texte.jpg" alt=""/>
+                     <span class="title-item"><?php echo $file->titre; ?></span>
+                     <?php
+                     foreach ($depots as $d) :
+                        if (in_array($file->idFile, (array)$d)) : ?>  
+                           <a href="#" class="delete-contenu delete_file_link" title="Supprimer"></a>
+                     <?php endif; endforeach; ?>
+                  </a>
+               </div>
+            <?php endforeach; ?>
+         </div>
+      </div>
+   <?php endif;
 
-      <h2>Sons</h2>
-      <ul>
-         <?php
-         foreach ($files['son'] as $file)
-         {
-            ?>
-            <li class="image_wrap">
-               <a href="#" class="delete_file_link" data-file_id="<?php echo $file->idFile?>" data-boite-id="<?php echo $file->idBoite; ?>">Supprimer</a>
-               <strong><?php echo $file->titre; ?></strong>
-               <br />
-               <a href="<?php echo base_url().'files/'.$file->idBoite.'/'.$file->nom; ?>" title="<?php echo $file->nom; ?>"><?php echo $file->nom; ?></a>
-            </li>
-            <?php
-         }
-         ?>
-      </ul>
+   if(!empty($files['video'])): ?>
+      <div id="videos">
+         <div class="scroller">
+            <?php foreach ($files['video'] as $file): ?>
+               <div class="item">
+                  <a href="#" title="">
+                     <img src="<?php echo base_url(); ?>assets/css/img/dashboard/video.jpg" alt=""/>
+                     <span class="title-item"><?php echo $file->titre; ?></span>
+                     <?php
+                     foreach ($depots as $d) :
+                        if (in_array($file->idFile, (array)$d)) : ?>  
+                           <a href="#" class="delete-contenu delete_file_link" title="Supprimer"></a>
+                     <?php endif; endforeach; ?>
+                  </a>
+               </div>
+            <?php endforeach; ?>
+         </div>
+      </div>
+   <?php endif;
 
-      <h2>Vidéos</h2>
-      <ul>
-         <?php
-         foreach ($files['video'] as $file)
-         {
-            ?>
-            <li class="image_wrap">
-               <a href="#" class="delete_file_link" data-file_id="<?php echo $file->idFile?>" data-boite-id="<?php echo $file->idBoite; ?>">Supprimer</a>
-               <strong><?php echo $file->titre; ?></strong>
-               <br />
-               <a href="<?php echo base_url().'files/'.$file->idBoite.'/'.$file->nom; ?>" title="<?php echo $file->nom; ?>"><?php echo $file->nom; ?></a>
-            </li>
-            <?php
-         }
-         ?>
-      </ul>
+   if(!empty($files['son'])): ?>
+      <div id="sons">
+         <div class="scroller">
+            <?php foreach ($files['son'] as $file): ?>
+               <div class="item">
+                  <a href="#" title="">
+                     <img src="<?php echo base_url(); ?>assets/css/img/dashboard/son.jpg" alt=""/>
+                     <span class="title-item"><?php echo $file->titre; ?></span>
+                     <?php
+                     foreach ($depots as $d) :
+                        if (in_array($file->idFile, (array)$d)) : ?>  
+                           <a href="#" class="delete-contenu delete_file_link" title="Supprimer"></a>
+                     <?php endif; endforeach; ?>
+                  </a>
+               </div>
+            <?php endforeach; ?>
+         </div>
+      </div>
+   <?php endif; ?>
 
-
-   </form>
-   <?php
-}
-else
-{
-   ?>
-   <p>Aucun fichier pour le moment</p>
-   <?php
-}
+<?php else: 
+   echo "<p>".NO_FILES."</p>";
+endif; ?>

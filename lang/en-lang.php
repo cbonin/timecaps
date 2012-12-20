@@ -50,6 +50,7 @@ define('BOITES_OUVERTES'	, "Discovered boxes");
 define('NO_BOITES'			, "You didn't created any box yet.");
 define('NO_BC'				, "You're not contributing to any box.");
 define('NO_RECEIVER'		, "You don't got any box yet.");
+define('NO_FILES'			, "No file uploaded yet.");
 //---------------------------------------------------------
 
 

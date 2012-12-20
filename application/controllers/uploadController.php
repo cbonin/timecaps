@@ -79,7 +79,7 @@ class uploadController extends CI_Controller
             );
 
             $depositeur = $this->session->userdata('user_data');
-            $depositeur = intval($depositeur->idUser);
+            $depositeur = intval($depositeur['idUser']);
             $depositer = array(
                'idBoite' => $dirName,
                'idDepositeur' => $depositeur

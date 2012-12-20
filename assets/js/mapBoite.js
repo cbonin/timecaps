@@ -68,9 +68,9 @@ $(document).ready(function(){
             center: latLng,
             radius: 25,
             map: map,
-            fillColor: 'red',
+            fillColor: '#2e8d8d',
             fillOpacity: 0.5,
-            strokeColor: 'blue',
+            strokeColor: '#288182',
             strokeOpacity: 0.6
         });
 

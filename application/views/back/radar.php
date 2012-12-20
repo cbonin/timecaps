@@ -81,7 +81,7 @@ endif; ?>
     });
     SA.redirection_mobile ({
         tablet_redirection : "true",
-        mobile_url : baseUrl+"boiteController/openBoiteMobile/"+boiteId,
+        mobile_url : str_replace("http://", "", baseUrl)+"boiteController/openBoiteMobile/"+boiteId,
     });
 
 </script>

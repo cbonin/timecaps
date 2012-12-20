@@ -21,6 +21,7 @@
 	<link rel="shortcut icon" type="image/png" href="<?php echo base_url(); ?>assets/css/img/favicon.png" />
 	<link href="<?php echo base_url(); ?>assets/js/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="http://connect.facebook.net/fr_FR/all.js"></script>
   	<script>
 		var baseUrl = "<?php echo base_url(); ?>";
 		var connected = <?php if(isLogged()){echo "true";}else{echo "false";} ?>;

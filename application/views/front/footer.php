@@ -76,7 +76,6 @@
 	    $("input[name=targetDate]").datepicker();
 	});
 	</script>
-	<script src="http://connect.facebook.net/fr_FR/all.js"></script>
 		<script>
 		    FB.init({
 		        appId  : '303205766457764',

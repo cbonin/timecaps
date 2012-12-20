@@ -20,8 +20,6 @@ $(document).ready(function () {
 
     // L'utilisateur doit posséder la geolocalisation
     if (navigator.geolocation){
-        var spanCurrent = document.getElementById('currentPosition');
-        document.getElementById('targetPosition').innerHTML = boiteX + ' ' +   boiteY;
         var watchId = navigator.geolocation.watchPosition(checkPosition, errorCallback, {enableHighAccuracy : true});
     }else{
         x.innerHTML="La géolocalisation n'est pas disponible sur votre navigateur.";
@@ -44,9 +42,7 @@ $(document).ready(function () {
 
         //distance entre 2 points AB = \sqrt{(x_B-x_A)^2 + (y_B-y_A)^2}
         console.log(Number((boiteX-latitude)*(boiteX-latitude) + (boiteY-longitude)*(boiteY-longitude)));
-
-
-        spanCurrent.innerHTML = position.coords.latitude + ' ' + position.coords.longitude;
+        
         if(Number((boiteX-latitude)*(boiteX-latitude) + (boiteY-longitude)*(boiteY-longitude)) < rayon && (today >= boiteDate)){
             navigator.geolocation.clearWatch(watchId);
             $.ajax({

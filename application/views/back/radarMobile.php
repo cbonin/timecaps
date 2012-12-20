@@ -18,7 +18,7 @@
 <body>
 
 <?php if(!isLogged()): 
-    $user = $this->session->userdata('user_data');
+    
 ?>
 
     <header>

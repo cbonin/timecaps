@@ -40,6 +40,31 @@ class boiteController extends CI_Controller {
 		$this->load->view('template', $param);
 	}
 
+	public function mobile()
+	{
+		
+		$user = $this->session->userdata('user_data');
+
+		if($user['isBrand']==0){
+			$this->load->model("boiteModel");
+			$param = array(
+				'userType' => 'mobile',
+				'title' => 'Mes boites',
+				'mainContent' => 'mesBoites',
+				'boites' => $this->boiteModel->getMyReceiverBoite($user['idUser'])
+			);
+		}else{
+			$this->load->model("boiteBrandModel");
+			$param = array(
+				'userType' => 'mobile',
+				'title' => 'MesboitesBrand',
+				'mainContent' => 'MesboitesBrand',
+				'boites' => $this->boiteBrandModel->getBoiteBrandByUser($user['idUser']),
+			);
+		}
+		$this->load->view('template', $param);
+	}
+
 	function create()
 	{
 		$this->load->library('form_validation');
@@ -453,7 +478,7 @@ class boiteController extends CI_Controller {
 				'mainContent' => 'radar',
 				'title' => 'Ouvrir la boite '.$user['prenom'],
 				'userBrand' => $userBrand,
-				'boiteBrand' => $boiteBrand
+				'boite' => $boiteBrand
 			);
 		}
 		$this->load->view('template', $param);

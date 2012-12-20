@@ -1,0 +1,65 @@
+/*
+* Backwards Stylesheet
+* Copyright 2012, Bonin, Borghese, Malvaux, Penalba, Procureur, Souville
+* HETIC H3 P2015
+*/
+
+/* #Reset & Basics (Inspired by E. Meyers)
+================================================== */
+	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline; }
+	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+		display: block; }
+	body {
+		line-height: 1;		}
+	ol, ul {
+		list-style: none; }
+	blockquote, q {
+		quotes: none; }
+	blockquote:before, blockquote:after,
+	q:before, q:after {
+		content: '';
+		content: none; }
+	table {
+		border-collapse: collapse;
+		border-spacing: 0; }
+	* {-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
+		
+/* #Clearing */
+    /* Self Clearing Goodness */
+    .container:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
+
+    /* Use clearfix class on parent to clear nested columns, or wrap each row of columns in a <div class="row"> */
+    .clearfix:before,
+    .clearfix:after {content: '\0020';display: block;overflow: hidden;visibility: hidden;width: 0;height: 0; }
+    .clearfix:after {clear: both; }
+    .clearfix {zoom: 1; }
+
+    /* You can also use a <br class="clear" /> to clear columns */
+    .clear {clear: both;display: block;overflow: hidden;visibility: hidden;width: 0;height: 0;}
+
+
+    body {background:#dadbc8;font:0.8em 'Segoe UI', Calibri, Helvetica, sans-serif;color:#737373;}
+    a {text-decoration:none;color:#e3e3e3;}
+
+    /* EN-TETE 
+-------------------------------------------------- */
+	header {background:url(../img/texture-header.jpg) repeat;width:100%;}
+    header a {color:#e3e3e3;}
+	header section {width:95%;margin:0 auto;padding:20px 0;position: relative;}
+	header section:after {content:"."; clear:both; display:block; height:0; visibility:hidden;}
+	#logo {position:absolute;left:4%;}
+	#ellipse {position: absolute;top:60px;z-index:15;left:4%;}
+	.bouton-fleche {background:url(../img/bouton-retour.png) no-repeat 0 0;width:80px;height:28px;display:block;line-height:28px;padding-left:10px;text-align:center;position:relative;float:right}
+	.bouton-fleche:hover {background-position:-80px 0;}
+
+    /* CONTAINER 
+-------------------------------------------------- */
+	#container {width:95%;margin:0 auto;}
+	#container img {width:100%;height:auto;max-width:550px;}
+	#container p {text-align:center;font-size:1.2em;margin:5px 0 20px;}

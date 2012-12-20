@@ -321,6 +321,21 @@ class boiteController extends CI_Controller {
 		$this->load->view('template', $param);
 	}
 
+	function displayBoiteMobile($idBoite){
+		$this->load->model('boiteModel');
+		$boite = $this->boiteModel->getBoite($idBoite);
+		$contributeurs = $this->boiteModel->getAllContributors($idBoite);
+
+		$param = array(
+			'userType' => 'mobile',
+			'mainContent' => 'display',
+			'title' => $boite->nomBoite,
+			'boite' => $boite,
+			'contributeurs' => $contributeurs
+		);
+		$this->load->view('template', $param);
+	}
+
 	function displayBoiteBrand($idBoite){
 		$this->load->model('boiteBrandModel');
 		$boite = $this->boiteBrandModel->getBoiteBrand($idBoite);

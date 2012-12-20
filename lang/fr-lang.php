@@ -50,6 +50,7 @@ define('BOITES_OUVERTES'	, "Boîtes ouvertes");
 define('NO_BOITES'			, "Vous n'avez créé aucune boite pour le moment");
 define('NO_BC'				, "Vous ne contribuez à aucune boite pour le moment.");
 define('NO_RECEIVER'		, "Vous n'avez reçu aucune boite pour le moment.");
+define('NO_FILES'			, "Aucun fichier pour le moment");
 //---------------------------------------------------------
 
 

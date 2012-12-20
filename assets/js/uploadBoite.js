@@ -85,8 +85,7 @@ $(document).ready(function(){
             $(this).removeClass(status);
         });
     }
-
-
+    
     $("#addContributor").submit(function(e){
         e.preventDefault();
           $.ajax({

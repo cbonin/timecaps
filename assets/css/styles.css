@@ -157,18 +157,22 @@
 	.scroller {
 		max-width: 3000px;
 		padding-bottom: 20px;
-		}
+		min-width: 100%;
+	}
+	.scroller p{padding: 1%;}
 
 	.box {position:relative;width:300px;display:inline-block;text-align:center;margin:40px 0 0;}
 	.box .title-box {font-size:1.1em;color:#737373;margin:10px 0 0;}
 	.box span {display:block;}
-	.img-box {background:url(img/dashboard/spritebox-home.png) no-repeat;margin:0 auto;}
+	.img-box {background:url(img/dashboard/spritebox-home.png) no-repeat;margin:0 auto; position: relative;}
+	.img-box.box-closed{background:url(img/dashboard/spritebox-home.png) no-repeat;margin:0 auto;}
 	#boites-encours .img-box {background-position:0 0;width:129px;height:103px;}
 	#boites-encours .box:hover .img-box {background-position:-192px 0;}
-	#boites-locked .img-box {background-position:0 -113px;width:151px;height:104px;}
-	#boites-locked .box:hover .img-box {background-position:-192px -113px;}
-	#boites-open .img-box {background-position:0 -227px;width:192px;height:123px;}
-	#boites-open .box:hover .img-box {background-position:-192px -227px;}
+	.img-box.box-closed{background-position:20px -103px!important;width:192px;height:123px;}
+	#boites-locked .box:hover .img-box{background-position:-192px -113px;}
+	#boites-open .img-box{background-position:0 -227px;width:192px;height:123px;}
+	#boites-open .box:hover .img-box{background-position:-192px  -227px;}
+	#boites-open .box:hover .img-box.box-closed{background-position:-172px -103px!important;}
 
 	.createur {background:url(img/dashboard/spritebox-home.png) no-repeat 0 -394px;width:38px;height:34px;position:absolute;bottom:30%;right:10%;}
 	.box:hover .createur {background-position:-38px -394px;}
@@ -561,6 +565,31 @@ input#upload:hover{ background: #eee; color: #111; border-color:#777; }
 	position: absolute;
 	top: 0;
 	right: 0;
+}
+
+#emailContributor{
+	display: inline-block;
+	width: 50%;
+}
+
+.date-opening{
+	position: absolute;
+	display: block;
+	width: 100%;
+	text-align: center;
+	top: 60%;
+}
+
+.date-opening-content{
+	display: inline-block!important;
+	padding: 5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	background: rgba(0,0,0, .5);
+	width: auto;
+	color: #FFF;
 }
 
 

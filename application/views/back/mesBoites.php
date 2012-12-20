@@ -1,9 +1,11 @@
 			<section id="dash-home">
 				<h1 class="ribbon"><?php echo MES_BOITES; ?></h1>
+				<center>
 				<div id="newbox">
 					<img src="<?php echo base_url(); ?>assets/css/img/dashboard/picto-newbox.png" alt="Nouvelle boîte" />
 					<p><a href="<?php echo base_url(); ?>boiteController/create" title="Créer une nouvelle boîte" class="button"><?php echo NOUVELLE_BOITE; ?></a></p>
 				</div>
+				</center>
 
 				<section id="boites-encours">
 					<h2 class="bandeau"><?php echo BOITES_ENTERREES; ?></h2>
@@ -21,7 +23,7 @@
 								</div>
 							<?php endforeach; 
 							else: 
-								echo NO_BOITES; 
+								echo "<p>".NO_BOITES."</p>"; 
 							endif; ?>
 						</div>
 					</div>
@@ -43,7 +45,7 @@
 									</div>
 								<?php endforeach; 
 							else:
-								echo NO_BC;
+								echo "<p>".NO_BC."</p>";
 							endif; ?>
 						</div>
 					</div>
@@ -56,22 +58,26 @@
 							<?php if(!empty($boitesReceiver)):
 								foreach($boitesReceiver as $boite): ?>
 									<div class="box">
-									<?php if(boiteOpenable($boite)): ?>
-										<a href="<?php echo base_url().'boiteController/displayBoite/'.$boite->idBoite; ?>" title="">
-											<span class="img-box"></span>
+									<?php if(boiteOpenable($boite)): 
+										if($boite->statut == 2){ ?>
+											<a href="<?php echo base_url().'boiteController/displayBoite/'.$boite->idBoite; ?>" title="">
+										<?php }else{ ?>
+											<a href="<?php echo base_url().'boiteController/openBoite/'.$boite->idBoite; ?>" title="">
+										<?php } ?>
+											<span class="img-box <?php if($boite->statut != 2){echo "box-closed";} ?>"></span>
 											<span class="title-box"><?php echo $boite->nomBoite; ?></span>
 											<span class="createur collab"></span>
 										</a>
 									<?php else: ?>
-										<span class="img-box"></span>
+										<span class="img-box box-closed"></span>
 										<span class="title-box"><?php echo $boite->nomBoite; ?></span>
 										<span class="createur collab"></span>
-										<span>A partir du <?php echo formatDate($boite->targetDate); ?></span>
+										<span class="date-opening"><span class="date-opening-content">A partir du <?php echo formatDate($boite->targetDate); ?></span></span>
 									<?php endif; ?>
 									</div>
 								<?php endforeach;
 							else:
-								echo NO_RECEIVER;
+								echo "<p>".NO_RECEIVER."</p>";
 							endif; ?>
 						</div>
 					</div>

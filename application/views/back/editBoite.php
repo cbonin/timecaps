@@ -86,7 +86,7 @@
                     <div id="contributors"></div>
                         <form id="addContributor">
                             <input type="text" id="emailContributor" name="emailContributor" placeholder="Nouveau contributeur"/>
-                            <input type="submit" value="Ajouter un contributeur" class="submit" />
+                            <input type="submit" value="Ajouter" class="submit" />
                         </form>
                 </div>
             </section>

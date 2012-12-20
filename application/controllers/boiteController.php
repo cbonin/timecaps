@@ -161,7 +161,7 @@ class boiteController extends CI_Controller {
 				'coordX' => $this->input->post('coordX'),
 				'coordY' => $this->input->post('coordY'),
 				'description' => $this->input->post('description'),
-				'targetDate' => $this->input->post('targetDate'),
+				'targetDate' => date("Y-m-d", strtotime($this->input->post('targetDate'))),
 				'adresse' => $this->input->post('receverAddress'),
 				'codePostal' => $this->input->post('receverZipCode'),
 				'ville' => $this->input->post('receverCity'),

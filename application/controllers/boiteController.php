@@ -335,8 +335,8 @@ class boiteController extends CI_Controller {
 	}
 
 	function displayBoiteMobile($idBoite){
-		$this->load->model('boiteBrandModel');
-		$boite = $this->boiteBrandModel->getBoiteBrand($idBoite);
+		$this->load->model('boiteModel');
+		$boite = $this->boiteModel->getBoite($idBoite);
 
 		$param = array(
 			'userType' => 'mobile',

@@ -11,6 +11,7 @@ class boiteModel extends CI_Model
 	function addBoite($data)
 	{
 		$this->db->insert('boite', $data);
+		return $this->db->insert_id();
 	}
 
 

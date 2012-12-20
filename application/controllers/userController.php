@@ -87,7 +87,6 @@ class userController extends CI_Controller
 			$email =  $this->input->post('email');
 			$password =  md5($this->input->post('password'));
 			$user = $this->userModel->getUser($email);
-
 			// Si l'email est correct et si le mot de passe correspond
 			if(!empty($user) && $password === $user->password){
 				

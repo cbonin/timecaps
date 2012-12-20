@@ -109,16 +109,18 @@ class boiteController extends CI_Controller {
 					'password' => $password,
 				);
 				$idNewUser = $this->userModel->addUser($dataUser); //la metohde nous renvoie du nouvel user
+
+				$user = $this->session->userdata('user_data');
+
+				$this->load->library('email');
+				$this->email->from('no-reply@backwards.fr', $user['prenom'].' '.$user['nom']);
+				$this->email->to($this->input->post('emailRecever')); 
+				$this->email->subject($user['prenom'].' '.$user['nom'].' souhaite vous faire un cadeau');
+				$this->email->message($user['prenom'].' '.$user['nom'].' Connectez vous sur  <a href="'.base_url().'boiteController/openBoite/'.$idBoiteNew.'">Backwards</a> avec votre adresse mail et le mot de pass suivant : '.$this->input->post('receverFirstName').time().'. L\'équipe Backwards');	
+				$this->email->send();
 			}
 
-			// On envoi le mail au destinataire
-			$user = $this->session->userdata('user_data');
-			$this->load->library('email');
-			$this->email->from('no-reply@backwards.fr', $user['prenom'].' '.$user['nom']);
-			$this->email->to($this->input->post('emailRecever')); 
-			$this->email->subject($user['prenom'].' '.$user['nom'].' vous offre une capsule temporelle...');
-			$this->email->message($user['prenom'].' '.$user['nom'].' vous offre une capsule temporaire avec ce message : blablabla, venez la decouvrir ici');	
-			$this->email->send();
+			
 
 			// On cree la boite avec toutes les informations necessaires...
 			$this->load->model("boiteModel");
@@ -138,9 +140,18 @@ class boiteController extends CI_Controller {
 				'codePostal' => $this->input->post('receverZipCode'),
 				'ville' => $this->input->post('receverCity'),
 			);
-			$this->boiteModel->addBoite($data);
+			$idBoiteNew = $this->boiteModel->addBoite($data);
 
-			redirect("boiteController");
+			// On envoi le mail au destinataire
+			$user = $this->session->userdata('user_data');
+			$this->load->library('email');
+			$this->email->from('no-reply@backwards.fr', $user['prenom'].' '.$user['nom']);
+			$this->email->to($this->input->post('emailRecever')); 
+			$this->email->subject($user['prenom'].' '.$user['nom'].' vous offre une capsule temporelle');
+			$this->email->message($user['prenom'].' '.$user['nom'].' vous offre une capsule temporelle avec ce message : venez l\'ouvrir sur <a href="'.base_url().'boiteController/openBoite/'.$idBoiteNew.'">Backwards</a>. L\'équipe Backwards');	
+			$this->email->send();
+
+			redirect("boiteController/update/".$idBoiteNew."#contenu-boite");
 		}
 	} //end create
 
@@ -153,7 +164,8 @@ class boiteController extends CI_Controller {
 		$user = $this->session->userdata('user_data');
 		$contributors = $this->boiteModel->getAllContributors($id);
 
-		if($boite->idOwner == $user['idUser']){
+		if($boite->idOwner == $user['idUser'])
+		{
 			// L'utilisateur est le propriétaire de la boite
 
 			
@@ -181,27 +193,19 @@ class boiteController extends CI_Controller {
 				);
 				$this->load->view('template', $param);
 			}
-		else  //si 	le formulaire à correctement été rempli
-		{
-			$data = array(
-				'nomBoite' => $this->input->post('nomBoite'),
-				'coordX' => $this->input->post('coordX'),
-				'coordY' => $this->input->post('coordY'),
-				'description' => $this->input->post('description'),
-				'targetDate' => date("Y-m-d", strtotime($this->input->post('targetDate'))),
-				'adresse' => $this->input->post('receverAddress'),
-				'codePostal' => $this->input->post('receverZipCode'),
-				'ville' => $this->input->post('receverCity'),
-			);
-			$this->boiteModel->updateBoite($id, $data);
-
-
-			// Si contributeur
-			$emailContributor = $this->input->post('emailContributor');
-			if($emailContributor != ''){
-				// Ajout des relations dans la bdd
-				$this->addContributor($emailContributor, $id);
-			}
+			else  //si 	le formulaire à correctement été rempli
+			{
+				$data = array(
+					'nomBoite' => $this->input->post('nomBoite'),
+					'coordX' => $this->input->post('coordX'),
+					'coordY' => $this->input->post('coordY'),
+					'description' => $this->input->post('description'),
+					'targetDate' => date("Y-m-d", strtotime($this->input->post('targetDate'))),
+					'adresse' => $this->input->post('receverAddress'),
+					'codePostal' => $this->input->post('receverZipCode'),
+					'ville' => $this->input->post('receverCity'),
+				);
+				$this->boiteModel->updateBoite($id, $data);
 
 				redirect("boiteController");
 			}

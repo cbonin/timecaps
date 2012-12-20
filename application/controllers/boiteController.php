@@ -288,7 +288,6 @@ class boiteController extends CI_Controller {
 		$this->form_validation->set_rules('description', 'Description', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('targetDate', 'Date d\'ouverture potentielle', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('emailRecever', 'Adresse mail du destinataire', 'trim|required|xss_clean|valid_email');
-		$this->form_validation->set_rules('code', 'Code de déverrouillage', 'trim|required|xss_clean');
 		
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -322,7 +321,7 @@ class boiteController extends CI_Controller {
 				'coordY' => $this->input->post('coordY'),
 				'description' => $this->input->post('description'),
 				'targetDate' => date("Y-m-d", strtotime($this->input->post('targetDate'))),
-				'idOwner' => $user['idUser'],
+				'idOwner' => $user['idUser']
 			);
 			$idBoiteBrand = $this->boiteBrandModel->addBoiteBrand($data);
 			
@@ -356,7 +355,6 @@ class boiteController extends CI_Controller {
 			$this->form_validation->set_rules('description', 'Description', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('targetDate', 'Date d\'ouverture potentielle', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('emailRecever', 'Adresse mail du destinataire', 'trim|required|xss_clean|valid_email');
-			$this->form_validation->set_rules('code', 'Code de déverrouillage', 'trim|required|xss_clean');
 
 			if ($this->form_validation->run() == FALSE){
 				
@@ -370,8 +368,6 @@ class boiteController extends CI_Controller {
 			}
 			else  //si 	le formulaire à correctement été rempli
 			{
-				echo "y'a de l'idée";
-				die();
 				$data = array(
 				'nomBoite' => $this->input->post('nomBoite'),
 				'coordX' => $this->input->post('coordX'),
@@ -380,8 +376,7 @@ class boiteController extends CI_Controller {
 				'targetDate' => date("Y-m-d", strtotime($this->input->post('targetDate'))),
 				'idOwner' => $user['idUser'],
 				);
-				$this->boiteBrandModel->updateBoiteBrand($id, $data);
-
+				$this->boiteBrandModel->updateBoiteBrand($idBoiteBrand, $data);
 				redirect("boiteController");
 			}
 		}

@@ -6,8 +6,8 @@ if (isset($files) && count($files)):
          <div class="scroller">
             <?php foreach ($files['image'] as $file): ?>
             <div class="item">
-               <a href="<?php echo base_url().'files/'.$file->idBoite.'/'.$file->nom; ?>" rel="shadowbox[images]" title="<?php echo $file->nom; ?>">
-                  <img src="<?php echo base_url().'files/'.$file->idBoite.'/thumb/'.$file->nom; ?>" alt="<?php echo $file->nom; ?>"/>
+               <a href="<?php echo base_url().'files/brand_'.$file->idBoiteBrand.'/'.$file->nom; ?>" rel="shadowbox[images]" title="<?php echo $file->nom; ?>">
+                  <img src="<?php echo base_url().'files/brand_'.$file->idBoiteBrand.'/thumb/'.$file->nom; ?>" alt="<?php echo $file->nom; ?>"/>
                </a>
                   <span class="title-item"><?php echo $file->titre; ?></span>
                   <?php

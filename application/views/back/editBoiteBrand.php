@@ -1,6 +1,6 @@
+<? echo validation_errors(); ?>
     <section id="edit-boite">
-        <? var_dump($boite); ?>
-        <form method="POST" action="<?php echo base_url(); ?>boiteController/updateBrandBoite/<?php echo $boite->idBoiteBrand; ?>">
+        <form method="POST" action="<?php echo base_url(); ?>boiteController/updateBoiteBrand/<?php echo $boite->idBoiteBrand; ?>">
             <div id="button-ribbon">
                 <h1 class="ribbon"><?php echo $boite->nomBoite;?></h1>
                 <a href="<?php echo base_url(); ?>/boiteController" title="Retour à Mes Boîtes" class="button retour"><?php echo BTN_RETOUR; ?></a>
@@ -14,7 +14,7 @@
                         <div class="boite-container">
                             <p class="left">
                                 <label for="email"><span class="picto-form"></span><?php echo EMAIL;?><span class="asterix">*</span></label>
-                                <input type="text" id="email" name="emailRecever" value="<?php echo 'slip' ?>" />
+                                <input type="text" id="email" name="emailRecever" value="<?php echo 'j@gmail.com' ?>" />
                             </p>
                         </div>
                     </section>
@@ -64,9 +64,7 @@
             </section>
 
             </div>
-            <div id="bouton-creer">
-                <input type="submit" value="<?php echo BTN_ENREGISTRER; ?>" class="button" />
-            </div>
+
         
     </section>
     <div class="alertUpload"></div>

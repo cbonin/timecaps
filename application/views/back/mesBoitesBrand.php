@@ -17,7 +17,7 @@
 										<span class="title-box"><?php echo $boite->nomBoite; ?></span>
 										<span class="createur collab"></span>
 									</a>
-									<a href="<?php echo base_url().'boiteController/deleteBoiteBrand /'.$boite->idBoiteBrand; ?>" class="delete-box" title="Supprimer"></a>
+									<a href="<?php echo base_url().'boiteController/deleteBoiteBrand/'.$boite->idBoiteBrand; ?>" class="delete-box" title="Supprimer"></a>
 								</div>
 							<?php endforeach; 
 							else: 

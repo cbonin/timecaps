@@ -32,7 +32,7 @@ class filesModel extends CI_Model {
 		$fileId = $this->insert_file($dataFile);
 		if($fileId){
 			$depositer['idFile'] = $fileId;
-			$this->insertDepositer($depositer);
+			$this->insertDepositerBrand($depositer);
 			return true;
 		}else{
 			return false;
@@ -41,7 +41,7 @@ class filesModel extends CI_Model {
 
 	private function insertDepositerBrand($data) //param1 = insert le fichier, param2 = insert depositer
 	{
-		$this->db->insert('depotBrand', $data);
+		$this->db->insert('depotbrand', $data);
 	}
 
 	public function delete_file($file_id, $boite_id){
@@ -109,6 +109,49 @@ class filesModel extends CI_Model {
 	    return $data;
 	}
 
+	public function getFilesBrand($idBoite)
+	{
+		$data = array();
+	   	$image = $this->db->select()
+	         ->from('file')
+	         ->like('type', 'image', 'after')
+	         ->join('depotbrand', 'depotbrand.idFile = file.idFile')
+	         ->where('idBoiteBrand', $idBoite)
+	         ->get()
+	         ->result();
+
+     	$son = $this->db->select()
+	         ->from('file')
+	         ->like('type', 'audio', 'after')
+	         ->join('depotbrand', 'depotbrand.idFile = file.idFile')
+	         ->where('idBoiteBrand', $idBoite)
+	         ->get()
+	         ->result();
+
+	    $video = $this->db->select()
+	         ->from('file')
+	         ->like('type', 'video', 'after')
+	         ->join('depotbrand', 'depotbrand.idFile = file.idFile')
+	         ->where('idBoiteBrand', $idBoite)
+	         ->get()
+	         ->result();
+
+	    $text = $this->db->select()
+	         ->from('file')
+	         ->like('type', 'text', 'after')
+	         ->or_like('type', 'appli', 'after')
+	         ->join('depotbrand', 'depotbrand.idFile = file.idFile')
+	         ->where('idBoiteBrand', $idBoite)
+	         ->get()
+	         ->result();
+
+	    $data['image'] = $image;
+	    $data['son'] = $son;
+	    $data['video'] = $video;
+	    $data['text'] = $text;
+	    return $data;
+	}
+
 	function getMyDepots($idBoite, $idUser){
 		return $this->db->select()
 			->from('depot')
@@ -118,4 +161,12 @@ class filesModel extends CI_Model {
 			->result();
 	}
 
+	function getMyDepotsBrand($idBoite, $idUser){
+		return $this->db->select()
+			->from('depotbrand')
+			->where('idBoiteBrand', $idBoite)
+			->where('idDepositeur', $idUser)
+			->get()
+			->result();
+	}
 }

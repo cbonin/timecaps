@@ -117,11 +117,11 @@ class uploadController extends CI_Controller
       }
       if ($status != "error")
       {
-         $filename = ("./files/".$dirName);
+         $filename = ("./files/brand_".$dirName);
          if (!file_exists($filename)) {
-             mkdir("./files/".  $dirName, 0777);
+             mkdir("./files/brand_".  $dirName, 0777);
          }
-         $config['upload_path'] = './files/'.$dirName;
+         $config['upload_path'] = './files/brand_'.$dirName;
          $config['allowed_types'] = 'mp4|gif|jpg|png|doc|txt|odt|pdf|jpeg|wav|mp3|video/mp4|wmv|avi|ogg|ogv|rtf|bmp|docx|MOV|mpeg|rtf';
          $config['max_size']  = 1024 * 20;
          $config['max_height']  = 2000;
@@ -137,9 +137,9 @@ class uploadController extends CI_Controller
          else
          {
 
-            $thumbFolder = ("./files/".$dirName."/thumb");
+            $thumbFolder = ("./files/brand_".$dirName."/thumb");
             if (!file_exists($thumbFolder)) {
-                mkdir("./files/".$dirName."/thumb", 0777);
+                mkdir("./files/brand_".$dirName."/thumb", 0777);
             }
 
             $data = $this->upload->data();
@@ -151,7 +151,7 @@ class uploadController extends CI_Controller
             $ctemp['maintain_ratio'] = TRUE;
             $ctemp['width'] = 100;
             $ctemp['height'] = 100;
-            $ctemp['new_image'] = './files/'.$dirName.'/thumb';
+            $ctemp['new_image'] = './files/brand_'.$dirName.'/thumb';
             $ctemp['thumb_marker'] = '';
             
             $this->load->library('image_lib'); 
@@ -198,6 +198,15 @@ class uploadController extends CI_Controller
       $idUser = $idUser['idUser'];
       $depots = $this->filesModel->getMyDepots($idBoite, $idUser);
       $this->load->view('back/files', array('files' => $files, 'depots' => $depots));
+   }
+
+   public function filesBrand($idBoite)
+   {
+      $files = $this->filesModel->getFilesBrand($idBoite);
+      $idUser = $this->session->userdata('user_data');
+      $idUser = $idUser['idUser'];
+      $depots = $this->filesModel->getMyDepotsBrand($idBoite, $idUser);
+      $this->load->view('back/filesBrand', array('files' => $files, 'depots' => $depots));
    }
 
    public function delete_file($file_id, $boite_id)

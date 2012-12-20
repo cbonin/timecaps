@@ -4,10 +4,7 @@ $(document).ready(function(){
   Shadowbox.init(); 
 
   // UPLOAD VIA AJAX
-	refresh_files();
-  if(!isBrand){
-    refresh_contributors();
-  }
+  refresh_files();
     $(function() {
        $('#upload_file').submit(function(e) {
           e.preventDefault();
@@ -39,7 +36,8 @@ $(document).ready(function(){
 
     function refresh_files()
     {
-       $.get(baseUrl+'uploadController/files/'+idBoite) // var idBoite se crée en php dans editBoite.php
+
+       $.get(baseUrl+'uploadController/filesBrand/'+idBoite) // var idBoite se crée en php dans editBoite.php
        .success(function (data){
           $('#files').html(data);
        });
@@ -84,12 +82,5 @@ $(document).ready(function(){
         $(".alertUpload").slideToggle().delay(2000).fadeOut(500, function(){
             $(this).removeClass(status);
         });
-    }
-
-    function refresh_contributors(){
-        $.get(baseUrl+'boiteController/getContributors/'+idBoite) // var idBoite se crée en php dans editBoite.php
-         .success(function (data){
-            $('#contributors').html(data);
-         });
     }
 });

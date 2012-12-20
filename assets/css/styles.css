@@ -218,7 +218,7 @@
 
 @media only screen and (max-width: 868px) {
 	header section {width:95%;}
-	.ribbon:after, .ribbon:before {background:none;}
+	.ribbon:after, .ribbon:before {display:none;}
 	#container {width:95%;}
 	footer section {width:95%;}
 	#retour-haut a {right:45%;}

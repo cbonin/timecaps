@@ -339,12 +339,15 @@ class boiteController extends CI_Controller {
 	function displayBoiteMobile($idBoite){
 		$this->load->model('boiteModel');
 		$boite = $this->boiteModel->getBoite($idBoite);
+		$contributeurs = $this->boiteModel->getAllContributors($idBoite);
+
 
 		$param = array(
 			'userType' => 'mobile',
 			'mainContent' => 'display',
 			'title' => $boite->nomBoite,
 			'boite' => $boite,
+			'contributeurs' => $contributeurs
 		);
 		$this->load->view('template', $param);
 	}

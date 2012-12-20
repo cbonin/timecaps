@@ -33,7 +33,7 @@
 	<header>
         <section>
             <div id="logo">
-                <a href="index.php"><img src="<?php echo base_url(); ?>assets/css/img/mobile/logo.png" alt="Logo Backwards" title="Backwards" /></a>
+                <a href="<?php echo base_url(); ?>boiteController/mobile"><img src="<?php echo base_url(); ?>assets/css/img/mobile/logo.png" alt="Logo Backwards" title="Backwards" /></a>
             </div>
             <div id="connect">
             	<?php if(isLogged()): ?>

@@ -79,9 +79,6 @@
 	/* AUTRE STYLE BASE 
 -------------------------------------------------- */
 	.ribbon {background: #2e8d8d;color:#e3e3e3;line-height:2em;text-align: center;position: relative;}
-	.ribbon:before, .ribbon:after {display:block;width:70px;height:60px;position: absolute;top:0;}
-	.ribbon:before {content:'';background:url(img/mobile/ribbon-sprite.png) no-repeat 0 0;left:-70px;}
-	.ribbon:after {content:'';background:url(img/mobile/ribbon-sprite.png) no-repeat 0 -61px;right:-70px;}
 	.content-main {padding:0 10%;}
 	.content-main a {color:#2E8D8D;}
 
